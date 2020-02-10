@@ -203,4 +203,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/node,react,linux,macos,windows,visualstudiocode
 
-kunnat.json
+/kunnat.json
