@@ -1,11 +1,14 @@
 import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 import { Theme } from "../../styles";
 import MunicipalityOutline from "../../components/MunicipalityOutline";
 import StockChart from "../../components/StockChart";
 
 const Municipality = props => {
+  const [ready, setReady] = useState(false);
+
   const co2ekv = props.data.forecast_data[3].CBT1
     ? props.data.forecast_data[3].CBT1 / 10
     : 0;
@@ -15,98 +18,106 @@ const Municipality = props => {
     props.data.forecast_data[4].Bio5 - props.data.forecast_data[3].Bio5
   ];
 
-  console.log(props.data);
-  return (
-    <Container>
-      <Overlay>
-        <GraphContainer>
-          <MunOutlineContainer>
-            <MunicipalityOutline coords={props.data.coordinates} />
-          </MunOutlineContainer>
-          <BalanceContainer>
-            <BalanceCircle>
-              <BalanceValue>{co2ekv}</BalanceValue>
-              <BalanceUnit>
-                CO<sub>2</sub>
-              </BalanceUnit>
-            </BalanceCircle>
-          </BalanceContainer>
-          <StockContainer>
-            <StockChart data1={[stockAmounts[0]]} data2={[stockAmounts[1]]} />
-          </StockContainer>
-        </GraphContainer>
-        <WaveContainer>
-          <Wave />
-        </WaveContainer>
-      </Overlay>
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
-      <TextContainer>
-        <Title>{props.data.NAMEFIN}</Title>
-        <InfoTextContainer>
-          <InfoTextRowFirst>
-            <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
-            <InfoTextValue>
-              {roundVal(props.data.TOTALAREA) + "km"}
-              <sup>2</sup>
-            </InfoTextValue>
-          </InfoTextRowFirst>
-          <InfoTextRow>
-            <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
-            <InfoTextValue>
-              {roundVal(haToKm(props.data.forest_area)) + "km"}
-              <sup>2</sup>
-            </InfoTextValue>
-          </InfoTextRow>
-          <InfoTextRow>
-            <InfoTextKey>Hiililaskelmien kattavuus:&nbsp;&nbsp;</InfoTextKey>
-            <InfoTextValue>
-              {roundVal(
-                getRatio(props.data.forest_area, props.data.non_forecasted_area)
-              ) + "%"}
-            </InfoTextValue>
-          </InfoTextRow>
-        </InfoTextContainer>
-        <ExplanationContainer>
-          <ExplanationHeader>Vuotuinen hiilitase (CO-ekv)</ExplanationHeader>
-          <ExplanationText>
-            Hiilitase tarkoittaa metsätalouden sitoman ja vapauttaman hiilen
-            erotusta tietyn ajanjakson kuluessa. Positiivinen tase tarkoittaa,
-            että metsätalous on poistanut hiiltä ilmakehästä ja toiminut
-            hiilinieluna. Hiilitaseessa otetaan huomioon myös puutuotteiden
-            korvausvaikutukset.
-            <br />
-            <br />
-            Vuoden 2020 hiilitase oli {co2ekv} hiilidioksiditonnia (CO2 -ekv).
-            Metsien vuotuinen hiilidioksidin nettosidonta vastaa yhteensä{" "}
-            {Math.round(co2ekv / 10.3)} keskimääräisen suomalaisen ihmisen
-            vuotuista hiilijalanjälkeä, joka on n. 10,3 hiilidioksiditonnia (CO2
-            -ekv).
-          </ExplanationText>
-        </ExplanationContainer>
-        <ExplanationContainer>
-          <ExplanationHeader>
-            Hiilivarastojen parannuspotentiaali (CO2-ekv)
-          </ExplanationHeader>
-          <ExplanationText>
-            Puuston eli biomassan hiilitase kuvaa hiilen määrän muutosta metsä-
-            ja kitumaalla kasvavassa puustossa. Biomassan hiilitaseeseen
-            vaikuttavat tekijät ovat puuston kasvu, uusien puiden syntyminen,
-            puiden kuoleminen (luonnonpoistuma) ja hakkuut.
-            <br />
-            <br />
-            Maan hiilitase tarkoittaa metsämaan hiilivaraston muutosta, mihin
-            vaikuttavat puiden kuoleminen, karikkeen ja hakkuutähteiden määrä,
-            turvekerroksen paksuuntuminen ojittamattomilla soilla ja maan
-            eloperäisen aineksen hajoaminen.
-            <br />
-            <br />
-            Hiilivarastoja voisi potentiaalisesti parantaa{" "}
-            {stockAmounts[0] + stockAmounts[1]} hiilidioksiditonnin (CO2 -ekv)
-            edestä 50 vuoden aikavälillä.
-          </ExplanationText>
-        </ExplanationContainer>
-      </TextContainer>
-    </Container>
+  return (
+    ready && (
+      <Container>
+        <Overlay>
+          <GraphContainer>
+            <MunOutlineContainer>
+              <MunicipalityOutline coords={props.data.coordinates} />
+            </MunOutlineContainer>
+            <BalanceContainer>
+              <BalanceCircle>
+                <BalanceValue>{co2ekv}</BalanceValue>
+                <BalanceUnit>
+                  CO<sub>2</sub>
+                </BalanceUnit>
+              </BalanceCircle>
+            </BalanceContainer>
+            <StockContainer>
+              <StockChart data1={[stockAmounts[0]]} data2={[stockAmounts[1]]} />
+            </StockContainer>
+          </GraphContainer>
+          <WaveContainer>
+            <Wave />
+          </WaveContainer>
+        </Overlay>
+
+        <TextContainer>
+          <Title>{props.data.NAMEFIN}</Title>
+          <InfoTextContainer>
+            <InfoTextRowFirst>
+              <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
+              <InfoTextValue>
+                {roundVal(props.data.TOTALAREA) + "km"}
+                <sup>2</sup>
+              </InfoTextValue>
+            </InfoTextRowFirst>
+            <InfoTextRow>
+              <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
+              <InfoTextValue>
+                {roundVal(haToKm(props.data.forest_area)) + "km"}
+                <sup>2</sup>
+              </InfoTextValue>
+            </InfoTextRow>
+            <InfoTextRow>
+              <InfoTextKey>Hiililaskelmien kattavuus:&nbsp;&nbsp;</InfoTextKey>
+              <InfoTextValue>
+                {roundVal(
+                  getRatio(
+                    props.data.forest_area,
+                    props.data.non_forecasted_area
+                  )
+                ) + "%"}
+              </InfoTextValue>
+            </InfoTextRow>
+          </InfoTextContainer>
+          <ExplanationContainer>
+            <ExplanationHeader>Vuotuinen hiilitase (CO-ekv)</ExplanationHeader>
+            <ExplanationText>
+              Hiilitase tarkoittaa metsätalouden sitoman ja vapauttaman hiilen
+              erotusta tietyn ajanjakson kuluessa. Positiivinen tase tarkoittaa,
+              että metsätalous on poistanut hiiltä ilmakehästä ja toiminut
+              hiilinieluna. Hiilitaseessa otetaan huomioon myös puutuotteiden
+              korvausvaikutukset.
+              <br />
+              <br />
+              Vuoden 2020 hiilitase oli {co2ekv} hiilidioksiditonnia (CO2 -ekv).
+              Metsien vuotuinen hiilidioksidin nettosidonta vastaa yhteensä{" "}
+              {Math.round(co2ekv / 10.3)} keskimääräisen suomalaisen ihmisen
+              vuotuista hiilijalanjälkeä, joka on n. 10,3 hiilidioksiditonnia
+              (CO2 -ekv).
+            </ExplanationText>
+          </ExplanationContainer>
+          <ExplanationContainer>
+            <ExplanationHeader>
+              Hiilivarastojen parannuspotentiaali (CO2-ekv)
+            </ExplanationHeader>
+            <ExplanationText>
+              Puuston eli biomassan hiilitase kuvaa hiilen määrän muutosta
+              metsä- ja kitumaalla kasvavassa puustossa. Biomassan
+              hiilitaseeseen vaikuttavat tekijät ovat puuston kasvu, uusien
+              puiden syntyminen, puiden kuoleminen (luonnonpoistuma) ja hakkuut.
+              <br />
+              <br />
+              Maan hiilitase tarkoittaa metsämaan hiilivaraston muutosta, mihin
+              vaikuttavat puiden kuoleminen, karikkeen ja hakkuutähteiden määrä,
+              turvekerroksen paksuuntuminen ojittamattomilla soilla ja maan
+              eloperäisen aineksen hajoaminen.
+              <br />
+              <br />
+              Hiilivarastoja voisi potentiaalisesti parantaa{" "}
+              {stockAmounts[0] + stockAmounts[1]} hiilidioksiditonnin (CO2 -ekv)
+              edestä 50 vuoden aikavälillä.
+            </ExplanationText>
+          </ExplanationContainer>
+        </TextContainer>
+      </Container>
+    )
   );
 };
 
