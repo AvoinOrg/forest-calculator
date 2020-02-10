@@ -9,7 +9,8 @@
     "check": "npm run format-check && npm run type-check && npm run lint-check",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "export NODE_ENV='production' && yarn run build && node server"
   },
   "license": "MIT",
   "devDependencies": {
