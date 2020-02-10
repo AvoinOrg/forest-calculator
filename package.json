@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "export NODE_ENV='production' && yarn run build && node server"
+    "deploy": "export NODE_ENV='dev' && yarn install && export NODE_ENV='production' && yarn run build && node server"
   },
   "license": "MIT",
   "devDependencies": {
