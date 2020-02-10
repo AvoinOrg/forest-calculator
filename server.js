@@ -1,5 +1,4 @@
 const express = require("express");
-const { parse } = require("url");
 const next = require("next");
 const fs = require("fs");
 
