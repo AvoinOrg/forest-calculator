@@ -41,12 +41,14 @@ const getMinMaxCoords = (
   let maxX = null;
   let maxY = null;
 
-  for (let i = 0; i < coords.length; i++) {
-    const cArr = coords[i];
-    for (let j = 0; j < cArr.length; j++) {
-      const cPair = cArr[j];
-      const x = cPair[0];
-      const y = cPair[1];
+  const recFind = arr => {
+    const x = arr[0];
+    if (Array.isArray(x)) {
+      for (let i = 0; i < arr.length; i++) {
+        recFind(arr[i]);
+      }
+    } else {
+      const y = arr[1];
 
       if (!minX || minX > x) {
         minX = x;
@@ -64,7 +66,9 @@ const getMinMaxCoords = (
         maxY = y;
       }
     }
-  }
+  };
+
+  recFind(coords);
 
   if (minX) {
     minX = minX / DIVIDER;
@@ -79,19 +83,26 @@ const getMinMaxCoords = (
 const parseCoords = (coords: number[][][], minX, minY): string[] => {
   const coordStrs = [];
 
-  for (let i = 0; i < coords.length; i++) {
-    const cArr = coords[i];
+  const recFind = (arr): string => {
     let coordStr = "";
 
-    for (let j = 0; j < cArr.length; j++) {
-      const cPair = cArr[j];
-      const x = cPair[0];
-      const y = cPair[1];
+    const x = arr[0];
+    if (Array.isArray(x)) {
+      for (let i = 0; i < arr.length; i++) {
+        coordStr += recFind(arr[i]);
+      }
+    } else {
+      const y = arr[1];
 
       coordStr += `${x / DIVIDER - minX},${y / DIVIDER - minY} `;
     }
 
-    coordStrs.push(coordStr.trim());
+    return coordStr;
+  };
+
+  for (let i = 0; i < coords.length; i++) {
+    const reVal = recFind(coords[i]);
+    coordStrs.push(reVal.trim());
   }
 
   return coordStrs;
