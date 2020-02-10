@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import App, { Container } from "next/app";
+import App from "next/app";
 import { ThemeProvider } from "styled-components";
 
 import { Theme, GlobalStyle } from "../styles";
@@ -9,7 +9,7 @@ class MyApp extends App {
   public render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
+      <>
         <Head>
           <title>Arvometsä hiililaskuri</title>
           <meta
@@ -21,7 +21,7 @@ class MyApp extends App {
           <GlobalStyle />
           <Component {...pageProps} />
         </ThemeProvider>
-      </Container>
+      </>
     );
   }
 }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import AutoSuggest from "react-autosuggest";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import { Theme } from "../styles";
 import muns from "../public/kunnat.json";
@@ -76,50 +77,59 @@ const Home = () => {
   };
 
   return (
-    <Container>
-      <Overlay>
-        <AvoinLink>
-          <AvoinLogo />
-        </AvoinLink>
-        <LogoContainer>
-          <Logo />
-          <LogoTextContainer>
-            <LogoTitle />
-            <LogoText>Hiililaskuri</LogoText>
-          </LogoTextContainer>
-        </LogoContainer>
+    <>
+      <Head>
+        <title>Arvometsä hiililaskuri</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+      </Head>
+      <Container>
+        <Overlay>
+          <AvoinLink>
+            <AvoinLogo />
+          </AvoinLink>
+          <LogoContainer>
+            <Logo />
+            <LogoTextContainer>
+              <LogoTitle />
+              <LogoText>Hiililaskuri</LogoText>
+            </LogoTextContainer>
+          </LogoContainer>
 
-        <SearchContainer onKeyPress={handleKeyPress}>
-          <AutoSuggest
-            suggestions={munsSuggestions}
-            onSuggestionsClearRequested={() => setMunSuggestions([])}
-            onSuggestionsFetchRequested={({ value }) => {
-              setMunValue(value);
-              setMunSuggestions(getMunSuggestions(value));
-            }}
-            onSuggestionSelected={(_, { suggestionValue }) =>
-              console.log("Selected: " + suggestionValue)
-            }
-            getSuggestionValue={suggestion => suggestion.name}
-            renderSuggestion={suggestion => <span>{suggestion.name}</span>}
-            inputProps={{
-              placeholder: "Etsi kuntaa",
-              value: munValue,
-              onChange: (_, { newValue }) => {
-                setMunValue(newValue);
+          <SearchContainer onKeyPress={handleKeyPress}>
+            <AutoSuggest
+              suggestions={munsSuggestions}
+              onSuggestionsClearRequested={() => setMunSuggestions([])}
+              onSuggestionsFetchRequested={({ value }) => {
+                setMunValue(value);
+                setMunSuggestions(getMunSuggestions(value));
+              }}
+              onSuggestionSelected={(_, { suggestionValue }) =>
+                console.log("Selected: " + suggestionValue)
               }
-            }}
-            onSuggestionHighlighted={e => {
-              e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
-            }}
-            highlightFirstSuggestion={true}
-          />
-          <SearchIconContainer onClick={handleMunClick}>
-            <SearchIcon />
-          </SearchIconContainer>
-        </SearchContainer>
-      </Overlay>
-    </Container>
+              getSuggestionValue={suggestion => suggestion.name}
+              renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+              inputProps={{
+                placeholder: "Etsi kuntaa",
+                value: munValue,
+                onChange: (_, { newValue }) => {
+                  setMunValue(newValue);
+                }
+              }}
+              onSuggestionHighlighted={e => {
+                e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
+              }}
+              highlightFirstSuggestion={true}
+            />
+            <SearchIconContainer onClick={handleMunClick}>
+              <SearchIcon />
+            </SearchIconContainer>
+          </SearchContainer>
+        </Overlay>
+      </Container>
+    </>
   );
 };
 
