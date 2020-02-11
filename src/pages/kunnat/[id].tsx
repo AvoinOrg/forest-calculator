@@ -141,7 +141,7 @@ const Municipality = props => {
 
 Municipality.getInitialProps = async req => {
   const id = req.query.id;
-  const res = await fetch("http://localhost:3000/api/kunnat/" + id);
+  const res = await fetch(process.env.API_URL + "/kunnat/" + id);
   const json = await res.json();
   return { data: json };
 };
