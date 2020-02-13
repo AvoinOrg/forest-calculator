@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 
 import { Theme } from "../styles";
-import muns from "../public/kunnat.json";
+import muns from "../public/kunnat_index.json";
 
 const Home = () => {
   const router = useRouter();
