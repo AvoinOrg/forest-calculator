@@ -1,0 +1,47 @@
+# JavaScript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: export NODE_ENV="dev"
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: export NODE_ENV="production"
+      - run: yarn run build
+
+  
+  deploy:
+    working_directory: ~/repo
+    run: ssh ${SERVER_ADDR} 'cd forest-calculator && git pull && yarn run build-update && forever stop forest-calculator && forever start ../forever/forest-calculator'
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - deploy
+      - deploy:
+          requires:
+            - build
