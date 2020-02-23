@@ -1,7 +1,7 @@
 import fetch from "isomorphic-unfetch";
 
 const Estate = props => {
-  const a = 0;
+  console.log(props.data);
   return (
     <>
       <h1>{"asdf"}</h1>
@@ -9,13 +9,15 @@ const Estate = props => {
   );
 };
 
-Estate.getInitialProps = async query => {
-  const { id } = query;
-  console.log(query)
-  const res = await fetch("http://localhost:3000/api/kiinteistot");
-  console.log(res);
-  const json = await res.json();
-  return { meem: "asdf" };
+Estate.getInitialProps = async req => {
+  const id = req.query.id;
+  const res = await fetch(process.env.API_URL + "/kiinteistot/" + id);
+
+  if (res.status === 200) {
+    const json = await res.json();
+    return { data: json };
+  }
+  return { data: null };
 };
 
 export default Estate;
