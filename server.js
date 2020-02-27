@@ -42,7 +42,8 @@ app
       });
 
       if (!kunta) {
-        res.status(404);
+        console.log("asdfasdf")
+        res.status(404).end();
         return;
       }
 

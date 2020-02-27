@@ -7,8 +7,11 @@ import { Theme } from "../../styles";
 import MunicipalityOutline from "../../components/MunicipalityOutline";
 import StockChart from "../../components/StockChart";
 
+const subPage = ["tavanomainen_metsänhoito", "pidennetty_kiertoaika", "jatkuvapeitteinen_metsänkasvatus", "hiilennieluraportti"]
+
 const Municipality = props => {
   const [ready, setReady] = useState(false);
+  const [level, setLevel] = useState(false);
 
   const co2ekv = props.data.forecast_data[3].CBT1
     ? props.data.forecast_data[3].CBT1 / 10
@@ -140,9 +143,15 @@ const Municipality = props => {
 };
 
 Municipality.getInitialProps = async req => {
-  const id = req.query.id;
+  console.log(req.query.slug)
+  const id = req.query.slug[0];
   const res = await fetch(process.env.API_URL + "/kunnat/" + id);
   const json = await res.json();
+
+  if (req.query.slug.length > 1) {
+    if f
+  }
+
   return { data: json };
 };
 

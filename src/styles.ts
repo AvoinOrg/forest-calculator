@@ -49,7 +49,7 @@ export const GlobalStyle: any = createGlobalStyle`
 
         font-size: 16px;
         color: ${theme.color.primary};
-        background-color: ${theme.color.secondary};
+        background-color: ${theme.color.secondaryLight};
         box-sizing: border-box;
         &:focus {
           outline: 0;
