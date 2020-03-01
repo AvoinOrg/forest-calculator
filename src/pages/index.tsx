@@ -97,36 +97,48 @@ const Home = () => {
               <LogoText>Hiililaskuri</LogoText>
             </LogoTextContainer>
           </LogoContainer>
-
-          <SearchContainer onKeyPress={handleKeyPress}>
-            <AutoSuggest
-              suggestions={munsSuggestions}
-              onSuggestionsClearRequested={() => setMunSuggestions([])}
-              onSuggestionsFetchRequested={({ value }) => {
-                setMunValue(value);
-                setMunSuggestions(getMunSuggestions(value));
-              }}
-              onSuggestionSelected={(_, { suggestionValue }) =>
-                console.log("Selected: " + suggestionValue)
-              }
-              getSuggestionValue={suggestion => suggestion.name}
-              renderSuggestion={suggestion => <span>{suggestion.name}</span>}
-              inputProps={{
-                placeholder: "Etsi kuntaa",
-                value: munValue,
-                onChange: (_, { newValue }) => {
-                  setMunValue(newValue);
+          <WaveContainer>
+            <Wave></Wave>
+          </WaveContainer>
+          <LowerContainer>
+            <SearchContainer onKeyPress={handleKeyPress}>
+              <AutoSuggest
+                suggestions={munsSuggestions}
+                onSuggestionsClearRequested={() => setMunSuggestions([])}
+                onSuggestionsFetchRequested={({ value }) => {
+                  setMunValue(value);
+                  setMunSuggestions(getMunSuggestions(value));
+                }}
+                onSuggestionSelected={(_, { suggestionValue }) =>
+                  console.log("Selected: " + suggestionValue)
                 }
-              }}
-              onSuggestionHighlighted={e => {
-                e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
-              }}
-              highlightFirstSuggestion={true}
-            />
-            <SearchIconContainer onClick={handleMunClick}>
-              <SearchIcon />
-            </SearchIconContainer>
-          </SearchContainer>
+                getSuggestionValue={suggestion => suggestion.name}
+                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                inputProps={{
+                  placeholder: "Etsi kuntaa",
+                  value: munValue,
+                  onChange: (_, { newValue }) => {
+                    setMunValue(newValue);
+                  }
+                }}
+                onSuggestionHighlighted={e => {
+                  e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
+                }}
+                highlightFirstSuggestion={true}
+              />
+              <SearchIconContainer onClick={handleMunClick}>
+                <SearchIcon />
+              </SearchIconContainer>
+            </SearchContainer>
+            <InfoTextContainer>
+              <InfoText>
+                Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
+                kunnan alueen metsiä tai rajata haun metsäkiinteistöön. Voit
+                myös vertailla eri metsänhoitotapoja ja tarkastella niiden
+                vaikutuksia hiilennieluun.
+              </InfoText>
+            </InfoTextContainer>
+          </LowerContainer>
         </Overlay>
       </Container>
     </>
@@ -154,7 +166,7 @@ const SearchContainer: any = styled.div`
   display: flex;
   margin: 7rem 0 0 0;
   justify-content: center;
-  padding: 0 0 20rem;
+  padding: 0 0 3rem;
   width: 24.7rem;
   font-family: ${Theme.font.primary};
 
@@ -252,6 +264,46 @@ const AvoinLogo: any = styled.img.attrs(() => ({
   @media only screen and (max-width: 436px) {
     width: 10rem;
   }
+`;
+
+const InfoTextContainer: any = styled.div`
+  width: 100%;
+  z-index: 2;
+  padding: 0 0 15rem 0;
+  display: flex;
+  justify-content: center;
+`;
+
+const InfoText: any = styled.p`
+  color: ${Theme.color.primary};
+  font-family: ${Theme.font.primary};
+  display: flex;
+  max-width: 25rem;
+`;
+
+const WaveContainer: any = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+`;
+
+const Wave: any = styled.img.attrs(() => ({
+  src: require("../public/img/wave2.svg")
+}))`
+  z-index: 1;
+  display: flex;
+  flex: 1;
+`;
+
+const LowerContainer: any = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: ${Theme.color.secondaryLight};
 `;
 
 export default Home;

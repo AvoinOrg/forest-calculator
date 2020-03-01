@@ -9,7 +9,8 @@ export const Theme: any = {
     secondaryLight: "#DDCFA2",
     brown: "rgb(76, 65, 61)",
     beige: "rgb(219, 209, 201)",
-    red: "rgb(164, 71, 72)"
+    red: "rgb(164, 71, 72)",
+    white: "rgb(255,255,255)"
   },
   font: {
     primary: "Museo Sans",

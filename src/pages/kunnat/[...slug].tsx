@@ -2,16 +2,23 @@ import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import Router, { useRouter } from "next/router";
 
 import { Theme } from "../../styles";
 import MunicipalityOutline from "../../components/MunicipalityOutline";
 import StockChart from "../../components/StockChart";
 
-const subPage = ["tavanomainen_metsänhoito", "pidennetty_kiertoaika", "jatkuvapeitteinen_metsänkasvatus", "hiilennieluraportti"]
+const subPages = [
+  "tavanomainen_metsänhoito",
+  "pidennetty_kiertoaika",
+  "jatkuvapeitteinen_metsänkasvatus",
+  "hiilennieluraportti"
+];
 
 const Municipality = props => {
   const [ready, setReady] = useState(false);
   const [level, setLevel] = useState(false);
+  const router = useRouter();
 
   const co2ekv = props.data.forecast_data[3].CBT1
     ? props.data.forecast_data[3].CBT1 / 10
@@ -23,6 +30,11 @@ const Municipality = props => {
   ];
 
   useEffect(() => {
+    if (props.subPage === subPages[0]) {
+      router.push(Router.pathname, "/kunnat/" + props.id + "/", {
+        shallow: true
+      });
+    }
     setReady(true);
   }, []);
 
@@ -143,16 +155,20 @@ const Municipality = props => {
 };
 
 Municipality.getInitialProps = async req => {
-  console.log(req.query.slug)
   const id = req.query.slug[0];
+  let subPage = subPages[0];
+
+  if (req.query.slug.length > 1) {
+    const param = req.query.slug[1].toLowerCase();
+    if (subPages.includes(param)) {
+      subPage = param;
+    }
+  }
+
   const res = await fetch(process.env.API_URL + "/kunnat/" + id);
   const json = await res.json();
 
-  if (req.query.slug.length > 1) {
-    if f
-  }
-
-  return { data: json };
+  return { data: json, subPage, id };
 };
 
 const roundVal = (val: number | string) => {
