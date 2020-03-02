@@ -122,7 +122,7 @@ const Municipality = props => {
   };
 
   useEffect(() => {
-    if (props.subPage === subPages[0]) {
+    if (props.redirect) {
       Router.push(Router.pathname, "/kunnat/" + props.id + "/", {
         shallow: true
       });
@@ -434,12 +434,21 @@ const Municipality = props => {
 
 Municipality.getInitialProps = async req => {
   const id = req.query.slug[0];
-  let subPage = subPages[0];
+  let subPage = null;
+  let redirect = false;
 
   if (req.query.slug.length > 1) {
     const param = req.query.slug[1].toLowerCase();
     if (subPages.includes(param)) {
       subPage = param;
+    }
+  }
+
+  if (!subPage) {
+    subPage = subPages[0];
+
+    if (req.query.slug.length > 1) {
+      redirect = true;
     }
   }
 
@@ -451,7 +460,7 @@ Municipality.getInitialProps = async req => {
     json = await res.json();
   }
 
-  return { data: json, subPage, id };
+  return { data: json, subPage, id, redirect };
 };
 
 const roundVal = (val: number | string) => {

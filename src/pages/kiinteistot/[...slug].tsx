@@ -114,7 +114,6 @@ const Estate = props => {
   };
 
   useEffect(() => {
-    console.log(props.data);
     if (props.data) {
       let fareaha = 0;
       let ffareaha = 0;
