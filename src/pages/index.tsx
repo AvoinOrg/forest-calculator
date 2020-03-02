@@ -10,10 +10,14 @@ import muns from "../public/kunnat_index.json";
 const Home = () => {
   const router = useRouter();
   const [munValue, setMunValue] = useState("");
-  const [munsSuggestions, setMunSuggestions] = useState([]);
+  const [munSuggestions, setMunSuggestions] = useState([]);
+
+  const [estateValue, setEstateValue] = useState("");
+  const [estateSuggestions, setEstateSuggestions] = useState([]);
+
   const [blockEnter, setBlockEnter] = useState(false);
 
-  function getMunSuggestions(value) {
+  const getMunSuggestions = value => {
     const val = value.trim().toLowerCase();
     const filteredMuns = muns.filter(mun =>
       mun.name.toLowerCase().includes(val)
@@ -43,7 +47,11 @@ const Home = () => {
     });
 
     return filteredMuns;
-  }
+  };
+
+  const getEstateSuggestions = _value => {
+    return [];
+  };
 
   const isValidMun = name => {
     const val = muns.find(el => {
@@ -70,9 +78,23 @@ const Home = () => {
     goToMun();
   };
 
-  const handleKeyPress = e => {
+  const handleMunKeyPress = e => {
     if (e.key.toLowerCase() === "enter" && !blockEnter) {
       goToMun();
+    }
+  };
+
+  const goToEstate = () => {
+    router.push("/kiinteistöt/" + estateValue.trim().toLowerCase());
+  };
+
+  const handleEstateClick = e => {
+    goToEstate();
+  };
+
+  const handleEstateKeyPress = e => {
+    if (e.key.toLowerCase() === "enter" && !blockEnter) {
+      goToEstate();
     }
   };
 
@@ -97,21 +119,50 @@ const Home = () => {
               <LogoText>Hiililaskuri</LogoText>
             </LogoTextContainer>
           </LogoContainer>
-          <WaveContainer>
+          {/* <WaveContainer>
             <Wave></Wave>
-          </WaveContainer>
+          </WaveContainer> */}
           <LowerContainer>
-            <SearchContainer onKeyPress={handleKeyPress}>
+            <SearchContainer onKeyPress={handleEstateKeyPress}>
               <AutoSuggest
-                suggestions={munsSuggestions}
+                suggestions={estateSuggestions}
+                onSuggestionsClearRequested={() => setEstateSuggestions([])}
+                onSuggestionsFetchRequested={({ value }) => {
+                  setEstateValue(value);
+                  setEstateSuggestions(getEstateSuggestions(value));
+                }}
+                // onSuggestionSelected={(_, { suggestionValue }) =>
+                //   console.log("Selected: " + suggestionValue)
+                // }
+                getSuggestionValue={suggestion => suggestion.name}
+                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                inputProps={{
+                  placeholder: "Etsi kiinteistötunnusta (esim. 12-3-45)",
+                  value: estateValue,
+                  onChange: (_, { newValue }) => {
+                    setEstateValue(newValue);
+                  }
+                }}
+                onSuggestionHighlighted={e => {
+                  e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
+                }}
+                highlightFirstSuggestion={true}
+              />
+              <SearchIconContainer onClick={handleEstateClick}>
+                <SearchIcon />
+              </SearchIconContainer>
+            </SearchContainer>
+            <SearchContainer onKeyPress={handleMunKeyPress}>
+              <AutoSuggest
+                suggestions={munSuggestions}
                 onSuggestionsClearRequested={() => setMunSuggestions([])}
                 onSuggestionsFetchRequested={({ value }) => {
                   setMunValue(value);
                   setMunSuggestions(getMunSuggestions(value));
                 }}
-                onSuggestionSelected={(_, { suggestionValue }) =>
-                  console.log("Selected: " + suggestionValue)
-                }
+                // onSuggestionSelected={(_, { suggestionValue }) =>
+                //   console.log("Selected: " + suggestionValue)
+                // }
                 getSuggestionValue={suggestion => suggestion.name}
                 renderSuggestion={suggestion => <span>{suggestion.name}</span>}
                 inputProps={{
@@ -133,8 +184,8 @@ const Home = () => {
             <InfoTextContainer>
               <InfoText>
                 Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
-                kunnan alueen metsiä tai rajata haun metsäkiinteistöön. Voit
-                myös vertailla eri metsänhoitotapoja ja tarkastella niiden
+                kunnan alueen metsiä tai rajata haun metsäkiinteistöön. <br />
+                Voit myös vertailla eri metsänhoitotapoja ja tarkastella niiden
                 vaikutuksia hiilennieluun.
               </InfoText>
             </InfoTextContainer>
@@ -160,22 +211,23 @@ const Overlay: any = styled.div`
   flex-direction: column;
   align-items: center;
   background: rgba(49, 66, 52, 0.9);
+  padding: 10px;
 `;
 
 const SearchContainer: any = styled.div`
   display: flex;
-  margin: 7rem 0 0 0;
   justify-content: center;
-  padding: 0 0 3rem;
+  margin: 3rem 0 0 0;
   width: 24.7rem;
   font-family: ${Theme.font.primary};
+  max-width: 100%;
 
   @media only screen and (max-height: 620px) {
     margin: 3.5rem 0 0 0;
   }
 
   @media only screen and (max-width: 436px) {
-    width: 17rem;
+    width: 100%;
   }
 `;
 
@@ -200,10 +252,13 @@ const SearchIcon: any = styled.img.attrs(() => ({
 
 const LogoContainer: any = styled.div`
   display: flex;
-  margin: 8rem auto 0 auto;
+  margin: 8rem auto 8rem auto;
   justify-content: flex-start;
-  @media only screen and (max-height: 620px) {
-    margin: 6rem auto 0 auto;
+  @media only screen and (max-height: 850px) {
+    margin: 4rem auto 3rem auto;
+  }
+  @media only screen and (max-height: 590px) {
+    margin: 2rem auto 1rem auto;
   }
 `;
 
@@ -259,7 +314,7 @@ const AvoinLink: any = styled.a.attrs(() => ({
 const AvoinLogo: any = styled.img.attrs(() => ({
   src: require("../public/img/avoin.svg")
 }))`
-  width: 18rem;
+  width: 16rem;
 
   @media only screen and (max-width: 436px) {
     width: 10rem;
@@ -269,16 +324,21 @@ const AvoinLogo: any = styled.img.attrs(() => ({
 const InfoTextContainer: any = styled.div`
   width: 100%;
   z-index: 2;
-  padding: 0 0 15rem 0;
+  padding: 3rem 0 15rem 0;
   display: flex;
   justify-content: center;
+  @media only screen and (max-height: 590px) {
+    padding: 3rem 0 20rem 0;
+  }
 `;
 
 const InfoText: any = styled.p`
-  color: ${Theme.color.primary};
-  font-family: ${Theme.font.primary};
+  color: ${Theme.color.secondaryLight};
+  font-family: ${Theme.font.secondary};
   display: flex;
-  max-width: 25rem;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  max-width: 60rem;
 `;
 
 const WaveContainer: any = styled.div`
@@ -303,7 +363,6 @@ const LowerContainer: any = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: ${Theme.color.secondaryLight};
 `;
 
 export default Home;

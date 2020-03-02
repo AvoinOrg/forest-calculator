@@ -40,14 +40,14 @@ app
 
         return false;
       });
-
+      
       if (!kunta) {
-        console.log("asdfasdf")
         res.status(404).end();
-        return;
+      } else {
+        res.status(200);
+        res.end(JSON.stringify(kunta));
       }
 
-      res.end(JSON.stringify(kunta));
       return;
     });
 
@@ -88,7 +88,7 @@ app
         [id],
         (err, result) => {
           if (err) {
-            res.status(404);
+            res.status(404).end();
           } else {
             res.status(200);
             res.end(JSON.stringify(result.rows[0]));

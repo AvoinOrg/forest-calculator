@@ -67,6 +67,13 @@ export const GlobalStyle: any = createGlobalStyle`
         display: flex;
       }
 
+      input:focus,
+      select:focus,
+      textarea:focus,
+      button:focus {
+        outline: none;
+      }
+
       #__next {
         display: flex;
         flex: 1;
@@ -90,6 +97,7 @@ export const GlobalStyle: any = createGlobalStyle`
         position: relative;
         display: flex;
         flex: 1;
+        z-index: 5;
       }
 
       .react-autosuggest__input {
