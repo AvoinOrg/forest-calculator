@@ -15,7 +15,7 @@ const Success = () => {
   );
 };
 
-const Container: any = styled.p`
+const Container: any = styled.div`
   color: ${Theme.color.secondary};
   display: flex;
   flex-direction: column;

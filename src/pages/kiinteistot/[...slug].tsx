@@ -2,7 +2,7 @@ import fetch from "isomorphic-unfetch";
 import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import Link from "next/link";
 
 import { Theme } from "../../styles";
@@ -61,8 +61,6 @@ const Estate = props => {
 
   const dropdownRef = useRef(null);
 
-  const router = useRouter();
-
   const forestryIndex = forestryIndexes[props.subPage];
 
   // const stockAmounts = props.data && [
@@ -74,7 +72,7 @@ const Estate = props => {
     const spIndex = subPages.indexOf(props.subPage);
     const spNext = subPages[spIndex + 1];
 
-    router.push(Router.pathname, "/kiinteistot/" + props.id + "/" + spNext);
+    Router.push("/kiinteistot/" + props.id + "/" + spNext);
   };
 
   const handleOutsideClick = e => {
@@ -103,14 +101,14 @@ const Estate = props => {
       .then(res => {
         setIsSending(false);
         if (res.status === 200) {
-          router.push("/tilaus");
+          Router.push("/tilaus");
         } else {
-          router.push("/tilaus_error");
+          Router.push("/tilaus_error");
         }
       })
       .catch(error => {
         setIsSending(false);
-        router.push("/tilaus_error");
+        Router.push("/tilaus_error");
         console.error("Error:", error);
       });
   };
@@ -137,7 +135,7 @@ const Estate = props => {
     }
 
     if (props.subPage === subPages[0]) {
-      router.push(Router.pathname, "/kiinteistot/" + props.id + "/", {
+      Router.push(Router.pathname, "/kiinteistot/" + props.id + "/", {
         shallow: true
       });
     }
@@ -166,262 +164,280 @@ const Estate = props => {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
       </Head>
-      {ready && props.data ? (
-        <Container>
-          <Overlay>
-            <GraphContainer>
-              <Link href={"/"}>
-                <LogoContainer>
-                  <Logo />
-                  <LogoTextContainer>
-                    <LogoTitle />
-                    <LogoText>Hiililaskuri</LogoText>
-                  </LogoTextContainer>
-                </LogoContainer>
-              </Link>
-              <MunOutlineContainer>
-                <MunicipalityOutline coords={props.data.coordinates} />
-              </MunOutlineContainer>
-              {!isLastPage && (
-                <HumanContainer>
-                  <HumanIcon />
-                  <HumanText>{"X " + Math.round(co2ekv / 10.3)}</HumanText>
-                </HumanContainer>
-              )}
-              {!isLastPage && (
-                <BalanceRow>
-                  <BalanceCircleSmall>
-                    <BalanceTextSmall>Tila</BalanceTextSmall>
-                    <BalanceValueSmall>
-                      {Math.round(co2ekvha * 10) / 10}
-                    </BalanceValueSmall>
-                    <BalanceUnitSmall>
-                      CO<sub>2</sub> / ha
-                    </BalanceUnitSmall>
-                  </BalanceCircleSmall>
-                  <BalanceCircle>
-                    <BalanceText>Kunta</BalanceText>
-                    <BalanceValue>-&nbsp;</BalanceValue>
-                    <BalanceUnit>
-                      CO<sub>2</sub> / ha
-                    </BalanceUnit>
-                  </BalanceCircle>
-                </BalanceRow>
-              )}
-              {/* <StockContainer>
+      {ready && (
+        <>
+          {props.data ? (
+            <Container>
+              <Overlay>
+                <GraphContainer>
+                  <Link href={"/"}>
+                    <LogoContainer>
+                      <Logo />
+                      <LogoTextContainer>
+                        <LogoTitle />
+                        <LogoText>Hiililaskuri</LogoText>
+                      </LogoTextContainer>
+                    </LogoContainer>
+                  </Link>
+                  <MunOutlineContainer>
+                    <MunicipalityOutline coords={props.data.coordinates} />
+                  </MunOutlineContainer>
+                  {!isLastPage && (
+                    <HumanContainer>
+                      <HumanIcon />
+                      <HumanText>{"X " + Math.round(co2ekv / 10.3)}</HumanText>
+                    </HumanContainer>
+                  )}
+                  {!isLastPage && (
+                    <BalanceRow>
+                      <BalanceCircleSmall>
+                        <BalanceTextSmall>Tila</BalanceTextSmall>
+                        <BalanceValueSmall>
+                          {Math.round(co2ekvha * 10) / 10}
+                        </BalanceValueSmall>
+                        <BalanceUnitSmall>
+                          CO<sub>2</sub> / ha
+                        </BalanceUnitSmall>
+                      </BalanceCircleSmall>
+                      <BalanceCircle>
+                        <BalanceText>Kunta</BalanceText>
+                        <BalanceValue>-&nbsp;</BalanceValue>
+                        <BalanceUnit>
+                          CO<sub>2</sub> / ha
+                        </BalanceUnit>
+                      </BalanceCircle>
+                    </BalanceRow>
+                  )}
+                  {/* <StockContainer>
                 <StockChart
                   data1={[stockAmounts[0]]}
                   data2={[stockAmounts[1]]}
                 />
               </StockContainer> */}
-            </GraphContainer>
-            <WaveContainer>
-              <Wave />
-            </WaveContainer>
-          </Overlay>
-          <TextContainer>
-            <AvoinLink>
-              <AvoinLogo />
-            </AvoinLink>
-            <Title>{props.id}</Title>
-            <InfoTextContainer>
-              <InfoTextRowFirst>
-                <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
-                <InfoTextValue>
-                  {roundVal(props.data.area) + "ha"}
-                </InfoTextValue>
-              </InfoTextRowFirst>
-              <InfoTextRow>
-                <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
-                <InfoTextValue>
-                  -{/* {roundVal(forestHa) + "ha"} */}
-                </InfoTextValue>
-              </InfoTextRow>
-              <InfoTextRow>
-                <InfoTextKey>
-                  Hiililaskelmien kattavuus:&nbsp;&nbsp;
-                </InfoTextKey>
-                <InfoTextValue>
-                  -
-                  {/* {Math.round(getRatio(forecastHa, forestHa) * 10) / 10 + "%"} */}
-                </InfoTextValue>
-              </InfoTextRow>
-            </InfoTextContainer>
-            <ForestryDropdown ref={dropdownRef}>
-              <ForestryDropdownSelected
-                onClick={e => {
-                  setisDropdownOpen(!isDropdownOpen);
-                }}
-              >
-                <ForestryLink>{navTitles[props.subPage]}</ForestryLink>
-                {isDropdownOpen ? (
-                  <ForestryLink>&#x2c4;</ForestryLink>
+                </GraphContainer>
+                <WaveContainer>
+                  <Wave />
+                </WaveContainer>
+              </Overlay>
+              <TextContainer>
+                <AvoinLink>
+                  <AvoinLogo />
+                </AvoinLink>
+                <Title>{props.id}</Title>
+                <InfoTextContainer>
+                  <InfoTextRowFirst>
+                    <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
+                    <InfoTextValue>
+                      {roundVal(props.data.area) + "ha"}
+                    </InfoTextValue>
+                  </InfoTextRowFirst>
+                  <InfoTextRow>
+                    <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
+                    <InfoTextValue>
+                      -{/* {roundVal(forestHa) + "ha"} */}
+                    </InfoTextValue>
+                  </InfoTextRow>
+                  <InfoTextRow>
+                    <InfoTextKey>
+                      Hiililaskelmien kattavuus:&nbsp;&nbsp;
+                    </InfoTextKey>
+                    <InfoTextValue>
+                      -
+                      {/* {Math.round(getRatio(forecastHa, forestHa) * 10) / 10 + "%"} */}
+                    </InfoTextValue>
+                  </InfoTextRow>
+                </InfoTextContainer>
+                <ForestryDropdown ref={dropdownRef}>
+                  <ForestryDropdownSelected
+                    onClick={e => {
+                      setisDropdownOpen(!isDropdownOpen);
+                    }}
+                  >
+                    <ForestryLink>{navTitles[props.subPage]}</ForestryLink>
+                    {isDropdownOpen ? (
+                      <ForestryLink>&#x2c4;</ForestryLink>
+                    ) : (
+                      <ForestryLink> &#x2c5;</ForestryLink>
+                    )}
+                  </ForestryDropdownSelected>
+                  <ForestryDropdownItems isOpen={isDropdownOpen}>
+                    {props.subPage !== "tavanomainen_metsänhoito" && (
+                      <Link
+                        href={
+                          "/kiinteistot/" +
+                          props.id +
+                          "/tavanomainen_metsänhoito"
+                        }
+                      >
+                        <ForestryLink>tavanomainen metsänhoito</ForestryLink>
+                      </Link>
+                    )}
+                    {props.subPage !== "pidennetty_kiertoaika" && (
+                      <Link
+                        href={
+                          "/kiinteistot/" + props.id + "/pidennetty_kiertoaika"
+                        }
+                      >
+                        <ForestryLink>pidennetty kiertoaika</ForestryLink>
+                      </Link>
+                    )}
+                    {props.subPage !== "jatkuvapeitteinen_metsänkasvatus" && (
+                      <Link
+                        href={
+                          "/kiinteistot/" +
+                          props.id +
+                          "/jatkuvapeitteinen_metsänkasvatus"
+                        }
+                      >
+                        <ForestryLink>
+                          jatkuvapeitteinen metsänhoito
+                        </ForestryLink>
+                      </Link>
+                    )}
+                    {!isLastPage && (
+                      <Link href={"/kiinteistot/" + props.id + "/tilaus"}>
+                        <ForestryLink>hiilennieluraportti</ForestryLink>
+                      </Link>
+                    )}
+                  </ForestryDropdownItems>
+                </ForestryDropdown>
+                {!isLastPage ? (
+                  <>
+                    <ExplanationContainer>
+                      <ExplanationHeader>
+                        {subTitles[props.subPage]}
+                      </ExplanationHeader>
+                      <ExplanationText>
+                        {subTexts[props.subPage]}
+                      </ExplanationText>
+                      <ExplanationText>
+                        Vuoden 2020 hiilitase oli {co2ekv} hiilidioksiditonnia
+                        (CO2 -ekv). Metsien vuotuinen hiilidioksidin
+                        nettosidonta vastaa yhteensä {Math.round(co2ekv / 10.3)}{" "}
+                        keskimääräisen suomalaisen ihmisen vuotuista
+                        hiilijalanjälkeä, joka on n. 10,3 hiilidioksiditonnia
+                        (CO2 -ekv).
+                      </ExplanationText>
+                    </ExplanationContainer>
+                    <ExplanationContainer>
+                      <ExplanationHeader>
+                        Vuotuinen hiilitase (CO-ekv)
+                      </ExplanationHeader>
+                      <ExplanationText>
+                        Hiilitase tarkoittaa metsätalouden sitoman ja
+                        vapauttaman hiilen erotusta tietyn ajanjakson kuluessa.
+                        Positiivinen tase tarkoittaa, että metsätalous on
+                        poistanut hiiltä ilmakehästä ja toiminut hiilinieluna.
+                        Hiilitaseessa otetaan huomioon myös puutuotteiden
+                        korvausvaikutukset.
+                      </ExplanationText>
+                    </ExplanationContainer>
+                    <ExplanationContainer>
+                      <ExplanationHeader>
+                        Verrattuna alueen metsiin:
+                      </ExplanationHeader>
+                      <ExplanationInfoRow>
+                        <ExplanationInfoKey>
+                          Kunnan alueen hiilennielu:&nbsp;&nbsp;
+                        </ExplanationInfoKey>
+                        <ExplanationInfoValue>
+                          {Math.round(co2ekvha * 10) / 10 + " CO2 / ha"}
+                        </ExplanationInfoValue>
+                      </ExplanationInfoRow>
+                      <ExplanationInfoRow>
+                        <ExplanationInfoKey>
+                          Maakunnan alueen hiilennielu:&nbsp;&nbsp;
+                        </ExplanationInfoKey>
+                        <ExplanationInfoValue>-</ExplanationInfoValue>
+                      </ExplanationInfoRow>
+                    </ExplanationContainer>
+                    <Arrow onClick={handleArrowClick}>
+                      <ArrowTail>
+                        <ArrowText>
+                          Miten parannan metsän hiilennielua?
+                        </ArrowText>
+                      </ArrowTail>
+                      <ArrowPoint />
+                    </Arrow>
+                  </>
                 ) : (
-                  <ForestryLink> &#x2c5;</ForestryLink>
+                  <>
+                    <ExplanationContainer>
+                      <ExplanationHeader>
+                        {subTitles[props.subPage]}
+                      </ExplanationHeader>
+                      <ExplanationText>
+                        Tilaamalla hiilennieluraportin määrität metsänhoitotavan
+                        itse. Raportti voidaan rakentaa metsänhoitosuunnitelman
+                        mukaisesti. On myös mahdollista tilata
+                        metsänhoitosuunnitelma ja sen mukainen
+                        hiilennieluraportti. Hiilennieluraportti voidaan tehdä
+                        myös useammalle kiinteistölle samanaikaisesti.
+                      </ExplanationText>
+                      <PayInfoCol>
+                        <PayInfoKey>
+                          Hiilennieluraportti:&nbsp;&nbsp;
+                        </PayInfoKey>
+                        <PayInfoValue>139 € + alv</PayInfoValue>
+                        <PayInfoKey>
+                          Metsäsuunnitelma + hiilennieluraportti:&nbsp;&nbsp;
+                        </PayInfoKey>
+                        <PayInfoValue>
+                          280 € + alv (sis. 40ha, lisähehtaarit 5€)
+                        </PayInfoValue>
+                        <PayInfoKey>
+                          Useamman kiinteistön hiilennieluraportti:&nbsp;&nbsp;
+                        </PayInfoKey>
+                        <PayInfoValue>tarjouksella</PayInfoValue>
+                      </PayInfoCol>
+                    </ExplanationContainer>
+                    <Form>
+                      <FormLabel>Sähköpostiosoite</FormLabel>
+                      <FormInput
+                        type="text"
+                        value={formEmail}
+                        onChange={e => setFormEmail(e.val)}
+                      />
+                      <FormLabel>Nimi</FormLabel>
+                      <FormInput
+                        type="text"
+                        value={formName}
+                        onChange={e => setFormName(e.val)}
+                      />
+                      <FormLabel>Kiinteistötunnus</FormLabel>
+                      <FormInput
+                        type="text"
+                        value={formVal}
+                        onChange={e => setFormVal(e.val)}
+                      />
+                      <FormButton
+                        onClick={handleSubmit}
+                        disabled={isSending}
+                        isSending={isSending}
+                      >
+                        Lähetä tilaus
+                      </FormButton>
+                      <FormText>
+                        Olemme teihin yhteydessä ja tarkistamme tilauksen ennen
+                        toimitusta. Tietoja ei käytetä muihin tarkoituksiin tai
+                        luovuteta kolmansille osapuolille.
+                      </FormText>
+                    </Form>
+                  </>
                 )}
-              </ForestryDropdownSelected>
-              <ForestryDropdownItems isOpen={isDropdownOpen}>
-                {props.subPage !== "tavanomainen_metsänhoito" && (
-                  <Link
-                    href={
-                      "/kiinteistot/" + props.id + "/tavanomainen_metsänhoito"
-                    }
-                  >
-                    <ForestryLink>tavanomainen metsänhoito</ForestryLink>
-                  </Link>
-                )}
-                {props.subPage !== "pidennetty_kiertoaika" && (
-                  <Link
-                    href={"/kiinteistot/" + props.id + "/pidennetty_kiertoaika"}
-                  >
-                    <ForestryLink>pidennetty kiertoaika</ForestryLink>
-                  </Link>
-                )}
-                {props.subPage !== "jatkuvapeitteinen_metsänkasvatus" && (
-                  <Link
-                    href={
-                      "/kiinteistot/" +
-                      props.id +
-                      "/jatkuvapeitteinen_metsänkasvatus"
-                    }
-                  >
-                    <ForestryLink>jatkuvapeitteinen metsänhoito</ForestryLink>
-                  </Link>
-                )}
-                {!isLastPage && (
-                  <Link href={"/kiinteistot/" + props.id + "/tilaus"}>
-                    <ForestryLink>hiilennieluraportti</ForestryLink>
-                  </Link>
-                )}
-              </ForestryDropdownItems>
-            </ForestryDropdown>
-            {!isLastPage ? (
-              <>
-                <ExplanationContainer>
-                  <ExplanationHeader>
-                    {subTitles[props.subPage]}
-                  </ExplanationHeader>
-                  <ExplanationText>{subTexts[props.subPage]}</ExplanationText>
-                  <ExplanationText>
-                    Vuoden 2020 hiilitase oli {co2ekv} hiilidioksiditonnia (CO2
-                    -ekv). Metsien vuotuinen hiilidioksidin nettosidonta vastaa
-                    yhteensä {Math.round(co2ekv / 10.3)} keskimääräisen
-                    suomalaisen ihmisen vuotuista hiilijalanjälkeä, joka on n.
-                    10,3 hiilidioksiditonnia (CO2 -ekv).
-                  </ExplanationText>
-                </ExplanationContainer>
-                <ExplanationContainer>
-                  <ExplanationHeader>
-                    Vuotuinen hiilitase (CO-ekv)
-                  </ExplanationHeader>
-                  <ExplanationText>
-                    Hiilitase tarkoittaa metsätalouden sitoman ja vapauttaman
-                    hiilen erotusta tietyn ajanjakson kuluessa. Positiivinen
-                    tase tarkoittaa, että metsätalous on poistanut hiiltä
-                    ilmakehästä ja toiminut hiilinieluna. Hiilitaseessa otetaan
-                    huomioon myös puutuotteiden korvausvaikutukset.
-                  </ExplanationText>
-                </ExplanationContainer>
-                <ExplanationContainer>
-                  <ExplanationHeader>
-                    Verrattuna alueen metsiin:
-                  </ExplanationHeader>
-                  <ExplanationInfoRow>
-                    <ExplanationInfoKey>
-                      Kunnan alueen hiilennielu:&nbsp;&nbsp;
-                    </ExplanationInfoKey>
-                    <ExplanationInfoValue>
-                      {Math.round(co2ekvha * 10) / 10 + " CO2 / ha"}
-                    </ExplanationInfoValue>
-                  </ExplanationInfoRow>
-                  <ExplanationInfoRow>
-                    <ExplanationInfoKey>
-                      Maakunnan alueen hiilennielu:&nbsp;&nbsp;
-                    </ExplanationInfoKey>
-                    <ExplanationInfoValue>-</ExplanationInfoValue>
-                  </ExplanationInfoRow>
-                </ExplanationContainer>
-                <Arrow onClick={handleArrowClick}>
-                  <ArrowTail>
-                    <ArrowText>Miten parannan metsän hiilennielua?</ArrowText>
-                  </ArrowTail>
-                  <ArrowPoint />
-                </Arrow>
-              </>
-            ) : (
-              <>
-                <ExplanationContainer>
-                  <ExplanationHeader>
-                    {subTitles[props.subPage]}
-                  </ExplanationHeader>
-                  <ExplanationText>
-                    Tilaamalla hiilennieluraportin määrität metsänhoitotavan
-                    itse. Raportti voidaan rakentaa metsänhoitosuunnitelman
-                    mukaisesti. On myös mahdollista tilata
-                    metsänhoitosuunnitelma ja sen mukainen hiilennieluraportti.
-                    Hiilennieluraportti voidaan tehdä myös useammalle
-                    kiinteistölle samanaikaisesti.
-                  </ExplanationText>
-                  <PayInfoCol>
-                    <PayInfoKey>Hiilennieluraportti:&nbsp;&nbsp;</PayInfoKey>
-                    <PayInfoValue>139 € + alv</PayInfoValue>
-                    <PayInfoKey>
-                      Metsäsuunnitelma + hiilennieluraportti:&nbsp;&nbsp;
-                    </PayInfoKey>
-                    <PayInfoValue>
-                      280 € + alv (sis. 40ha, lisähehtaarit 5€)
-                    </PayInfoValue>
-                    <PayInfoKey>
-                      Useamman kiinteistön hiilennieluraportti:&nbsp;&nbsp;
-                    </PayInfoKey>
-                    <PayInfoValue>tarjouksella</PayInfoValue>
-                  </PayInfoCol>
-                </ExplanationContainer>
-                <Form>
-                  <FormLabel>Sähköpostiosoite</FormLabel>
-                  <FormInput
-                    type="text"
-                    value={formEmail}
-                    onChange={e => setFormEmail(e.val)}
-                  />
-                  <FormLabel>Nimi</FormLabel>
-                  <FormInput
-                    type="text"
-                    value={formName}
-                    onChange={e => setFormName(e.val)}
-                  />
-                  <FormLabel>Kiinteistötunnus</FormLabel>
-                  <FormInput
-                    type="text"
-                    value={formVal}
-                    onChange={e => setFormVal(e.val)}
-                  />
-                  <FormButton
-                    onClick={handleSubmit}
-                    disabled={isSending}
-                    isSending={isSending}
-                  >
-                    Lähetä tilaus
-                  </FormButton>
-                  <FormText>
-                    Olemme teihin yhteydessä ja tarkistamme tilauksen ennen
-                    toimitusta. Tietoja ei käytetä muihin tarkoituksiin tai
-                    luovuteta kolmansille osapuolille.
-                  </FormText>
-                </Form>
-              </>
-            )}
-          </TextContainer>
-        </Container>
-      ) : (
-        <ErrorContainer>
-          <ErrorText>Kiinteistötunnusta "{props.id}" ei löydy.</ErrorText>
-          <Link href="/">
-            <ErrorLink>
-              <u>Takaisin hakuun.</u>
-            </ErrorLink>
-          </Link>
-        </ErrorContainer>
+              </TextContainer>
+            </Container>
+          ) : (
+            <ErrorContainer>
+              <ErrorText>Kiinteistötunnusta "{props.id}" ei löydy.</ErrorText>
+              <Link href="/">
+                <ErrorLink>
+                  <u>Takaisin hakuun.</u>
+                </ErrorLink>
+              </Link>
+            </ErrorContainer>
+          )}
+        </>
       )}
     </>
   );
