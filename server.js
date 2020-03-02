@@ -40,7 +40,7 @@ app
 
         return false;
       });
-      
+
       if (!kunta) {
         res.status(404).end();
       } else {
@@ -88,13 +88,22 @@ app
         [id],
         (err, result) => {
           if (err) {
-            res.status(404).end();
+            res.status(500).end();
           } else {
-            res.status(200);
-            res.end(JSON.stringify(result.rows[0]));
+            if (result.rowCount > 0) {
+              res.status(200);
+              res.end(JSON.stringify(result.rows[0]));
+            } else {
+              res.status(404).end();
+            }
           }
         }
       );
+      return;
+    });
+
+    server.post("/api/tilaus", (req, res) => {
+      console.log(req);
       return;
     });
 

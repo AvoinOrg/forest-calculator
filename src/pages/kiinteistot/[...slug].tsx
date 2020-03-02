@@ -45,14 +45,18 @@ const forestryIndexes = {
   jatkuvapeitteinen_metsänkasvatus: 2
 };
 
-const Municipality = props => {
+const Estate = props => {
   const [ready, setReady] = useState(false);
   const [isDropdownOpen, setisDropdownOpen] = useState(false);
   const [isLastPage, setIsLastPage] = useState(false);
+  const [forestHa, setForestHa] = useState(0);
+  const [forecastHa, setForecastHa] = useState(0);
+  const [co2ekv, setCo2ekv] = useState(0);
+  const [co2ekvha, setCo2ekvha] = useState(0);
 
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
-  const [formVal, setFormVal] = useState(props.data ? props.data.NAMEFIN : "");
+  const [formVal, setFormVal] = useState(props.id);
   const [isSending, setIsSending] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -60,18 +64,6 @@ const Municipality = props => {
   const router = useRouter();
 
   const forestryIndex = forestryIndexes[props.subPage];
-
-  const co2ekv =
-    props.data && forestryIndex && props.data.forecast_data[forestryIndex].CBT1
-      ? roundVal(props.data.forecast_data[forestryIndex].CBT1 / 10)
-      : 0;
-
-  let co2ekvha =
-    props.data &&
-    forestryIndex &&
-    co2ekv / (props.data.forest_area - props.data.non_forecasted_area);
-
-  co2ekvha = co2ekvha > 0 ? co2ekvha : 1;
 
   // const stockAmounts = props.data && [
   //   props.data.forecast_data[4].Maa5 - props.data.forecast_data[3].Maa5,
@@ -82,7 +74,7 @@ const Municipality = props => {
     const spIndex = subPages.indexOf(props.subPage);
     const spNext = subPages[spIndex + 1];
 
-    router.push(Router.pathname, "/kunnat/" + props.id + "/" + spNext);
+    router.push(Router.pathname, "/kiinteistot/" + props.id + "/" + spNext);
   };
 
   const handleOutsideClick = e => {
@@ -96,7 +88,7 @@ const Municipality = props => {
       name: formName,
       email: formEmail,
       val: formVal,
-      type: "kunta"
+      type: "kiinteistö"
     };
 
     return JSON.stringify(body);
@@ -124,8 +116,28 @@ const Municipality = props => {
   };
 
   useEffect(() => {
+    console.log(props.data);
+    if (props.data) {
+      let fareaha = 0;
+      let ffareaha = 0;
+
+      props.data.areas.forEach(area => {
+        fareaha += area.area;
+
+        props.data.forest_data.forEach(farea => {
+          if ("" + area.standid === farea.standid) {
+            ffareaha += area.area;
+          }
+        });
+      });
+
+      setForestHa(fareaha);
+
+      setForecastHa(ffareaha);
+    }
+
     if (props.subPage === subPages[0]) {
-      router.push(Router.pathname, "/kunnat/" + props.id + "/", {
+      router.push(Router.pathname, "/kiinteistot/" + props.id + "/", {
         shallow: true
       });
     }
@@ -148,9 +160,7 @@ const Municipality = props => {
   return (
     <>
       <Head>
-        <title>
-          {props.data ? props.data.NAMEFIN : "Haku"} - Arvometsä hiililaskuri
-        </title>
+        <title>{props.data ? props.id : "Haku"} - Arvometsä hiililaskuri</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -181,7 +191,7 @@ const Municipality = props => {
               {!isLastPage && (
                 <BalanceRow>
                   <BalanceCircleSmall>
-                    <BalanceTextSmall>Kunta</BalanceTextSmall>
+                    <BalanceTextSmall>Tila</BalanceTextSmall>
                     <BalanceValueSmall>
                       {Math.round(co2ekvha * 10) / 10}
                     </BalanceValueSmall>
@@ -190,7 +200,7 @@ const Municipality = props => {
                     </BalanceUnitSmall>
                   </BalanceCircleSmall>
                   <BalanceCircle>
-                    <BalanceText>Maakunta</BalanceText>
+                    <BalanceText>Kunta</BalanceText>
                     <BalanceValue>-&nbsp;</BalanceValue>
                     <BalanceUnit>
                       CO<sub>2</sub> / ha
@@ -213,20 +223,18 @@ const Municipality = props => {
             <AvoinLink>
               <AvoinLogo />
             </AvoinLink>
-            <Title>{props.data.NAMEFIN}</Title>
+            <Title>{props.id}</Title>
             <InfoTextContainer>
               <InfoTextRowFirst>
                 <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
                 <InfoTextValue>
-                  {roundVal(props.data.TOTALAREA) + "km"}
-                  <sup>2</sup>
+                  {roundVal(props.data.area) + "ha"}
                 </InfoTextValue>
               </InfoTextRowFirst>
               <InfoTextRow>
                 <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
                 <InfoTextValue>
-                  {roundVal(haToKm(props.data.forest_area)) + "km"}
-                  <sup>2</sup>
+                  -{/* {roundVal(forestHa) + "ha"} */}
                 </InfoTextValue>
               </InfoTextRow>
               <InfoTextRow>
@@ -234,14 +242,8 @@ const Municipality = props => {
                   Hiililaskelmien kattavuus:&nbsp;&nbsp;
                 </InfoTextKey>
                 <InfoTextValue>
-                  {Math.round(
-                    getRatio(
-                      props.data.forest_area,
-                      props.data.non_forecasted_area
-                    ) * 10
-                  ) /
-                    10 +
-                    "%"}
+                  -
+                  {/* {Math.round(getRatio(forecastHa, forestHa) * 10) / 10 + "%"} */}
                 </InfoTextValue>
               </InfoTextRow>
             </InfoTextContainer>
@@ -261,20 +263,24 @@ const Municipality = props => {
               <ForestryDropdownItems isOpen={isDropdownOpen}>
                 {props.subPage !== "tavanomainen_metsänhoito" && (
                   <Link
-                    href={"/kunnat/" + props.id + "/tavanomainen_metsänhoito"}
+                    href={
+                      "/kiinteistot/" + props.id + "/tavanomainen_metsänhoito"
+                    }
                   >
                     <ForestryLink>tavanomainen metsänhoito</ForestryLink>
                   </Link>
                 )}
                 {props.subPage !== "pidennetty_kiertoaika" && (
-                  <Link href={"/kunnat/" + props.id + "/pidennetty_kiertoaika"}>
+                  <Link
+                    href={"/kiinteistot/" + props.id + "/pidennetty_kiertoaika"}
+                  >
                     <ForestryLink>pidennetty kiertoaika</ForestryLink>
                   </Link>
                 )}
                 {props.subPage !== "jatkuvapeitteinen_metsänkasvatus" && (
                   <Link
                     href={
-                      "/kunnat/" +
+                      "/kiinteistot/" +
                       props.id +
                       "/jatkuvapeitteinen_metsänkasvatus"
                     }
@@ -283,7 +289,7 @@ const Municipality = props => {
                   </Link>
                 )}
                 {!isLastPage && (
-                  <Link href={"/kunnat/" + props.id + "/tilaus"}>
+                  <Link href={"/kiinteistot/" + props.id + "/tilaus"}>
                     <ForestryLink>hiilennieluraportti</ForestryLink>
                   </Link>
                 )}
@@ -353,6 +359,8 @@ const Municipality = props => {
                     itse. Raportti voidaan rakentaa metsänhoitosuunnitelman
                     mukaisesti. On myös mahdollista tilata
                     metsänhoitosuunnitelma ja sen mukainen hiilennieluraportti.
+                    Hiilennieluraportti voidaan tehdä myös useammalle
+                    kiinteistölle samanaikaisesti.
                   </ExplanationText>
                   <PayInfoCol>
                     <PayInfoKey>Hiilennieluraportti:&nbsp;&nbsp;</PayInfoKey>
@@ -363,6 +371,10 @@ const Municipality = props => {
                     <PayInfoValue>
                       280 € + alv (sis. 40ha, lisähehtaarit 5€)
                     </PayInfoValue>
+                    <PayInfoKey>
+                      Useamman kiinteistön hiilennieluraportti:&nbsp;&nbsp;
+                    </PayInfoKey>
+                    <PayInfoValue>tarjouksella</PayInfoValue>
                   </PayInfoCol>
                 </ExplanationContainer>
                 <Form>
@@ -378,7 +390,7 @@ const Municipality = props => {
                     value={formName}
                     onChange={e => setFormName(e.val)}
                   />
-                  <FormLabel>Kunta</FormLabel>
+                  <FormLabel>Kiinteistötunnus</FormLabel>
                   <FormInput
                     type="text"
                     value={formVal}
@@ -403,7 +415,7 @@ const Municipality = props => {
         </Container>
       ) : (
         <ErrorContainer>
-          <ErrorText>Kuntaa "{props.id}" ei löydy.</ErrorText>
+          <ErrorText>Kiinteistötunnusta "{props.id}" ei löydy.</ErrorText>
           <Link href="/">
             <ErrorLink>
               <u>Takaisin hakuun.</u>
@@ -415,7 +427,7 @@ const Municipality = props => {
   );
 };
 
-Municipality.getInitialProps = async req => {
+Estate.getInitialProps = async req => {
   const id = req.query.slug[0];
   let subPage = subPages[0];
 
@@ -426,7 +438,7 @@ Municipality.getInitialProps = async req => {
     }
   }
 
-  const res = await fetch(process.env.API_URL + "/kunnat/" + id);
+  const res = await fetch(process.env.API_URL + "/kiinteistot/" + id);
 
   let json = null;
 
@@ -441,7 +453,7 @@ const roundVal = (val: number | string) => {
   if (typeof val === "string") {
     val = Number(val);
   }
-  val = Math.round(val);
+  val = Math.round(val * 100) / 100;
   return val;
 };
 
@@ -460,7 +472,7 @@ const getRatio = (val1: number | string, val2: number | string) => {
     val2 = Number(val2);
   }
 
-  const ratio = Math.max(val1 - val2, 0.0001) / val1;
+  const ratio = Math.max(val1, 0.0001) / val2;
   return ratio * 100;
 };
 
@@ -800,7 +812,7 @@ const FormText: any = styled.p`
 const Title: any = styled.p`
   font-family: ${Theme.font.secondary};
   color: ${Theme.color.primary};
-  font-size: 5rem;
+  font-size: 4rem;
   margin: 20px 0 0 0;
 `;
 
@@ -934,4 +946,4 @@ const ErrorLink: any = styled.p`
   }
 `;
 
-export default Municipality;
+export default Estate;

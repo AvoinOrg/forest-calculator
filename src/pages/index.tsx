@@ -85,7 +85,7 @@ const Home = () => {
   };
 
   const goToEstate = () => {
-    router.push("/kiinteistöt/" + estateValue.trim().toLowerCase());
+    router.push("/kiinteistot/" + estateValue.trim().toLowerCase());
   };
 
   const handleEstateClick = e => {
