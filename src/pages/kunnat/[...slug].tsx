@@ -52,9 +52,8 @@ const Municipality = props => {
 
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
-  const [formVal, setFormVal] = useState(
-    props.data.NAMEFIN ? props.data.NAMEFIN : ""
-  );
+  const [formVal, setFormVal] = useState(props.data ? props.data.NAMEFIN : "");
+  const [isSending, setIsSending] = useState(false);
 
   const dropdownRef = useRef(null);
 
@@ -104,10 +103,24 @@ const Municipality = props => {
   };
 
   const handleSubmit = e => {
+    setIsSending(true);
     fetch(process.env.API_URL + "/tilaus", {
       method: "POST",
       body: getFormData()
-    });
+    })
+      .then(res => {
+        setIsSending(false);
+        if (res.status === 200) {
+          router.push("/tilaus");
+        } else {
+          router.push("/tilaus_error");
+        }
+      })
+      .catch(error => {
+        setIsSending(false);
+        router.push("/tilaus_error");
+        console.error("Error:", error);
+      });
   };
 
   useEffect(() => {
@@ -356,7 +369,7 @@ const Municipality = props => {
                     <PayInfoValue>tarjouksella</PayInfoValue>
                   </PayInfoCol>
                 </ExplanationContainer>
-                <Form onSubmit={handleSubmit}>
+                <Form>
                   <FormLabel>Sähköpostiosoite</FormLabel>
                   <FormInput
                     type="text"
@@ -375,7 +388,13 @@ const Municipality = props => {
                     value={formVal}
                     onChange={e => setFormVal(e.val)}
                   />
-                  <FormButton>Lähetä tilaus</FormButton>
+                  <FormButton
+                    onClick={handleSubmit}
+                    disabled={isSending}
+                    isSending={isSending}
+                  >
+                    Lähetä tilaus
+                  </FormButton>
                   <FormText>
                     Olemme teihin yhteydessä ja tarkistamme tilauksen ennen
                     toimitusta. Tietoja ei käytetä muihin tarkoituksiin tai
@@ -390,7 +409,9 @@ const Municipality = props => {
         <ErrorContainer>
           <ErrorText>Kuntaa "{props.id}" ei löydy.</ErrorText>
           <Link href="/">
-            <ErrorLink>Palaa takaisin hakuun.</ErrorLink>
+            <ErrorLink>
+              <u>Takaisin hakuun.</u>
+            </ErrorLink>
           </Link>
         </ErrorContainer>
       )}
@@ -759,16 +780,17 @@ const FormInput: any = styled.input`
   border: 1.5px inset;
 `;
 
-const FormButton: any = styled.div`
+const FormButton: any = styled("div")<{ isSending: boolean }>`
   font-family: ${Theme.font.secondary};
+  background: ${props =>
+    props.isSending ? Theme.color.primaryLight : Theme.color.primary};
   color: ${Theme.color.secondaryLight};
   padding: 10px;
   margin: 10px 0 0 0;
   font-size: 1.5rem;
-  background: ${Theme.color.primary};
   text-align: center;
   &:hover {
-    cursor: pointer;
+    cursor: ${props => (props.isSending ? "defualt" : "pointer")};
   }
 `;
 
@@ -903,13 +925,17 @@ const ErrorContainer: any = styled.div`
 const ErrorText: any = styled.p`
   color: ${Theme.color.primary};
   font-family: ${Theme.font.primary};
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 const ErrorLink: any = styled.p`
   color: ${Theme.color.primary};
   font-family: ${Theme.font.primary};
-  font-size: 1rem;
+  font-size: 1.2rem;
+  margin: 40px 0 0 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Municipality;
