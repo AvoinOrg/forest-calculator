@@ -116,6 +116,7 @@ const Estate = props => {
   useEffect(() => {
     if (props.data) {
       let fareaha = 0;
+      console.log(JSON.stringify(props.data))
       let ffareaha = 0;
 
       props.data.areas.forEach(area => {
@@ -133,7 +134,7 @@ const Estate = props => {
       setForecastHa(ffareaha);
     }
 
-    if (props.subPage === subPages[0]) {
+    if (props.redirect) {
       Router.push(Router.pathname, "/kiinteistot/" + props.id + "/", {
         shallow: true
       });
@@ -444,12 +445,21 @@ const Estate = props => {
 
 Estate.getInitialProps = async req => {
   const id = req.query.slug[0];
-  let subPage = subPages[0];
+  let subPage = null;
+  let redirect = false;
 
   if (req.query.slug.length > 1) {
     const param = req.query.slug[1].toLowerCase();
     if (subPages.includes(param)) {
       subPage = param;
+    }
+  }
+
+  if (!subPage) {
+    subPage = subPages[0];
+
+    if (req.query.slug.length > 1) {
+      redirect = true;
     }
   }
 
@@ -461,7 +471,7 @@ Estate.getInitialProps = async req => {
     json = await res.json();
   }
 
-  return { data: json, subPage, id };
+  return { data: json, subPage, id, redirect };
 };
 
 const roundVal = (val: number | string) => {
