@@ -23,6 +23,13 @@ export const GlobalStyle: any = createGlobalStyle`
       @font-face {
         font-family: "Museo Sans";
         src: local("Museo Sans"), local("MuseoSans"),
+          url(${require("./public/fonts/MuseoSans-300.otf")});
+        font-weight: 300;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Museo Sans";
+        src: local("Museo Sans"), local("MuseoSans"),
           url(${require("./public/fonts/MuseoSans-500.otf")});
         font-weight: 500;
         font-style: normal;
