@@ -1,0 +1,62 @@
+export const subPages = [
+  "tavanomainen_metsänhoito",
+  "pidennetty_kiertoaika",
+  // "jatkuvapeitteinen_metsänkasvatus",
+  "tilaus"
+];
+
+export const subTitles = {
+  tavanomainen_metsänhoito: "Tavanomainen metsänhoito",
+  pidennetty_kiertoaika: "Pidennetty kiertoaika (muutos hakkuutavassa)",
+  // jatkuvapeitteinen_metsänkasvatus: "Jatkuvapeitteinen metsänkasvatus",
+  tilaus: "hiililaskelma"
+};
+
+export const navTitles = {
+  tavanomainen_metsänhoito: "tavanomainen metsänhoito",
+  pidennetty_kiertoaika: "pidennetty kiertoaika",
+  // jatkuvapeitteinen_metsänkasvatus: "jatkuvapeitteinen metsänkasvatus",
+  tilaus: "hiililaskelma"
+};
+
+export const subTexts = {
+  tavanomainen_metsänhoito:
+    "Laskelmassa metsät perustetaan istuttamalla. Harvennukset tehdään alaharvennuksina ja lopuksi tehdään uudistushakkuu.",
+  pidennetty_kiertoaika:
+    "Laskelmassa harvennukset tehdään yläharvennuksina. Uudistaminen tapahtuu kun se on taloudellisesti järkevää. Metsänomistajan tulot eivät pienene verrattuna tavanomaiseen."
+  // jatkuvapeitteinen_metsänkasvatus:
+  //  "Laskelmassa harvennukset tehdään yläharvennuksina ja metsät uudistuvat luontaisesti. Uudistaminen tapahtuu jos se on taloudellisesti järkevää. Metsänomistajan tulot eivät pienene verrattuna tavanomaiseen."
+};
+
+export const forestryIndexes = {
+  tavanomainen_metsänhoito: 3,
+  pidennetty_kiertoaika: 4
+  // jatkuvapeitteinen_metsänkasvatus: 2
+};
+
+export const roundVal = (val: number | string) => {
+  if (typeof val === "string") {
+    val = Number(val);
+  }
+  val = Math.round(val * 100) / 100;
+  return val;
+};
+
+export const haToKm = (val: number | string) => {
+  if (typeof val === "string") {
+    val = Number(val);
+  }
+  return val / 100;
+};
+
+export const getRatio = (val1: number | string, val2: number | string) => {
+  if (typeof val1 === "string") {
+    val1 = Number(val1);
+  }
+  if (typeof val2 === "string") {
+    val2 = Number(val2);
+  }
+
+  const ratio = Math.max(val1, 0.0001) / val2;
+  return ratio * 100;
+};

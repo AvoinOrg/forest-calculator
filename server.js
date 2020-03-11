@@ -15,8 +15,11 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000
 });
 
-const rawdata = fs.readFileSync("kunnat.json");
+let rawdata = fs.readFileSync("kunnat.json");
 const kunnat = JSON.parse(rawdata);
+
+rawdata = fs.readFileSync("maakunnat.json");
+const maakunnat = JSON.parse(rawdata);
 
 const dev = process.env.NODE_ENV !== "production";
 const port = process.env.NODE_ENV === "production" ? 80 : 3000;
@@ -51,12 +54,29 @@ app
       return;
     });
 
+    server.get("/api/maakunnat/:id", (req, res) => {
+      const id = req.params.id;
+
+      if (maakunnat[id]) {
+        maakunta = maakunnat[id]
+      }
+
+      if (!maakunta) {
+        res.status(404).end();
+      } else {
+        res.status(200);
+        res.end(JSON.stringify(maakunta));
+      }
+
+      return;
+    });
+
     server.get("/api/kiinteistot/:id", (req, res) => {
       const id = req.params.id;
       pool.query(
         `
           SELECT 
-            estate.*
+            estate2.*
             , jsonb_agg(forest_data.*)  as forest_data
           FROM (
             SELECT 
@@ -69,21 +89,21 @@ app
             ON 
               forecast_data.id = ANY(forest_data.forecasts) 
             JOIN 
-              estate 
+              estate2 
             ON 
-              forest_data.standid = ANY(estate.standids) 
+              forest_data.standid = ANY(estate2.standids) 
             WHERE 
-              estate.id_text = $1::text 
+              estate2.id_text = $1::text 
             GROUP BY 
               forest_data.standid) AS forest_data
           JOIN 
-            estate 
+            estate2 
           ON 
-            forest_data.standid = ANY(estate.standids) 
+            forest_data.standid = ANY(estate2.standids) 
           WHERE 
-            estate.id_text = $1::text 
+            estate2.id_text = $1::text 
           GROUP BY 
-            estate.id_text;
+            estate2.id_text;
         `,
         [id],
         (err, result) => {
