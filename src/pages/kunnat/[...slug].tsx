@@ -9,10 +9,7 @@ const Municipality = props => {
     <>
       <Head>
         <title>{props.data ? props.id : "Haku"} - Hiililaskuri</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=yes"
-        />
+        <meta name="viewport"/>
       </Head>
       {props.data ? (
         <Boiler

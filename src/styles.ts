@@ -62,16 +62,19 @@ export const GlobalStyle: any = createGlobalStyle`
         &:focus {
           outline: 0;
         }
-        display: flex;
-        flex: 1;
+        min-height: 100%;
+        height: 100%;
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
 
       html {
-        min-height: 100%;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        display: flex;
+        min-height: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
 
       input:focus,
@@ -82,8 +85,8 @@ export const GlobalStyle: any = createGlobalStyle`
       }
 
       #__next {
-        display: flex;
-        flex: 1;
+        min-height: 100%;
+        height: 100%;
       }
 
       #__next-prerender-indicator {

@@ -102,10 +102,7 @@ const Home = () => {
     <>
       <Head>
         <title>Arvometsä hiililaskuri</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+        <meta name="viewport" content="height=device-height; width=device-width" />
       </Head>
       <Container>
         <Overlay>
@@ -202,7 +199,7 @@ const Container: any = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  flex: 1;
+  min-height: 100%;
 `;
 
 const Overlay: any = styled.div`

@@ -361,9 +361,17 @@ const Boiler = (props: Props) => {
           </Container>
         </>
       )}
+      <Test></Test>
     </>
   );
 };
+
+const Test: any = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
 
 const Container: any = styled.div`
   background-image: url(${require("../public/img/forest.jpg")});
@@ -371,7 +379,7 @@ const Container: any = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  flex: 1;
+  min-height: 100%;
 `;
 
 const GraphContainer: any = styled.div`
