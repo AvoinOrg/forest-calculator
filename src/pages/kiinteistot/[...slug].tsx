@@ -2,21 +2,19 @@ import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 import Boiler from "../../components/Boiler";
 import NotFound from "../../components/NotFound";
-import { subPages } from "../../utils";
+import { forestryIndexes, subPages } from "../../utils";
 
 const Estate = props => {
   return (
     <>
       <Head>
         <title>{props.data ? props.id : "Haku"} - Hiililaskuri</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=yes"
-        />
+        <meta name="viewport" />
       </Head>
       {props.data ? (
         <Boiler
           data={props.data}
+          comparisonData={props.comparisonData}
           id={props.id}
           subPage={props.subPage}
           type={props.type}
@@ -27,6 +25,79 @@ const Estate = props => {
       )}
     </>
   );
+};
+
+const formatItemData = itemData => {
+  const forecastVals = {};
+  for (let key in forestryIndexes) {
+    const fi = forestryIndexes[key];
+    forecastVals[fi] = {
+      CBT1: 0,
+      Maa1: 0,
+      Bio1: 0
+    };
+  }
+
+  let forestHa = 0;
+  let forecastHa = 0;
+
+  itemData.areas.forEach(area => {
+    forestHa += area.area;
+
+    itemData.forest_data.forEach(farea => {
+      if ("" + area.standid === farea.standid) {
+        forecastHa += area.area;
+
+        for (let key in forestryIndexes) {
+          const fi = forestryIndexes[key];
+
+          for (let i = 0; i < farea.forecast_data.length; i++) {
+            const fc = farea.forecast_data[i];
+            if (fc.fc_type === fi) {
+              for (let a in forecastVals[fi]) {
+                forecastVals[fi][a] += fc[a.toLowerCase()] * area.area;
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+
+  const data = {
+    title: itemData.id_text,
+    areaHa: itemData.area,
+    forestHa,
+    forecastHa: forecastHa,
+    forecastVals: forecastVals,
+    coordinates: itemData.coordinates
+  };
+
+  return data;
+};
+
+const formatCompareData = comparisonData => {
+  const forecastVals = {};
+
+  for (let key in forestryIndexes) {
+    const fi = forestryIndexes[key];
+    const forecast = {
+      CBT1: comparisonData.forecast_data[fi].CBT1,
+      Maa1: comparisonData.forecast_data[fi].Maa1,
+      Bio1: comparisonData.forecast_data[fi].Bio1
+    };
+    forecastVals[fi] = forecast;
+  }
+
+  const data = {
+    title: comparisonData.NAMEFIN,
+    areaHa: comparisonData.TOTALAREA * 100,
+    forestHa: comparisonData.forest_area,
+    forecastHa: comparisonData.forest_area - comparisonData.non_forecasted_area,
+    forecastVals: forecastVals
+  };
+
+  return data;
 };
 
 Estate.getInitialProps = async req => {
@@ -51,36 +122,20 @@ Estate.getInitialProps = async req => {
 
   const res = await fetch(process.env.API_URL + "/kiinteistot/" + id);
 
-  let json = null;
+  let data = null;
+  let comparisonData = null;
 
   if (res.status === 200) {
-    json = await res.json();
-    json = formatData(json);
+    const json = await res.json();
+
+    data = formatItemData(json.kiinteisto);
+
+    if (json.kunta) {
+      comparisonData = formatCompareData(json.kunta);
+    }
   }
 
-  return { data: json, subPage, id, redirect };
-};
-
-const formatData = json => {
-  let forestHa = 0;
-  let forecastHa = 0;
-
-  json.areas.forEach(area => {
-    forestHa += area.area;
-
-    json.forest_data.forEach(farea => {
-      if ("" + area.standid === farea.standid) {
-        forecastHa += area.ratio * area.area;
-      }
-    });
-  });
-
-  const data = {
-    title: json["id_text"],
-    areaHa: json["area"],
-    forestHa,
-    forecastHa
-  };
+  return { data, comparisonData, subPage, id, type: "estate", redirect };
 };
 
 export default Estate;

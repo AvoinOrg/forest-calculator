@@ -100,13 +100,22 @@ const getOptions = (data, colNames): Highcharts.Options => {
   };
 };
 
-const StockChart = (props: { data; colNames }) => (
-  <div>
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={getOptions(props.data, props.colNames)}
-    />
-  </div>
-);
+const StockChart = (props: { data; colNames }) => {
+  const shownData = {
+    item: props.data.item
+  };
+  if (props.data.comparison) {
+    shownData["comparison"] = props.data.comparison;
+  }
+
+  return (
+    <div>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={getOptions(shownData, props.colNames)}
+      />
+    </div>
+  );
+};
 
 export default StockChart;

@@ -51,8 +51,12 @@ const Boiler = (props: Props) => {
   const typeName = props.type == "estate" ? "kiinteistö" : "kunta";
   const stockName = props.type == "estate" ? "Kiinteistön" : "Kunnan";
   const comparisonStockName = props.type == "estate" ? "Kunnan" : "Maakunnan";
-  const stockColNames =
-    props.type == "estate" ? ["Kiinteistö", "Kunta"] : ["Kunta", "Maakunta"];
+  const stockColNames = props.type == "estate" ? ["Kiinteistö"] : ["Kunta"];
+  props.comparisonData &&
+    (props.type === "estate"
+      ? stockColNames.push("Kunta")
+      : stockColNames.push("Maakunta"));
+
   const formNameTitle = props.type == "estate" ? "Kiinteistötunnus" : "Kunta";
 
   const dropdownRef = useRef(null);
@@ -393,9 +397,11 @@ const Boiler = (props: Props) => {
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
                                 {" "}
-                                {addThousandSpaces(
-                                  roundVal(comparisonStockCo2ekvHa, 0)
-                                ) + "tonnia CO2-ekv/ha/vuosi"}
+                                {props.comparisonData
+                                  ? addThousandSpaces(
+                                      roundVal(comparisonStockCo2ekvHa, 0)
+                                    ) + "tonnia CO2-ekv/ha/vuosi"
+                                  : "tulossa pian"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
                           </ExplanationContainer>

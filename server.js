@@ -137,7 +137,31 @@ app
           } else {
             if (result.rowCount > 0) {
               res.status(200);
-              res.end(JSON.stringify(result.rows[0]));
+
+              let kunta = null;
+              const kId = result.rows[0].K_NATCODE;
+
+              if (kId) {
+                kunta = kunnat.find(el => {
+                  if (el.NATCODE) {
+                    if (
+                      kId.trim().toLowerCase() ===
+                      el.NATCODE.trim().toLowerCase()
+                    ) {
+                      return true;
+                    }
+                  }
+
+                  return false;
+                });
+              }
+
+              const data = {
+                kiinteisto: result.rows[0],
+                kunta
+              };
+
+              res.end(JSON.stringify(data));
             } else {
               res.status(404).end();
             }
@@ -192,13 +216,13 @@ app
                 to: process.env.FOREST_EMAIL,
                 subject: "Uusi tilaus: " + data.areaId,
                 text: `
-                Nimi: ${data.name}
-                Email: ${data.email}
-                Alueen tyyppi: ${data.areaType}
-                Alueen nimi/tunnus: ${data.areaId}
-                Tilauksen tyyppi: ${data.orderType}
-                Ajankohta: ${new Date(date)}
-              `
+                  Nimi: ${data.name}
+                  Email: ${data.email}
+                  Alueen tyyppi: ${data.areaType}
+                  Alueen nimi/tunnus: ${data.areaId}
+                  Tilauksen tyyppi: ${data.orderType}
+                  Ajankohta: ${new Date(date)}
+                `
               })
               .then(stuff => console.log(stuff));
             res.status(200).end();
