@@ -1,7 +1,10 @@
 const express = require("express");
 const next = require("next");
+const bodyParser = require("body-parser");
 const fs = require("fs");
 const { Pool } = require("pg");
+const { v4 } = require("uuid");
+const nodemailer = require("nodemailer");
 
 const pool = new Pool({
   host: process.env.PG_HOST,
@@ -26,15 +29,26 @@ const port = process.env.NODE_ENV === "production" ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.FOREST_USER,
+    pass: process.env.FOREST_PASS
+  }
+});
+
 app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(bodyParser.urlencoded({ extended: true }));
+    server.use(bodyParser.json());
+    server.use(bodyParser.raw());
 
     server.get("/api/kunnat/:id", (req, res) => {
       const id = req.params.id;
 
-      kunta = kunnat.find(el => {
+      const kunta = kunnat.find(el => {
         if (el.NAMEFIN) {
           if (id.trim().toLowerCase() === el.NAMEFIN.trim().toLowerCase()) {
             return true;
@@ -48,7 +62,18 @@ app
         res.status(404).end();
       } else {
         res.status(200);
-        res.end(JSON.stringify(kunta));
+
+        let maakunta = null;
+        if (maakunnat[kunta.MAAKUNTANRO]) {
+          maakunta = maakunnat[kunta.MAAKUNTANRO];
+        }
+
+        const data = {
+          kunta,
+          maakunta
+        };
+
+        res.end(JSON.stringify(data));
       }
 
       return;
@@ -58,7 +83,7 @@ app
       const id = req.params.id;
 
       if (maakunnat[id]) {
-        maakunta = maakunnat[id]
+        maakunta = maakunnat[id];
       }
 
       if (!maakunta) {
@@ -123,7 +148,63 @@ app
     });
 
     server.post("/api/tilaus", (req, res) => {
-      console.log(req);
+      data = req.body;
+      date = Date.now();
+      pool.query(
+        `
+          INSERT INTO 
+            customer_order(
+              id,
+              ts,
+              customer_name,
+              email,
+              areaId,
+              areaType,
+              orderType
+            )
+          VALUES(
+            $1,
+            $2,
+            $3,
+            $4,
+            $5,
+            $6,
+            $7
+          )
+        `,
+        [
+          v4(),
+          date,
+          data.name,
+          data.email,
+          data.areaId,
+          data.areaType,
+          data.orderType
+        ],
+        err => {
+          if (err) {
+            console.log(err);
+            res.status(500).end();
+          } else {
+            transporter
+              .sendMail({
+                from: '"Hiililaskuri: tilaukset" <noreply@hiililaskuri.fi>',
+                to: process.env.FOREST_EMAIL,
+                subject: "Uusi tilaus: " + data.areaId,
+                text: `
+                Nimi: ${data.name}
+                Email: ${data.email}
+                Alueen tyyppi: ${data.areaType}
+                Alueen nimi/tunnus: ${data.areaId}
+                Tilauksen tyyppi: ${data.orderType}
+                Ajankohta: ${new Date(date)}
+              `
+              })
+              .then(stuff => console.log(stuff));
+            res.status(200).end();
+          }
+        }
+      );
       return;
     });
 

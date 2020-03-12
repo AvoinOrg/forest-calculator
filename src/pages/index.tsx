@@ -102,7 +102,10 @@ const Home = () => {
     <>
       <Head>
         <title>Arvometsä hiililaskuri</title>
-        <meta name="viewport" content="height=device-height; width=device-width" />
+        <meta
+          name="viewport"
+          content="height=device-height; width=device-width"
+        />
       </Head>
       <Container>
         <Overlay>
@@ -112,8 +115,8 @@ const Home = () => {
           <LogoContainer>
             <Logo />
             <LogoTextContainer>
-              <LogoTitle />
               <LogoText>Hiililaskuri</LogoText>
+              <LogoTitle />
             </LogoTextContainer>
           </LogoContainer>
           {/* <WaveContainer>
@@ -181,7 +184,9 @@ const Home = () => {
             <InfoTextContainer>
               <InfoText>
                 Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
-                kunnan alueen metsiä tai rajata haun metsäkiinteistöön. <br />
+                kunnan alueen metsiä tai rajata haun metsäkiinteistöön.&nbsp;
+              </InfoText>
+              <InfoText>
                 Voit myös vertailla eri metsänhoitotapoja ja tarkastella niiden
                 vaikutuksia hiilennieluun.
               </InfoText>
@@ -279,26 +284,26 @@ const Logo: any = styled.img.attrs(() => ({
 const LogoTitle: any = styled.img.attrs(() => ({
   src: require("../public/img/arvometsa.svg")
 }))`
-  width: 18rem;
+  width: 13rem;
+  margin: 0 0 0.15rem 0;
 
   @media only screen and (max-width: 436px) {
-    width: 12rem;
+    margin: 0 0 0.15rem -2px;
+    width: 8.5rem;
   }
 `;
 
 const LogoText: any = styled.p`
-  color: ${Theme.color.secondary};
+  color: ${Theme.color.white};
   font-family: ${Theme.font.primary};
-  letter-spacing: 0.03rem;
   line-height: 3rem;
-  font-size: 3.68rem;
-  margin: 14px 0 0 -4px;
-  font-weight: 700;
+  font-size: 4.68rem;
+  margin: 14px 0 7px -4px;
+  font-weight: 500;
 
   @media only screen and (max-width: 436px) {
-    margin: 9px 0 0 -4px;
     line-height: 2rem;
-    font-size: 2.45rem;
+    font-size: 2.8rem;
   }
 `;
 
@@ -324,18 +329,21 @@ const InfoTextContainer: any = styled.div`
   padding: 3rem 0 15rem 0;
   display: flex;
   justify-content: center;
+  max-width: 60rem;
+  flex-direction: column;
   @media only screen and (max-height: 590px) {
     padding: 3rem 0 20rem 0;
   }
 `;
 
-const InfoText: any = styled.p`
-  color: ${Theme.color.secondaryLight};
-  font-family: ${Theme.font.secondary};
+const InfoText: any = styled.span`
+  color: ${Theme.color.white};
+  font-family: ${Theme.font.primary};
   display: flex;
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-  max-width: 60rem;
+  font-size: 1.15rem;
+
+  font-weight: 300;
+  white-space: no-wrap;
 `;
 
 const WaveContainer: any = styled.div`

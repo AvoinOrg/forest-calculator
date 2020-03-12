@@ -2,18 +2,19 @@ import fetch from "isomorphic-unfetch";
 import Head from "next/head";
 import Boiler from "../../components/Boiler";
 import NotFound from "../../components/NotFound";
-import { subPages } from "../../utils";
+import { forestryIndexes, subPages } from "../../utils";
 
 const Municipality = props => {
   return (
     <>
       <Head>
         <title>{props.data ? props.id : "Haku"} - Hiililaskuri</title>
-        <meta name="viewport"/>
+        <meta name="viewport" />
       </Head>
       {props.data ? (
         <Boiler
           data={props.data}
+          comparisonData={props.comparisonData}
           id={props.id}
           subPage={props.subPage}
           type={props.type}
@@ -26,26 +27,53 @@ const Municipality = props => {
   );
 };
 
-const formatData = json => {
-  let forestHa = 0;
-  let forecastHa = 0;
+const formatItemData = itemData => {
+  const forecastVals = {};
 
-  json.areas.forEach(area => {
-    forestHa += area.area;
-
-    json.forest_data.forEach(farea => {
-      if ("" + area.standid === farea.standid) {
-        forecastHa += area.ratio * area.area;
-      }
-    });
-  });
+  for (let key in forestryIndexes) {
+    const fi = forestryIndexes[key];
+    const forecast = {
+      CBT1: itemData.forecast_data[fi].CBT1,
+      Maa1: itemData.forecast_data[fi].Maa1,
+      Bio1: itemData.forecast_data[fi].Bio1
+    };
+    forecastVals[fi] = forecast;
+  }
 
   const data = {
-    title: json["id_text"],
-    areaHa: json["area"],
-    forestHa,
-    forecastHa
+    title: itemData.NAMEFIN,
+    areaHa: itemData.TOTALAREA * 100,
+    forestHa: itemData.forest_area,
+    forecastHa: itemData.forest_area - itemData.non_forecasted_area,
+    forecastVals: forecastVals,
+    coordinates: itemData.coordinates
   };
+
+  return data;
+};
+
+const formatCompareData = comparisonData => {
+  const forecastVals = {};
+
+  for (let key in forestryIndexes) {
+    const fi = forestryIndexes[key];
+    const forecast = {
+      CBT1: comparisonData.forecast_data[fi].CBT1,
+      Maa1: comparisonData.forecast_data[fi].Maa1,
+      Bio1: comparisonData.forecast_data[fi].Bio1
+    };
+    forecastVals[fi] = forecast;
+  }
+
+  const data = {
+    title: comparisonData.MAAKUNTANIMIFI,
+    areaHa: comparisonData.TOTALAREA * 100,
+    forestHa: comparisonData.forest_area,
+    forecastHa: comparisonData.forest_area - comparisonData.non_forecasted_area,
+    forecastVals: forecastVals
+  };
+
+  return data;
 };
 
 Municipality.getInitialProps = async req => {
@@ -70,13 +98,20 @@ Municipality.getInitialProps = async req => {
 
   const res = await fetch(process.env.API_URL + "/kunnat/" + id);
 
-  let json = null;
+  let data = null;
+  let comparisonData = null;
 
   if (res.status === 200) {
-    json = await res.json();
+    const json = await res.json();
+    
+    data = formatItemData(json.kunta);
+
+    if (json.maakunta) {
+      comparisonData = formatCompareData(json.maakunta);
+    }
   }
 
-  return { data: json, subPage, id, redirect };
+  return { data, comparisonData, subPage, id, redirect, type: "municipality" };
 };
 
 export default Municipality;

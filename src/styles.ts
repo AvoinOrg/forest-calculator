@@ -10,7 +10,7 @@ export const Theme: any = {
     brown: "rgb(76, 65, 61)",
     beige: "rgb(219, 209, 201)",
     red: "rgb(164, 71, 72)",
-    white: "rgb(255,255,255)"
+    white: "rgb(245,245,245)"
   },
   font: {
     primary: "Museo Sans",
@@ -56,8 +56,9 @@ export const GlobalStyle: any = createGlobalStyle`
         font-family: "EngschriftDIND", sans-serif;
 
         font-size: 16px;
+        font-weight: 300;
         color: ${theme.color.primary};
-        background-color: ${theme.color.secondaryLight};
+        background-color: ${Theme.color.white};
         box-sizing: border-box;
         &:focus {
           outline: 0;

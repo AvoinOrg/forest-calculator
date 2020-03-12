@@ -29,6 +29,7 @@ const SuccessText: any = styled.p`
   color: ${Theme.color.primary};
   font-family: ${Theme.font.primary};
   font-size: 1.5rem;
+  margin: 10rem 0 0 0;
 `;
 
 const SuccessLink: any = styled.p`

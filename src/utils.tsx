@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 export const subPages = [
   "tavanomainen_metsänhoito",
   "pidennetty_kiertoaika",
@@ -9,7 +11,7 @@ export const subTitles = {
   tavanomainen_metsänhoito: "Tavanomainen metsänhoito",
   pidennetty_kiertoaika: "Pidennetty kiertoaika (muutos hakkuutavassa)",
   // jatkuvapeitteinen_metsänkasvatus: "Jatkuvapeitteinen metsänkasvatus",
-  tilaus: "hiililaskelma"
+  tilaus: "Hiililaskelma"
 };
 
 export const navTitles = {
@@ -34,12 +36,42 @@ export const forestryIndexes = {
   // jatkuvapeitteinen_metsänkasvatus: 2
 };
 
-export const roundVal = (val: number | string) => {
+export const radioVals = {
+  radio1: "hiililaskelma",
+  radio2: "metsänhoitosuunnitelma + hiililaskelma",
+  radio3: "useampi kiinteistö"
+};
+
+export const roundVal = (val: number | string, accuracy: number) => {
   if (typeof val === "string") {
     val = Number(val);
   }
-  val = Math.round(val * 100) / 100;
+
+  let acc = accuracy;
+  if (accuracy === 0) {
+    acc = 1;
+  }
+  if (accuracy < 0) {
+    acc = 1 / Math.pow(10, Math.abs(accuracy));
+  }
+
+  val = Math.round(val * acc) / acc;
   return val;
+};
+
+export const addThousandSpaces = (val: number | string): string => {
+  const s = "" + val;
+
+  let nS = "";
+
+  for (let i = 0; i < s.length; i++) {
+    if (i % 3 === 0) {
+      nS = " " + nS;
+    }
+    nS = s[s.length - (i + 1)] + nS;
+  }
+
+  return nS;
 };
 
 export const haToKm = (val: number | string) => {

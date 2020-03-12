@@ -3,17 +3,17 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { Theme } from "../styles";
 
-const getOptions = (data1, data2): Highcharts.Options => {
+const getOptions = (data, colNames): Highcharts.Options => {
   return {
     title: {
       text: ""
     },
 
     xAxis: {
-      categories: ["Vuosi 2070"],
+      categories: colNames,
       labels: {
         style: {
-          color: Theme.color.secondaryLight,
+          color: Theme.color.white,
           opacity: 0.6
         }
       },
@@ -22,17 +22,17 @@ const getOptions = (data1, data2): Highcharts.Options => {
 
     yAxis: {
       title: {
-        text: "CO2-ekvivalentti",
+        text: "tonnia CO2-ekv / ha",
         style: {
-          color: Theme.color.secondaryLight,
+          color: Theme.color.white,
           opacity: 0.6
         }
       },
       gridLineColor: "rgba(221, 207, 162, 0.3)",
-      lineColor: Theme.color.secondaryLight,
+      lineColor: Theme.color.white,
       labels: {
         style: {
-          color: Theme.color.secondaryLight,
+          color: Theme.color.white,
           opacity: 0.6
         }
       }
@@ -49,7 +49,7 @@ const getOptions = (data1, data2): Highcharts.Options => {
       shadow: false,
       layout: "vertical",
       itemStyle: {
-        color: Theme.color.secondaryLight
+        color: Theme.color.white
       }
     },
 
@@ -82,29 +82,29 @@ const getOptions = (data1, data2): Highcharts.Options => {
     series: [
       {
         type: "column",
-        name: "Maa",
-        legendIndex: 1,
-        data: data1,
+        name: "Puusto",
+        legendIndex: 0,
+        data: [data.item.Bio, data.comparison && data.comparison.Bio],
         borderWidth: 0,
-        color: Theme.color.red
+        color: Theme.color.secondary
       },
       {
         type: "column",
-        name: "Puusto",
-        legendIndex: 0,
-        data: data2,
+        name: "Maa",
+        legendIndex: 1,
+        data: [data.item.Maa, data.comparison && data.comparison.Maa],
         borderWidth: 0,
-        color: Theme.color.secondary
+        color: Theme.color.red
       }
     ]
   };
 };
 
-const StockChart = (props: { data1; data2 }) => (
+const StockChart = (props: { data; colNames }) => (
   <div>
     <HighchartsReact
       highcharts={Highcharts}
-      options={getOptions(props.data1, props.data2)}
+      options={getOptions(props.data, props.colNames)}
     />
   </div>
 );
