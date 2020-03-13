@@ -20,6 +20,7 @@ const getOptions = (data, colNames): Highcharts.Options => {
       lineColor: "rgba(221, 207, 162, 0.1)"
     },
 
+
     yAxis: {
       title: {
         text: "tonnia CO2-ekv / ha / v",
@@ -54,8 +55,7 @@ const getOptions = (data, colNames): Highcharts.Options => {
     },
 
     tooltip: {
-      headerFormat: "<b>{point.x}</b><br/>",
-      pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}"
+      enabled: false,
     },
 
     plotOptions: {
@@ -82,19 +82,11 @@ const getOptions = (data, colNames): Highcharts.Options => {
     series: [
       {
         type: "column",
-        name: "Puusto",
+        showInLegend: false,
         legendIndex: 0,
-        data: [data.item.Bio, data.comparison && data.comparison.Bio],
+        data: [data.item, data.comparison && data.comparison],
         borderWidth: 0,
         color: Theme.color.secondary
-      },
-      {
-        type: "column",
-        name: "Maa",
-        legendIndex: 1,
-        data: [data.item.Maa, data.comparison && data.comparison.Maa],
-        borderWidth: 0,
-        color: Theme.color.red
       }
     ]
   };

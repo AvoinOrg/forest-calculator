@@ -15,10 +15,10 @@ export const subTitles = {
 };
 
 export const navTitles = {
-  tavanomainen_metsänhoito: "tavanomainen metsänhoito",
-  pidennetty_kiertoaika: "pidennetty kiertoaika",
+  tavanomainen_metsänhoito: "Tavanomainen metsänhoito",
+  pidennetty_kiertoaika: "Pidennetty kiertoaika",
   // jatkuvapeitteinen_metsänkasvatus: "jatkuvapeitteinen metsänkasvatus",
-  tilaus: "hiililaskelma"
+  tilaus: "Hiililaskelma"
 };
 
 export const subTexts = {

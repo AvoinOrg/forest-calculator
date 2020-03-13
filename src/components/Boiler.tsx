@@ -33,8 +33,8 @@ const Boiler = (props: Props) => {
   const [isLastPage, setIsLastPage] = useState(false);
 
   const [co2ekv, setCo2ekv] = useState(0);
-  const [stockCo2ekvHa, setStockCo2ekvHa] = useState(0);
-  const [comparisonStockCo2ekvHa, setComparisonStockCo2ekvHa] = useState(0);
+  const [co2ekvHa, setCo2ekvHa] = useState(0);
+  const [comparisonCo2ekvHa, setComparisonCo2ekvHa] = useState(0);
   const [stockVals, setStockVals] = useState({});
   const [checked, setChecked] = useState({
     radio1: true,
@@ -44,7 +44,7 @@ const Boiler = (props: Props) => {
 
   const [formName, setFormName] = useState("");
   const [formEmail, setFormEmail] = useState("");
-  const [formVal, setFormVal] = useState(props.id);
+  const [formVal, setFormVal] = useState(props.data.title);
   const [isSending, setIsSending] = useState(false);
 
   const root = props.type == "estate" ? "/kiinteistot/" : "/kunnat/";
@@ -134,49 +134,27 @@ const Boiler = (props: Props) => {
     }
 
     if (props.data.forecastVals[forestryIndex]) {
-      const itemCo2ekv = roundVal(
-        props.data.forecastVals[forestryIndex].CBT1 / 10,
-        0
-      );
+      const itemCo2ekv = props.data.forecastVals[forestryIndex].CBT1 / 10;
 
-      const itemStockCo2ekvHa =
-        (props.data.forecastVals[forestryIndex].Maa0 +
-          props.data.forecastVals[forestryIndex].Bio0) /
-        props.data.forecastHa;
+      const itemCo2ekvHa = itemCo2ekv / props.data.forecastHa;
 
-      const item = {
-        Maa:
-          props.data.forecastVals[forestryIndex].Maa0 / props.data.forecastHa,
-        Bio: props.data.forecastVals[forestryIndex].Bio0 / props.data.forecastHa
-      };
-
-      let comparison = null;
-      let compStockCo2ekvHa = null;
+      let compCo2ekvHa = null;
 
       if (props.comparisonData) {
-        compStockCo2ekvHa =
-          (props.comparisonData.forecastVals[forestryIndex].Maa0 +
-            props.comparisonData.forecastVals[forestryIndex].Bio0) /
-          props.comparisonData.forecastHa;
-
-        comparison = {
-          Maa:
-            props.comparisonData.forecastVals[forestryIndex].Maa0 /
-            props.comparisonData.forecastHa,
-          Bio:
-            props.comparisonData.forecastVals[forestryIndex].Bio0 /
-            props.comparisonData.forecastHa
-        };
+        compCo2ekvHa =
+          props.comparisonData.forecastVals[forestryIndex].CBT1 /
+          props.comparisonData.forecastHa /
+          10;
       }
 
       const stocks = {
-        item,
-        comparison
+        item: itemCo2ekvHa,
+        comparison: compCo2ekvHa
       };
 
       setCo2ekv(itemCo2ekv);
-      setStockCo2ekvHa(itemStockCo2ekvHa);
-      setComparisonStockCo2ekvHa(compStockCo2ekvHa);
+      setCo2ekvHa(itemCo2ekvHa);
+      setComparisonCo2ekvHa(compCo2ekvHa);
       setStockVals(stocks);
     }
 
@@ -226,7 +204,7 @@ const Boiler = (props: Props) => {
                       <BalanceCircleSmall>
                         <BalanceTextSmall>Tila</BalanceTextSmall>
                         <BalanceValueSmall>
-                          {Math.round(stockCo2ekvHa * 10) / 10}
+                          {Math.round(co2ekvHa * 10) / 10}
                         </BalanceValueSmall>
                         <BalanceUnitSmall>
                           CO<sub>2</sub> / ha
@@ -342,7 +320,7 @@ const Boiler = (props: Props) => {
                               }
                             >
                               <ForestryLink>
-                                tavanomainen metsänhoito
+                                Tavanomainen metsänhoito
                               </ForestryLink>
                             </Link>
                           )}
@@ -350,12 +328,12 @@ const Boiler = (props: Props) => {
                             <Link
                               href={root + props.id + "/pidennetty_kiertoaika"}
                             >
-                              <ForestryLink>pidennetty kiertoaika</ForestryLink>
+                              <ForestryLink>Pidennetty kiertoaika</ForestryLink>
                             </Link>
                           )}
                           {!isLastPage && (
                             <Link href={root + props.id + "/tilaus"}>
-                              <ForestryLink>hiililaskelma</ForestryLink>
+                              <ForestryLink>Hiililaskelma</ForestryLink>
                             </Link>
                           )}
                         </ForestryDropdownItems>
@@ -375,9 +353,9 @@ const Boiler = (props: Props) => {
                             </ExplanationText>
                             <ExplanationText>
                               Vuoden 2020 hiilitase on{" "}
-                              {addThousandSpaces(co2ekv)} hiilidioksiditonnia
-                              (CO2 -ekv). Metsien vuotuinen hiilidioksidin
-                              nettosidonta vastaa yhteensä{" "}
+                              {addThousandSpaces(roundVal(co2ekv, 0))}{" "}
+                              hiilidioksiditonnia (CO2 -ekv). Metsien vuotuinen
+                              hiilidioksidin nettosidonta vastaa yhteensä{" "}
                               {addThousandSpaces(roundVal(co2ekv / 10.3, 0))}{" "}
                               keskimääräisen suomalaisen ihmisen vuotuista
                               hiilijalanjälkeä, joka on n. 10,3
@@ -406,7 +384,7 @@ const Boiler = (props: Props) => {
                                 {stockName} alueen hiilensidonta:&nbsp;&nbsp;
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
-                                {addThousandSpaces(roundVal(stockCo2ekvHa, 0)) +
+                                {addThousandSpaces(roundVal(co2ekvHa, 1)) +
                                   " tonnia CO2-ekv/ha/vuosi"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
@@ -418,7 +396,7 @@ const Boiler = (props: Props) => {
                               <ExplanationInfoValue>
                                 {props.comparisonData
                                   ? addThousandSpaces(
-                                      roundVal(comparisonStockCo2ekvHa, 0)
+                                      roundVal(comparisonCo2ekvHa, 1)
                                     ) + " tonnia CO2-ekv/ha/vuosi"
                                   : "tulossa pian"}
                               </ExplanationInfoValue>
@@ -688,7 +666,7 @@ const HumanContainer: any = styled.div`
   height: 240px;
   display: flex;
   flex-direction: row;
-  margin: 130px 20px 0 0;
+  margin: 145px 20px 0 0;
   align-items: center;
 `;
 
@@ -843,13 +821,13 @@ const ForestryDropdownInfoText: any = styled.p`
   font-family: ${Theme.font.primary};
   color: ${Theme.color.primary};
   font-size: 1.1rem;
-  margin: 8px 0 0 0;
+  margin: 15px 0 0 0;
   padding: 0 0 2.5rem 0;
 `;
 
 const ForestryLink: any = styled.p`
   margin: 0;
-  padding: 0.5rem;
+  padding: 0.5rem 0.7rem 0.5rem 0.7rem;
   &:hover {
     background: ${Theme.color.primary};
     color: ${Theme.color.white};
@@ -986,7 +964,7 @@ const FormText: any = styled.p`
   font-family: ${Theme.font.primary};
   color: ${Theme.color.primary};
   font-size: 1rem;
-  margin: 8px 0 0 0;
+  margin: 8px 0 20rem 0;
 `;
 
 const Title: any = styled.p`

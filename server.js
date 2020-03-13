@@ -101,7 +101,7 @@ app
       pool.query(
         `
           SELECT 
-            estate2.*
+            estate3.*
             , jsonb_agg(forest_data.*)  as forest_data
           FROM (
             SELECT 
@@ -114,21 +114,21 @@ app
             ON 
               forecast_data.id = ANY(forest_data.forecasts) 
             JOIN 
-              estate2 
+              estate3 
             ON 
-              forest_data.standid = ANY(estate2.standids) 
+              forest_data.standid = ANY(estate3.standids) 
             WHERE 
-              estate2.id_text = $1::text 
+              estate3.id_text = $1::text 
             GROUP BY 
               forest_data.standid) AS forest_data
           JOIN 
-            estate2 
+            estate3 
           ON 
-            forest_data.standid = ANY(estate2.standids) 
+            forest_data.standid = ANY(estate3.standids) 
           WHERE 
-            estate2.id_text = $1::text 
+            estate3.id_text = $1::text 
           GROUP BY 
-            estate2.id_text;
+            estate3.id_text;
         `,
         [id],
         (err, result) => {
@@ -139,7 +139,7 @@ app
               res.status(200);
 
               let kunta = null;
-              const kId = result.rows[0].K_NATCODE;
+              const kId = result.rows[0].k_natcode;
 
               if (kId) {
                 kunta = kunnat.find(el => {
