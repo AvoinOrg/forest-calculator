@@ -245,9 +245,22 @@ const Boiler = (props: Props) => {
                     </StockContainer>
                   </>
                 ) : (
-                  <ExampleContainer>
-                    <Example />
-                  </ExampleContainer>
+                  <>
+                    <ExampleContainer>
+                      <Example />
+                    </ExampleContainer>
+                    {/* <StockContainer>
+                      <StockChart
+                        data={{
+                          item: {
+                            Maa: 139.52681923424467,
+                            Bio: 67.07519673777917
+                          }
+                        }}
+                        colNames={stockColNames}
+                      />
+                    </StockContainer> */}
+                  </>
                 )}
               </GraphContainer>
               <TextContainer>
@@ -572,6 +585,7 @@ const Container: any = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex: 1;
   min-height: 100%;
 `;
 
@@ -585,7 +599,7 @@ const GraphContainer: any = styled.div`
 
 const Overlay: any = styled.div`
   display: flex;
-  flex: 1.4;
+  flex: 1;
   flex-direction: row;
   z-index: 1;
   background: rgba(49, 66, 52, 0.95);
@@ -699,12 +713,20 @@ const StockContainer: any = styled.div`
 
 const ExampleContainer: any = styled.div`
   margin: 60px -20px 0 0;
+  display: flex;
+  flex: 1;
+  @media only screen and (max-width: 1330px) {
+    margin: 140px -20px 0 0;
+  }
 `;
 
 const Example: any = styled.img.attrs(() => ({
   src: require("../public/img/example.png")
 }))`
-  height: 700px;
+  height: 900px;
+  @media only screen and (max-width: 1330px) {
+    height: 545px;
+  }
 `;
 
 const TextContainer: any = styled.div`

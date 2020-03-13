@@ -8,7 +8,7 @@ const Municipality = props => {
   return (
     <>
       <Head>
-        <title>{props.data ? props.id : "Haku"} - Hiililaskuri</title>
+        <title>{props.data ? props.title : "Haku"} - Hiililaskuri</title>
         <meta name="viewport" />
       </Head>
       {props.data ? (
