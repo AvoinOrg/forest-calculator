@@ -54,6 +54,9 @@ export const roundVal = (val: number | string, accuracy: number) => {
   if (accuracy < 0) {
     acc = 1 / Math.pow(10, Math.abs(accuracy));
   }
+  if (accuracy > 0) {
+    acc = Math.pow(10, Math.abs(accuracy));
+  }
 
   val = Math.round(val * acc) / acc;
   return val;
@@ -63,12 +66,21 @@ export const addThousandSpaces = (val: number | string): string => {
   const s = "" + val;
 
   let nS = "";
+  let mod = 0;
 
-  for (let i = 0; i < s.length; i++) {
-    if (i % 3 === 0) {
-      nS = " " + nS;
+  for (let i = 1; i <= s.length; i++) {
+    const char = s[s.length - i];
+
+    if (char === ".") {
+      mod = 0;
+    } else {
+      if (mod !== 0 && mod % 3 === 0) {
+        nS = " " + nS;
+      }
+      mod++;
     }
-    nS = s[s.length - (i + 1)] + nS;
+
+    nS = char + nS;
   }
 
   return nS;

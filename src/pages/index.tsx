@@ -123,6 +123,19 @@ const Home = () => {
             <Wave></Wave>
           </WaveContainer> */}
           <LowerContainer>
+            <InfoTextContainer>
+              <InfoTextBorder />
+              <InfoTextRow>
+                <InfoText>
+                  Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
+                  kunnan alueen metsiä tai rajata haun metsäkiinteistöön.&nbsp;
+                </InfoText>
+                <InfoText>
+                  Voit myös vertailla eri metsänhoitotapoja ja tarkastella
+                  niiden vaikutuksia hiilennieluun.
+                </InfoText>
+              </InfoTextRow>
+            </InfoTextContainer>
             <SearchContainer onKeyPress={handleEstateKeyPress}>
               <AutoSuggest
                 suggestions={estateSuggestions}
@@ -181,16 +194,6 @@ const Home = () => {
                 <SearchIcon />
               </SearchIconContainer>
             </SearchContainer>
-            <InfoTextContainer>
-              <InfoText>
-                Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
-                kunnan alueen metsiä tai rajata haun metsäkiinteistöön.&nbsp;
-              </InfoText>
-              <InfoText>
-                Voit myös vertailla eri metsänhoitotapoja ja tarkastella niiden
-                vaikutuksia hiilennieluun.
-              </InfoText>
-            </InfoTextContainer>
           </LowerContainer>
         </Overlay>
       </Container>
@@ -260,7 +263,7 @@ const LogoContainer: any = styled.div`
     margin: 4rem auto 3rem auto;
   }
   @media only screen and (max-height: 590px) {
-    margin: 2rem auto 1rem auto;
+    margin: 2rem auto 3rem auto;
   }
 `;
 
@@ -326,13 +329,24 @@ const AvoinLogo: any = styled.img.attrs(() => ({
 const InfoTextContainer: any = styled.div`
   width: 100%;
   z-index: 2;
-  padding: 3rem 0 15rem 0;
   display: flex;
   justify-content: center;
   max-width: 60rem;
+  flex-direction: row;
+`;
+
+const InfoTextRow: any = styled.div`
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
-  @media only screen and (max-height: 590px) {
-    padding: 3rem 0 20rem 0;
+`;
+
+const InfoTextBorder: any = styled.div`
+  @media only screen and (max-width: 740px) {
+    border-left: 2px solid ${Theme.color.secondary};
+    margin: 3px 3px 4px 0;
   }
 `;
 
@@ -344,6 +358,7 @@ const InfoText: any = styled.span`
 
   font-weight: 300;
   white-space: no-wrap;
+  padding: 0 0 0 5px;
 `;
 
 const WaveContainer: any = styled.div`
@@ -368,6 +383,7 @@ const LowerContainer: any = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin: 0 0 25rem 0;
 `;
 
 export default Home;

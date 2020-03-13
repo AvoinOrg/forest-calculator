@@ -22,7 +22,7 @@ const getOptions = (data, colNames): Highcharts.Options => {
 
     yAxis: {
       title: {
-        text: "tonnia CO2-ekv / ha",
+        text: "tonnia CO2-ekv / ha / v",
         style: {
           color: Theme.color.white,
           opacity: 0.6

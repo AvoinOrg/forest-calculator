@@ -135,19 +135,19 @@ const Boiler = (props: Props) => {
 
     if (props.data.forecastVals[forestryIndex]) {
       const itemCo2ekv = roundVal(
-        props.data.forecastVals[forestryIndex].CBT1,
+        props.data.forecastVals[forestryIndex].CBT1 / 10,
         0
       );
 
       const itemStockCo2ekvHa =
-        (props.data.forecastVals[forestryIndex].Maa1 +
-          props.data.forecastVals[forestryIndex].Bio1) /
+        (props.data.forecastVals[forestryIndex].Maa0 +
+          props.data.forecastVals[forestryIndex].Bio0) /
         props.data.forecastHa;
 
       const item = {
         Maa:
-          props.data.forecastVals[forestryIndex].Maa1 / props.data.forecastHa,
-        Bio: props.data.forecastVals[forestryIndex].Bio1 / props.data.forecastHa
+          props.data.forecastVals[forestryIndex].Maa0 / props.data.forecastHa,
+        Bio: props.data.forecastVals[forestryIndex].Bio0 / props.data.forecastHa
       };
 
       let comparison = null;
@@ -155,16 +155,16 @@ const Boiler = (props: Props) => {
 
       if (props.comparisonData) {
         compStockCo2ekvHa =
-          (props.comparisonData.forecastVals[forestryIndex].Maa1 +
-            props.comparisonData.forecastVals[forestryIndex].Bio1) /
+          (props.comparisonData.forecastVals[forestryIndex].Maa0 +
+            props.comparisonData.forecastVals[forestryIndex].Bio0) /
           props.comparisonData.forecastHa;
 
         comparison = {
           Maa:
-            props.comparisonData.forecastVals[forestryIndex].Maa1 /
+            props.comparisonData.forecastVals[forestryIndex].Maa0 /
             props.comparisonData.forecastHa,
           Bio:
-            props.comparisonData.forecastVals[forestryIndex].Bio1 /
+            props.comparisonData.forecastVals[forestryIndex].Bio0 /
             props.comparisonData.forecastHa
         };
       }
@@ -264,15 +264,23 @@ const Boiler = (props: Props) => {
                       <InfoTextRowFirst>
                         <InfoTextKey>Pinta-ala:&nbsp;&nbsp;</InfoTextKey>
                         <InfoTextValue>
-                          {addThousandSpaces(roundVal(props.data.areaHa, 0)) +
-                            "ha"}
+                          {addThousandSpaces(
+                            roundVal(
+                              props.data.areaHa,
+                              props.type === "estate" ? 2 : 0
+                            )
+                          ) + "ha"}
                         </InfoTextValue>
                       </InfoTextRowFirst>
                       <InfoTextRow>
                         <InfoTextKey>Metsää:&nbsp;&nbsp;</InfoTextKey>
                         <InfoTextValue>
-                          {addThousandSpaces(roundVal(props.data.forestHa, 0)) +
-                            "ha"}
+                          {addThousandSpaces(
+                            roundVal(
+                              props.data.forestHa,
+                              props.type === "estate" ? 2 : 0
+                            )
+                          ) + "ha"}
                         </InfoTextValue>
                       </InfoTextRow>
                       <InfoTextRow>
@@ -280,14 +288,13 @@ const Boiler = (props: Props) => {
                           Hiililaskelmien kattavuus:&nbsp;&nbsp;
                         </InfoTextKey>
                         <InfoTextValue>
-                          {Math.round(
+                          {roundVal(
                             getRatio(
                               props.data.forecastHa,
                               props.data.forestHa
-                            ) * 10
-                          ) /
-                            10 +
-                            "%"}
+                            ),
+                            1
+                          ) + "%"}
                         </InfoTextValue>
                       </InfoTextRow>
                     </InfoTextContainer>
@@ -387,7 +394,7 @@ const Boiler = (props: Props) => {
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
                                 {addThousandSpaces(roundVal(stockCo2ekvHa, 0)) +
-                                  "tonnia CO2-ekv/ha/vuosi"}
+                                  " tonnia CO2-ekv/ha/vuosi"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
                             <ExplanationInfoRow>
@@ -396,11 +403,10 @@ const Boiler = (props: Props) => {
                                 hiilensidonta:&nbsp;&nbsp;
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
-                                {" "}
                                 {props.comparisonData
                                   ? addThousandSpaces(
                                       roundVal(comparisonStockCo2ekvHa, 0)
-                                    ) + "tonnia CO2-ekv/ha/vuosi"
+                                    ) + " tonnia CO2-ekv/ha/vuosi"
                                   : "tulossa pian"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
@@ -476,14 +482,14 @@ const Boiler = (props: Props) => {
                                 </PayInfoValsCol>
                               </PayInfoRow>
 
-                              {props.type === "estate" && (
-                                <PayInfoRow>
-                                  <PayInfoRadio
-                                    type="radio"
-                                    value="radio3"
-                                    checked={checked.radio3}
-                                    onChange={handleRadioClick}
-                                  />
+                              <PayInfoRow>
+                                <PayInfoRadio
+                                  type="radio"
+                                  value="radio3"
+                                  checked={checked.radio3}
+                                  onChange={handleRadioClick}
+                                />
+                                {props.type === "estate" ? (
                                   <PayInfoValsCol>
                                     <PayInfoKey>
                                       <u>Useamman kiinteistön hiililaskelma:</u>
@@ -492,8 +498,17 @@ const Boiler = (props: Props) => {
                                     <PayInfoValue>tarjouksella</PayInfoValue>
                                     <PayInfoText></PayInfoText>
                                   </PayInfoValsCol>
-                                </PayInfoRow>
-                              )}
+                                ) : (
+                                  <PayInfoValsCol>
+                                    <PayInfoKey>
+                                      <u>
+                                        Jätä Arvometsälle yhteydenottopyyntö
+                                        liittyen kunnan metsien hiililaskelmiin
+                                      </u>
+                                    </PayInfoKey>
+                                  </PayInfoValsCol>
+                                )}
+                              </PayInfoRow>
                             </PayInfoCol>
                           </ExplanationContainer>
                           <Form>
@@ -704,7 +719,7 @@ const TopContainer: any = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 0 0 10px 0;
+  margin: 0 0 4px 0;
 `;
 
 const BottomContainer: any = styled.div`

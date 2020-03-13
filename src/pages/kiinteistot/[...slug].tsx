@@ -33,35 +33,40 @@ const formatItemData = itemData => {
     const fi = forestryIndexes[key];
     forecastVals[fi] = {
       CBT1: 0,
-      Maa1: 0,
-      Bio1: 0
+      Maa0: 0,
+      Bio0: 0
     };
   }
 
   let forestHa = 0;
   let forecastHa = 0;
 
+  const uniques = [];
+
   itemData.areas.forEach(area => {
-    forestHa += area.area;
+    if (!uniques.includes(area.standid)) {
+      uniques.push(area.standid);
+      forestHa += area.area;
 
-    itemData.forest_data.forEach(farea => {
-      if ("" + area.standid === farea.standid) {
-        forecastHa += area.area;
+      itemData.forest_data.forEach(farea => {
+        if ("" + area.standid === farea.standid) {
+          forecastHa += area.area;
 
-        for (let key in forestryIndexes) {
-          const fi = forestryIndexes[key];
+          for (let key in forestryIndexes) {
+            const fi = forestryIndexes[key];
 
-          for (let i = 0; i < farea.forecast_data.length; i++) {
-            const fc = farea.forecast_data[i];
-            if (fc.fc_type === fi) {
-              for (let a in forecastVals[fi]) {
-                forecastVals[fi][a] += fc[a.toLowerCase()] * area.area;
+            for (let i = 0; i < farea.forecast_data.length; i++) {
+              const fc = farea.forecast_data[i];
+              if (fc.fc_type === fi) {
+                for (let a in forecastVals[fi]) {
+                  forecastVals[fi][a] += fc[a.toLowerCase()] * area.area;
+                }
               }
             }
           }
         }
-      }
-    });
+      });
+    }
   });
 
   const data = {
@@ -83,8 +88,8 @@ const formatCompareData = comparisonData => {
     const fi = forestryIndexes[key];
     const forecast = {
       CBT1: comparisonData.forecast_data[fi].CBT1,
-      Maa1: comparisonData.forecast_data[fi].Maa1,
-      Bio1: comparisonData.forecast_data[fi].Bio1
+      Maa0: comparisonData.forecast_data[fi].Maa0,
+      Bio0: comparisonData.forecast_data[fi].Bio0
     };
     forecastVals[fi] = forecast;
   }

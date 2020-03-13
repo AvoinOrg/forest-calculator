@@ -34,8 +34,8 @@ const formatItemData = itemData => {
     const fi = forestryIndexes[key];
     const forecast = {
       CBT1: itemData.forecast_data[fi].CBT1,
-      Maa1: itemData.forecast_data[fi].Maa1,
-      Bio1: itemData.forecast_data[fi].Bio1
+      Maa0: itemData.forecast_data[fi].Maa0,
+      Bio0: itemData.forecast_data[fi].Bio0
     };
     forecastVals[fi] = forecast;
   }
@@ -59,8 +59,8 @@ const formatCompareData = comparisonData => {
     const fi = forestryIndexes[key];
     const forecast = {
       CBT1: comparisonData.forecast_data[fi].CBT1,
-      Maa1: comparisonData.forecast_data[fi].Maa1,
-      Bio1: comparisonData.forecast_data[fi].Bio1
+      Maa0: comparisonData.forecast_data[fi].Maa0,
+      Bio0: comparisonData.forecast_data[fi].Bio0
     };
     forecastVals[fi] = forecast;
   }
