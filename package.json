@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build-update": "NODE_ENV='dev' yarn install && rm -r .next & NODE_ENV='production' yarn run build"
+    "build-update": "NODE_ENV='dev' yarn install && rm -r .next | true && NODE_ENV='production' yarn run build"
   },
   "license": "MIT",
   "devDependencies": {
