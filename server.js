@@ -133,6 +133,7 @@ app
         [id],
         (err, result) => {
           if (err) {
+            console.log(err)
             res.status(500).end();
           } else {
             if (result.rowCount > 0) {

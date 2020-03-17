@@ -69,6 +69,20 @@ const formatItemData = itemData => {
     }
   });
 
+  console.log(itemData.area)
+  console.log(itemData.covered_area)
+
+  if (itemData.inacc && forestHa > itemData.area) {
+    const ratio = itemData.area / forestHa;
+    forecastHa *= ratio / 2;
+    forestHa = itemData.area;
+    for (let k1 in forecastVals) {
+      for (let k2 in forecastVals[k1]) {
+        forecastVals[k1][k2] *= ratio;
+      }
+    }
+  }
+
   const data = {
     title: itemData.id_text,
     areaHa: itemData.area,
