@@ -29,10 +29,15 @@ const port = process.env.NODE_ENV === "production" ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const forestUser = process.env.FOREST_USER
+const forestEmail = process.env.FOREST_EMAIL
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.zoho.eu",
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.FOREST_USER,
+    user: forestUser,
     pass: process.env.FOREST_PASS
   }
 });
@@ -133,7 +138,7 @@ app
         [id],
         (err, result) => {
           if (err) {
-            console.log(err)
+            console.log(err);
             res.status(500).end();
           } else {
             if (result.rowCount > 0) {
@@ -213,8 +218,8 @@ app
           } else {
             transporter
               .sendMail({
-                from: '"Hiililaskuri: tilaukset" <noreply@hiililaskuri.fi>',
-                to: process.env.FOREST_EMAIL,
+                from: `"Uusi tilaus - Hiililaskuri" <${forestUser}>`,
+                to: forestEmail,
                 subject: "Uusi tilaus: " + data.areaId,
                 text: `
                   Nimi: ${data.name}
