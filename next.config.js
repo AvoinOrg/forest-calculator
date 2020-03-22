@@ -7,7 +7,10 @@ module.exports = withImages(
       return config;
     },
     env: {
-      API_URL: process.env.NODE_ENV === "production" ? "http://localhost/api" : "http://localhost:3000/api"
+      API_URL:
+        process.env.NODE_ENV === "production"
+          ? "http://" + process.env.API_URL + "/api"
+          : "http://localhost:3000/api"
     }
   })
 );
