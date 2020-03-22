@@ -29,8 +29,8 @@ const port = process.env.NODE_ENV === "production" ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const forestUser = process.env.FOREST_USER
-const forestEmail = process.env.FOREST_EMAIL
+const forestUser = process.env.FOREST_USER;
+const forestEmail = process.env.FOREST_EMAIL;
 
 const transporter = nodemailer.createTransport({
   host: "smtp.zoho.eu",
@@ -230,7 +230,8 @@ app
                   Ajankohta: ${new Date(date)}
                 `
               })
-              .then(stuff => console.log(stuff));
+              .then(stuff => console.log(stuff))
+              .catch(error => console.error(error));
             res.status(200).end();
           }
         }
