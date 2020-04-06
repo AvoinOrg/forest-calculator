@@ -150,7 +150,7 @@ const Home = () => {
                 getSuggestionValue={suggestion => suggestion.name}
                 renderSuggestion={suggestion => <span>{suggestion.name}</span>}
                 inputProps={{
-                  placeholder: "Etsi kiinteistötunnusta (esim. 12-3-45)",
+                  placeholder: "Etsi kiinteistötunnusta (esim. 123-456-78-90)",
                   value: estateValue,
                   onChange: (_, { newValue }) => {
                     setEstateValue(newValue);
@@ -179,7 +179,7 @@ const Home = () => {
                 getSuggestionValue={suggestion => suggestion.name}
                 renderSuggestion={suggestion => <span>{suggestion.name}</span>}
                 inputProps={{
-                  placeholder: "Etsi kuntaa",
+                  placeholder: "Etsi kuntaa (esim. Porvoo)",
                   value: munValue,
                   onChange: (_, { newValue }) => {
                     setMunValue(newValue);
@@ -223,7 +223,7 @@ const SearchContainer: any = styled.div`
   display: flex;
   justify-content: center;
   margin: 3rem 0 0 0;
-  width: 24.7rem;
+  width: 28.2rem;
   font-family: ${Theme.font.primary};
   max-width: 100%;
 
