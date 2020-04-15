@@ -50,6 +50,11 @@ app
     server.use(bodyParser.json());
     server.use(bodyParser.raw());
 
+    server.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      next();
+    });
+
     server.get("/api/kunnat/:id", (req, res) => {
       const id = req.params.id;
 

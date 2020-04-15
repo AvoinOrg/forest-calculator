@@ -15,7 +15,7 @@ import {
   radioVals,
   roundVal,
   getRatio,
-  addThousandSpaces,
+  addThousandSpaces
 } from "../utils";
 
 interface Props {
@@ -39,7 +39,7 @@ const Boiler = (props: Props) => {
   const [checked, setChecked] = useState({
     radio1: true,
     radio2: false,
-    radio3: false,
+    radio3: false
   });
 
   const [formName, setFormName] = useState("");
@@ -63,21 +63,21 @@ const Boiler = (props: Props) => {
 
   const forestryIndex = forestryIndexes[props.subPage];
 
-  const handleArrowClick = (e) => {
+  const handleArrowClick = e => {
     Router.push(root + props.id + "/tilaus");
   };
 
-  const handleOutsideClick = (e) => {
+  const handleOutsideClick = e => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setisDropdownOpen(false);
     }
   };
 
-  const handleRadioClick = (e) => {
+  const handleRadioClick = e => {
     const radioChecks = {
       radio1: false,
       radio2: false,
-      radio3: false,
+      radio3: false
     };
 
     radioChecks[e.target.value] = true;
@@ -98,20 +98,22 @@ const Boiler = (props: Props) => {
       email: formEmail,
       areaId: formVal,
       areaType: typeName,
-      orderType: radioVals[radioVal],
+      orderType: radioVals[radioVal]
     };
 
     return JSON.stringify(body);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     setIsSending(true);
     fetch(process.env.API_URL + "/tilaus", {
       method: "POST",
       body: getFormData(),
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-      .then((res) => {
+      .then(res => {
         setIsSending(false);
         if (res.status === 200) {
           Router.push("/tilaus");
@@ -119,7 +121,7 @@ const Boiler = (props: Props) => {
           Router.push("/tilaus_error");
         }
       })
-      .catch((error) => {
+      .catch(error => {
         setIsSending(false);
         Router.push("/tilaus_error");
         console.error("Error:", error);
@@ -129,7 +131,7 @@ const Boiler = (props: Props) => {
   useEffect(() => {
     if (props.redirect) {
       Router.push(Router.pathname, root + props.id + "/", {
-        shallow: true,
+        shallow: true
       });
     }
 
@@ -149,7 +151,7 @@ const Boiler = (props: Props) => {
 
       const stocks = {
         item: itemCo2ekvHa,
-        comparison: compCo2ekvHa,
+        comparison: compCo2ekvHa
       };
 
       setCo2ekv(itemCo2ekv);
@@ -302,7 +304,7 @@ const Boiler = (props: Props) => {
                       </ForestryDropdownTitle>
                       <ForestryDropdown ref={dropdownRef}>
                         <ForestryDropdownSelected
-                          onClick={(e) => {
+                          onClick={e => {
                             setisDropdownOpen(!isDropdownOpen);
                           }}
                         >
@@ -507,19 +509,19 @@ const Boiler = (props: Props) => {
                             <FormInput
                               type="text"
                               value={formEmail}
-                              onChange={(e) => setFormEmail(e.target.value)}
+                              onChange={e => setFormEmail(e.target.value)}
                             />
                             <FormLabel>Nimi</FormLabel>
                             <FormInput
                               type="text"
                               value={formName}
-                              onChange={(e) => setFormName(e.target.value)}
+                              onChange={e => setFormName(e.target.value)}
                             />
                             <FormLabel>{formNameTitle}</FormLabel>
                             <FormInput
                               type="text"
                               value={formVal}
-                              onChange={(e) => setFormVal(e.target.value)}
+                              onChange={e => setFormVal(e.target.value)}
                             />
                             <FormButton
                               onClick={handleSubmit}
@@ -671,7 +673,7 @@ const HumanContainer: any = styled.div`
 `;
 
 const HumanIcon: any = styled.img.attrs(() => ({
-  src: require("../public/img/human.svg"),
+  src: require("../public/img/human.svg")
 }))`
   height: 14rem;
 `;
@@ -699,7 +701,7 @@ const ExampleContainer: any = styled.div`
 `;
 
 const Example: any = styled.img.attrs(() => ({
-  src: require("../public/img/example.png"),
+  src: require("../public/img/example.png")
 }))`
   height: 900px;
   @media only screen and (max-width: 1330px) {
@@ -811,7 +813,7 @@ const ForestryDropdownSelected: any = styled.div`
 
 const ForestryDropdownItems: any = styled("div")<{ isOpen: boolean }>`
   display: flex;
-  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
+  visibility: ${props => (props.isOpen ? "visible" : "hidden")};
   flex-direction: column;
   position: relative;
   background: ${Theme.color.primaryLight};
@@ -948,7 +950,7 @@ const FormInput: any = styled.input`
 
 const FormButton: any = styled("div")<{ isSending: boolean }>`
   font-family: ${Theme.font.secondary};
-  background: ${(props) =>
+  background: ${props =>
     props.isSending ? Theme.color.primaryLight : Theme.color.primary};
   color: ${Theme.color.white};
   padding: 10px;
@@ -956,7 +958,7 @@ const FormButton: any = styled("div")<{ isSending: boolean }>`
   font-size: 1.5rem;
   text-align: center;
   &:hover {
-    cursor: ${(props) => (props.isSending ? "defualt" : "pointer")};
+    cursor: ${props => (props.isSending ? "defualt" : "pointer")};
   }
 `;
 
@@ -1025,7 +1027,7 @@ const WaveContainerTop: any = styled.div`
 `;
 
 const WaveTop: any = styled.img.attrs(() => ({
-  src: require("../public/img/wave-top.svg"),
+  src: require("../public/img/wave-top.svg")
 }))`
   position: absolute;
   width: 130px;
@@ -1047,7 +1049,7 @@ const WaveContainerBottom: any = styled.div`
 `;
 
 const WaveBottom: any = styled.img.attrs(() => ({
-  src: require("../public/img/wave-bottom.svg"),
+  src: require("../public/img/wave-bottom.svg")
 }))`
   position: absolute;
   width: 130px;
@@ -1074,14 +1076,14 @@ const LogoTextContainer: any = styled.div`
 `;
 
 const Logo: any = styled.img.attrs(() => ({
-  src: require("../public/img/kapy.svg"),
+  src: require("../public/img/kapy.svg")
 }))`
   height: 3rem;
   margin: 0 0.6rem -5px 0;
 `;
 
 const LogoTitle: any = styled.img.attrs(() => ({
-  src: require("../public/img/arvometsa.svg"),
+  src: require("../public/img/arvometsa.svg")
 }))`
   width: 6rem;
   margin: 6px 0 -4px -1px;
@@ -1098,13 +1100,13 @@ const LogoText: any = styled.p`
 `;
 
 const AvoinLink: any = styled.a.attrs(() => ({
-  href: "https://www.avoin.org",
+  href: "https://www.avoin.org"
 }))`
   margin: 0 0 0 auto;
 `;
 
 const AvoinLogo: any = styled.img.attrs(() => ({
-  src: require("../public/img/avoin-black.svg"),
+  src: require("../public/img/avoin-black.svg")
 }))`
   width: 13rem;
   position: absolute;
