@@ -205,6 +205,8 @@ $RECYCLE.BIN/
 
 out
 
+.well_known
+
 /kunnat.json
 /maakunnat.json
 

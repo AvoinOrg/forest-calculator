@@ -5,6 +5,7 @@ const fs = require("fs");
 const { Pool } = require("pg");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
+var serveIndex = require('serve-index')
 
 const pool = new Pool({
   host: process.env.PG_HOST,
@@ -55,6 +56,8 @@ app
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
+
+    server.use('/.well-known', express.static('.well-known'), serveIndex('.well-known', {'icons': true}))
 
     server.get("/api/kunnat/:id", (req, res) => {
       const id = req.params.id;
