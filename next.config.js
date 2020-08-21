@@ -9,7 +9,7 @@ module.exports = withImages(
     env: {
       API_URL:
         process.env.NODE_ENV === "production"
-          ? "http://" + process.env.API_URL + "/api"
+          ? process.env.API_URL + "/api"
           : "http://localhost:3000/api"
     }
   })

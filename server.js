@@ -1,11 +1,15 @@
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
+const path = require("path")
 const fs = require("fs");
 const { Pool } = require("pg");
 const { v4 } = require("uuid");
 const nodemailer = require("nodemailer");
-var serveIndex = require('serve-index')
+const http = require('http')
+const https = require('https')
+const serveIndex = require('serve-index')
+
 
 const pool = new Pool({
   host: process.env.PG_HOST,
@@ -26,7 +30,7 @@ rawdata = fs.readFileSync("maakunnat.json");
 const maakunnat = JSON.parse(rawdata);
 
 const dev = process.env.NODE_ENV !== "production";
-const port = process.env.NODE_ENV === "production" ? 80 : 3000;
+const port = !dev ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -51,13 +55,13 @@ app
     server.use(bodyParser.json());
     server.use(bodyParser.raw());
 
-    server.use(function(req, res, next) {
+    server.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
 
-    server.use('/.well-known', express.static('.well-known'), serveIndex('.well-known', {'icons': true}))
+    server.use('/.well-known', express.static('.well-known'), serveIndex('.well-known', { 'icons': true }))
 
     server.get("/api/kunnat/:id", (req, res) => {
       const id = req.params.id;
@@ -252,10 +256,33 @@ app
       return handle(req, res);
     });
 
-    server.listen(port, err => {
+    const httpServer = http.createServer(server)
+
+    httpServer.listen(port, err => {
       if (err) throw err;
       console.log("> Ready on http://localhost:" + port);
     });
+
+    if (!dev) {
+      const privateKey = fs.readFileSync(path.join(process.env.SSL_PATH, 'privkey.pem'), 'utf8');
+      const certificate = fs.readFileSync(path.join(process.env.SSL_PATH, 'cert.pem'), 'utf8');
+      const ca = fs.readFileSync(path.join(process.env.SSL_PATH, 'chain.pem'), 'utf8');
+      
+      const credentials = {
+        key: privateKey,
+        cert: certificate,
+        ca: ca
+      }
+      
+      const httpsServer = https.createServer(credentials, server)
+
+      httpsServer.listen(443, err => {
+        if (err) throw err;
+        console.log("> Https ready on https://localhost:443")
+      })
+    }
+
+
   })
   .catch(ex => {
     console.error(ex.stack);
