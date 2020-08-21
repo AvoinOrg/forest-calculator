@@ -256,24 +256,18 @@ app
       return handle(req, res);
     });
 
-    const httpServer = http.createServer(server)
-
-    httpServer.listen(port, err => {
-      if (err) throw err;
-      console.log("> Ready on http://localhost:" + port);
-    });
 
     if (!dev) {
       const privateKey = fs.readFileSync(path.join(process.env.SSL_PATH, 'privkey.pem'), 'utf8');
       const certificate = fs.readFileSync(path.join(process.env.SSL_PATH, 'cert.pem'), 'utf8');
       const ca = fs.readFileSync(path.join(process.env.SSL_PATH, 'chain.pem'), 'utf8');
-      
+
       const credentials = {
         key: privateKey,
         cert: certificate,
         ca: ca
       }
-      
+
       const httpsServer = https.createServer(credentials, server)
 
       httpsServer.listen(443, err => {
@@ -282,6 +276,23 @@ app
       })
     }
 
+    if (!dev) {
+      http.createServer(req,res => {    
+        // 301 redirect (reclassifies google listings)
+        res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+        res.end();
+      }).listen(port, err => {
+        if (err) throw err;
+        console.log("> Redirection ready on http://localhost:" + port)
+      })
+
+    } else {
+      const httpServer = http.createServer(server)
+      httpServer.listen(port, err => {
+        if (err) throw err;
+        console.log("> Ready on http://localhost:" + port);
+      });
+    }
 
   })
   .catch(ex => {
