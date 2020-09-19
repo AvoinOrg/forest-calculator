@@ -1,9 +1,6 @@
 # forest-calculator
 A web app prototype for searching the carbon statistics of Finnish municipalities and estates. 
 
-### Dev-server
-    yarn start
-
 ### Build
     yarn run build-update
     node server.js
