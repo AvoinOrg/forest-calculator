@@ -2,11 +2,11 @@
 A web app prototype for searching the carbon statistics of Finnish municipalities and estates. 
 
 ### Dev-server
-  yarn start
+    yarn start
 
 ### Build
-  yarn run build-update
-  node server.js
+    yarn run build-update
+    node server.js
  
 Requires municipalities.json, provinces.json, and the following env variables:
 
