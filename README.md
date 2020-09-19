@@ -1,7 +1,5 @@
-# forest-calculator
+# forest-calculator ([https://hiililaskuri.com](https://hiililaskuri.com)
 A web app prototype for searching the carbon statistics of Finnish municipalities and estates. 
-
-Live at [hiililaskuri.com](https://hiililaskuri.com)
 
 ### Build
     yarn run build-update
