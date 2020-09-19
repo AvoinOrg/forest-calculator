@@ -207,7 +207,7 @@ out
 
 .well_known
 
-/kunnat.json
-/maakunnat.json
+/data/municipalities.json
+/data/provinces.json
 
 old
