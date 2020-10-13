@@ -1,6 +1,12 @@
 # forest-calculator ([https://hiililaskuri.com](https://hiililaskuri.com))
 A web app prototype for searching the carbon statistics of Finnish municipalities and estates. 
 
+### Tech
+* Server-side rendered React (Next.js)
+* TypeScript
+* Backend made with Node.js and Express
+* PostgreSQL as database
+
 ### Build
     yarn run build-update
     node server.js
