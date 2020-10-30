@@ -1,7 +1,7 @@
 [
   {
     "Alue": "Etel�-Suomi",
-    "Alueet": ["21", "06", "01", "05", "07"],
+    "Alueet": ["21", "06", "01", "05", "07", "02"],
     "Hakkuutapa": "Ensiharvennus",
     "Mat": "49.98",
     "Kut": "51.25",
@@ -12,7 +12,7 @@
   },
   {
     "Alue": "Etel�-Suomi",
-    "Alueet": ["21", "06", "01", "05", "07"],
+    "Alueet": ["21", "06", "01", "05", "07", "02"],
     "Hakkuutapa": "Harvennus",
     "Mat": "49.98",
     "Kut": "51.25",
@@ -23,7 +23,7 @@
   },
   {
     "Alue": "Etel�-Suomi",
-    "Alueet": ["21", "06", "01", "05", "07"],
+    "Alueet": ["21", "06", "01", "05", "07", "02"],
     "Hakkuutapa": "Uudistushakkuu",
     "Mat": "58.19",
     "Kut": "59.76",
