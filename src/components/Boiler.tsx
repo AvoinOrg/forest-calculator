@@ -276,7 +276,7 @@ const Boiler = (props: Props) => {
                       </InfoTextRow>
                       <InfoTextRow>
                         <InfoTextKey>
-                          Hiililaskelmien kattavuus:&nbsp;&nbsp;
+                          Laskelmien kattavuus:&nbsp;&nbsp;
                         </InfoTextKey>
                         <InfoTextValue>
                           {roundVal(
