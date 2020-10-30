@@ -32,7 +32,7 @@ export const subTexts = {
 
 export const forestryIndexes = {
   tavanomainen_metsänhoito: 3,
-  pidennetty_kiertoaika: 4
+  // pidennetty_kiertoaika: 4
   // jatkuvapeitteinen_metsänkasvatus: 2
 };
 
