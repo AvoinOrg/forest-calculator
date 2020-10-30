@@ -17,9 +17,9 @@ const Home = () => {
 
   const [blockEnter, setBlockEnter] = useState(false);
 
-  const getMunSuggestions = value => {
+  const getMunSuggestions = (value) => {
     const val = value.trim().toLowerCase();
-    const filteredMuns = muns.filter(mun =>
+    const filteredMuns = muns.filter((mun) =>
       mun.name.toLowerCase().includes(val)
     );
 
@@ -49,12 +49,12 @@ const Home = () => {
     return filteredMuns;
   };
 
-  const getEstateSuggestions = _value => {
+  const getEstateSuggestions = (_value) => {
     return [];
   };
 
-  const isValidMun = name => {
-    const val = muns.find(el => {
+  const isValidMun = (name) => {
+    const val = muns.find((el) => {
       if (name.trim().toLowerCase() === el.name.trim().toLowerCase()) {
         return true;
       }
@@ -74,11 +74,11 @@ const Home = () => {
     }
   };
 
-  const handleMunClick = e => {
+  const handleMunClick = (e) => {
     goToMun();
   };
 
-  const handleMunKeyPress = e => {
+  const handleMunKeyPress = (e) => {
     if (e.key.toLowerCase() === "enter" && !blockEnter) {
       goToMun();
     }
@@ -88,11 +88,11 @@ const Home = () => {
     router.push("/kiinteistot/" + estateValue.trim().toLowerCase());
   };
 
-  const handleEstateClick = e => {
+  const handleEstateClick = (e) => {
     goToEstate();
   };
 
-  const handleEstateKeyPress = e => {
+  const handleEstateKeyPress = (e) => {
     if (e.key.toLowerCase() === "enter" && !blockEnter) {
       goToEstate();
     }
@@ -101,7 +101,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>Arvometsä hiililaskuri</title>
+        <title>Arvometsä Metsälaskuri</title>
         <meta
           name="viewport"
           content="height=device-height; width=device-width"
@@ -115,7 +115,7 @@ const Home = () => {
           <LogoContainer>
             <Logo />
             <LogoTextContainer>
-              <LogoText>Hiililaskuri</LogoText>
+              <LogoText>Metsälaskuri</LogoText>
               <LogoTitle />
             </LogoTextContainer>
           </LogoContainer>
@@ -127,12 +127,9 @@ const Home = () => {
               <InfoTextBorder />
               <InfoTextRow>
                 <InfoText>
-                  Hiililaskurilla selvität metsän hiilennielun. Voit tarkastella
-                  kunnan alueen metsiä tai rajata haun metsäkiinteistöön.&nbsp;
-                </InfoText>
-                <InfoText>
-                  Voit myös vertailla eri metsänhoitotapoja ja tarkastella
-                  niiden vaikutuksia hiilennieluun.
+                  Metsälaskuri kertoo metsätilasi hakkuiden pitkänaikavälin
+                  bruttotulot. Syötä metsätilan kiinteistötunnus hakukenttään ja
+                  tutustu palveluun.
                 </InfoText>
               </InfoTextRow>
             </InfoTextContainer>
@@ -147,16 +144,18 @@ const Home = () => {
                 // onSuggestionSelected={(_, { suggestionValue }) =>
                 //   console.log("Selected: " + suggestionValue)
                 // }
-                getSuggestionValue={suggestion => suggestion.name}
-                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                renderSuggestion={(suggestion) => (
+                  <span>{suggestion.name}</span>
+                )}
                 inputProps={{
                   placeholder: "Etsi kiinteistötunnusta (esim. 123-456-78-90)",
                   value: estateValue,
                   onChange: (_, { newValue }) => {
                     setEstateValue(newValue);
-                  }
+                  },
                 }}
-                onSuggestionHighlighted={e => {
+                onSuggestionHighlighted={(e) => {
                   e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
                 }}
                 highlightFirstSuggestion={true}
@@ -165,7 +164,7 @@ const Home = () => {
                 <SearchIcon />
               </SearchIconContainer>
             </SearchContainer>
-            <SearchContainer onKeyPress={handleMunKeyPress}>
+            {/* <SearchContainer onKeyPress={handleMunKeyPress}>
               <AutoSuggest
                 suggestions={munSuggestions}
                 onSuggestionsClearRequested={() => setMunSuggestions([])}
@@ -176,16 +175,18 @@ const Home = () => {
                 // onSuggestionSelected={(_, { suggestionValue }) =>
                 //   console.log("Selected: " + suggestionValue)
                 // }
-                getSuggestionValue={suggestion => suggestion.name}
-                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                renderSuggestion={(suggestion) => (
+                  <span>{suggestion.name}</span>
+                )}
                 inputProps={{
                   placeholder: "Etsi kuntaa (esim. Porvoo)",
                   value: munValue,
                   onChange: (_, { newValue }) => {
                     setMunValue(newValue);
-                  }
+                  },
                 }}
-                onSuggestionHighlighted={e => {
+                onSuggestionHighlighted={(e) => {
                   e.suggestion ? setBlockEnter(true) : setBlockEnter(false);
                 }}
                 highlightFirstSuggestion={true}
@@ -193,7 +194,7 @@ const Home = () => {
               <SearchIconContainer onClick={handleMunClick}>
                 <SearchIcon />
               </SearchIconContainer>
-            </SearchContainer>
+            </SearchContainer> */}
           </LowerContainer>
         </Overlay>
       </Container>
@@ -249,7 +250,7 @@ const SearchIconContainer: any = styled.div`
 `;
 
 const SearchIcon: any = styled.img.attrs(() => ({
-  src: require("../public/img/search-outline.svg")
+  src: require("../public/img/search-outline.svg"),
 }))`
   width: 24px;
   margin: auto;
@@ -274,7 +275,7 @@ const LogoTextContainer: any = styled.div`
 `;
 
 const Logo: any = styled.img.attrs(() => ({
-  src: require("../public/img/kapy.svg")
+  src: require("../public/img/kapy.svg"),
 }))`
   height: 8rem;
   margin: 0 1rem 0 0;
@@ -285,7 +286,7 @@ const Logo: any = styled.img.attrs(() => ({
 `;
 
 const LogoTitle: any = styled.img.attrs(() => ({
-  src: require("../public/img/arvometsa.svg")
+  src: require("../public/img/arvometsa.svg"),
 }))`
   width: 13rem;
   margin: 0 0 0.15rem 0;
@@ -311,13 +312,13 @@ const LogoText: any = styled.p`
 `;
 
 const AvoinLink: any = styled.a.attrs(() => ({
-  href: "https://www.avoin.org"
+  href: "https://www.avoin.org",
 }))`
   margin: 0 0 0 auto;
 `;
 
 const AvoinLogo: any = styled.img.attrs(() => ({
-  src: require("../public/img/avoin.svg")
+  src: require("../public/img/avoin.svg"),
 }))`
   width: 16rem;
 
@@ -370,7 +371,7 @@ const WaveContainer: any = styled.div`
 `;
 
 const Wave: any = styled.img.attrs(() => ({
-  src: require("../public/img/wave2.svg")
+  src: require("../public/img/wave2.svg"),
 }))`
   z-index: 1;
   display: flex;

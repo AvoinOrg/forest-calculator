@@ -179,7 +179,7 @@ const sendOrder = async (data) => {
       } else {
         transporter
           .sendMail({
-            from: `"Uusi tilaus - Hiililaskuri" <${forestUser}>`,
+            from: `"Uusi tilaus - Metsälaskuri" <${forestUser}>`,
             to: nmEmail,
             subject: "Uusi tilaus: " + data.areaId,
             text: `

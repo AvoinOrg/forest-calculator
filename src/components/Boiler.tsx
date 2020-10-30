@@ -15,7 +15,7 @@ import {
   radioVals,
   roundVal,
   getRatio,
-  addThousandSpaces
+  addThousandSpaces,
 } from "../utils";
 
 interface Props {
@@ -32,14 +32,13 @@ const Boiler = (props: Props) => {
   const [isDropdownOpen, setisDropdownOpen] = useState(false);
   const [isLastPage, setIsLastPage] = useState(false);
 
-  const [co2ekv, setCo2ekv] = useState(0);
-  const [co2ekvHa, setCo2ekvHa] = useState(0);
-  const [comparisonCo2ekvHa, setComparisonCo2ekvHa] = useState(0);
+  const [avgCashHa, setAvgCashHa] = useState(0);
+  const [comparisonAvgCashHa, setComparisonAvgCashHa] = useState(0);
   const [stockVals, setStockVals] = useState({});
   const [checked, setChecked] = useState({
     radio1: true,
     radio2: false,
-    radio3: false
+    radio3: false,
   });
 
   const [formName, setFormName] = useState("");
@@ -51,11 +50,13 @@ const Boiler = (props: Props) => {
   const typeName = props.type == "estate" ? "kiinteistö" : "kunta";
   const stockName = props.type == "estate" ? "Kiinteistön" : "Kunnan";
   const comparisonStockName = props.type == "estate" ? "Kunnan" : "Maakunnan";
-  const stockColNames = props.type == "estate" ? ["Kiinteistö"] : ["Kunta"];
-  props.comparisonData &&
-    (props.type === "estate"
-      ? stockColNames.push("Kunta")
-      : stockColNames.push("Maakunta"));
+  const stockColNames = [
+    "2020-2030",
+    "2030-2040",
+    "2040-2050",
+    "2050-2060",
+    "2060-2070",
+  ];
 
   const formNameTitle = props.type == "estate" ? "Kiinteistötunnus" : "Kunta";
 
@@ -63,21 +64,21 @@ const Boiler = (props: Props) => {
 
   const forestryIndex = forestryIndexes[props.subPage];
 
-  const handleArrowClick = e => {
+  const handleArrowClick = (e) => {
     Router.push(root + props.id + "/tilaus");
   };
 
-  const handleOutsideClick = e => {
+  const handleOutsideClick = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setisDropdownOpen(false);
     }
   };
 
-  const handleRadioClick = e => {
+  const handleRadioClick = (e) => {
     const radioChecks = {
       radio1: false,
       radio2: false,
-      radio3: false
+      radio3: false,
     };
 
     radioChecks[e.target.value] = true;
@@ -98,22 +99,22 @@ const Boiler = (props: Props) => {
       email: formEmail,
       areaId: formVal,
       areaType: typeName,
-      orderType: radioVals[radioVal]
+      orderType: radioVals[radioVal],
     };
 
     return JSON.stringify(body);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     setIsSending(true);
     fetch(process.env.API_URL + "/tilaus", {
       method: "POST",
       body: getFormData(),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => {
+      .then((res) => {
         setIsSending(false);
         if (res.status === 200) {
           Router.push("/tilaus");
@@ -121,7 +122,7 @@ const Boiler = (props: Props) => {
           Router.push("/tilaus_error");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setIsSending(false);
         Router.push("/tilaus_error");
         console.error("Error:", error);
@@ -131,32 +132,29 @@ const Boiler = (props: Props) => {
   useEffect(() => {
     if (props.redirect) {
       Router.push(Router.pathname, root + props.id + "/", {
-        shallow: true
+        shallow: true,
       });
     }
 
     if (props.data.forecastVals[forestryIndex]) {
-      const itemCo2ekv = props.data.forecastVals[forestryIndex].CBT1 / 10;
+      const itemAvgCashHa =
+        props.data.forecastVals[forestryIndex].P1 / props.data.forecastHa / 10;
 
-      const itemCo2ekvHa = itemCo2ekv / props.data.forecastHa;
-
-      let compCo2ekvHa = null;
+      let compAvgCashHa = null;
 
       if (props.comparisonData) {
-        compCo2ekvHa =
-          props.comparisonData.forecastVals[3].CBT1 /
+        compAvgCashHa =
+          props.comparisonData.forecastVals[forestryIndex].P1 /
           props.comparisonData.forecastHa /
           10;
       }
 
       const stocks = {
-        item: itemCo2ekvHa,
-        comparison: compCo2ekvHa
+        item: Object.values(props.data.forecastVals[forestryIndex]),
       };
 
-      setCo2ekv(itemCo2ekv);
-      setCo2ekvHa(itemCo2ekvHa);
-      setComparisonCo2ekvHa(compCo2ekvHa);
+      setAvgCashHa(itemAvgCashHa);
+      setComparisonAvgCashHa(compAvgCashHa);
       setStockVals(stocks);
     }
 
@@ -186,7 +184,7 @@ const Boiler = (props: Props) => {
                   <LogoContainer>
                     <Logo />
                     <LogoTextContainer>
-                      <LogoText>Hiililaskuri</LogoText>
+                      <LogoText>Metsälaskuri</LogoText>
                       <LogoTitle />
                     </LogoTextContainer>
                   </LogoContainer>
@@ -196,12 +194,12 @@ const Boiler = (props: Props) => {
                 </MunOutlineContainer>
                 {!isLastPage ? (
                   <>
-                    <HumanContainer>
+                    {/* <HumanContainer>
                       <HumanIcon />
                       <HumanText>
                         {"X " + addThousandSpaces(roundVal(co2ekv / 10.3, 0))}
                       </HumanText>
-                    </HumanContainer>
+                    </HumanContainer> */}
                     {/* <BalanceRow>
                       <BalanceCircleSmall>
                         <BalanceTextSmall>Tila</BalanceTextSmall>
@@ -299,10 +297,8 @@ const Boiler = (props: Props) => {
                   </WaveContainerBottom>
                   <BackgroundContainer>
                     <ContentContainer>
-                      <ForestryDropdownTitle>
-                        Valitse metsänhoitotapa valikosta:
-                      </ForestryDropdownTitle>
-                      <ForestryDropdown ref={dropdownRef}>
+                      <ForestryDropdownTitle></ForestryDropdownTitle>
+                      {/* <ForestryDropdown ref={dropdownRef}>
                         <ForestryDropdownSelected
                           onClick={e => {
                             setisDropdownOpen(!isDropdownOpen);
@@ -342,7 +338,7 @@ const Boiler = (props: Props) => {
                             </Link>
                           )}
                         </ForestryDropdownItems>
-                      </ForestryDropdown>
+                      </ForestryDropdown> */}
                       {!isLastPage ? (
                         <>
                           <ExplanationContainer>
@@ -353,27 +349,30 @@ const Boiler = (props: Props) => {
                               {subTexts[props.subPage]}
                             </ExplanationText>
                             <ExplanationText>
-                              Valitun alueen vuoden 2020 hiilitase on{" "}
-                              {addThousandSpaces(roundVal(co2ekv, 0))}{" "}
-                              hiilidioksiditonnia (CO2 -ekv). Metsien vuotuinen
-                              hiilidioksidin nettosidonta vastaa yhteensä{" "}
-                              {addThousandSpaces(roundVal(co2ekv / 10.3, 0))}{" "}
-                              keskimääräisen suomalaisen ihmisen vuotuista
-                              hiilijalanjälkeä, joka on n. 10,3
-                              hiilidioksiditonnia (CO2 -ekv).
+                              Valitun tilan hakkuut on tavanomaisen
+                              metsänhoitotavan mukaisesti. Hakkuutuloista ei ole
+                              vähennetty uudistamis- ja metsänhoitokuluja.
+                              Laskenta perustuu avoimeen metsävaratietoon ja
+                              hinnoittelussa on käytetty alueellisia
+                              keskimääräisiä hintoja.
                             </ExplanationText>
                           </ExplanationContainer>
                           <ExplanationContainer>
                             <ExplanationHeader>
-                              Vuotuinen hiilitase (CO-ekv)
+                              Kausittaiset hakkuutulot
                             </ExplanationHeader>
                             <ExplanationText>
-                              Hiilitase tarkoittaa metsätalouden sitoman ja
-                              vapauttaman hiilen erotusta tietyn ajanjakson
-                              kuluessa. Positiivinen tase tarkoittaa, että
-                              metsätalous on poistanut hiiltä ilmakehästä ja
-                              toiminut hiilinieluna. Hiilitaseessa otetaan
-                              huomioon myös puutuotteiden korvausvaikutukset.
+                              Hakkuutulot on esitetty kootusti kymmenen vuoden
+                              välein. Hakkuut toteutuvat kun metsä on
+                              uudistuskypsää tai harvennuksen tarpeessa.
+                            </ExplanationText>
+                            <ExplanationText>
+                              Hakkuutulot antavat hyvän yleiskuvan siitä että,
+                              minkälainen tulovirta metsätilalta on
+                              odotettavissa lyhyellä aikavälillä.
+                              Metsäsuunnitelman tilaamalla voit vaikuttaa
+                              valittuun metsänhoitotapaan ja toimenpiteiden
+                              ajankohtaan.
                             </ExplanationText>
                           </ExplanationContainer>
                           <ExplanationContainer>
@@ -382,30 +381,31 @@ const Boiler = (props: Props) => {
                             </ExplanationHeader>
                             <ExplanationInfoRow>
                               <ExplanationInfoKey>
-                                {stockName} alueen hiilensidonta:&nbsp;&nbsp;
+                                Valitun metsätilan bruttotulot 10v
+                                aikana:&nbsp;&nbsp;
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
-                                {addThousandSpaces(roundVal(co2ekvHa, 1)) +
-                                  " tonnia CO2-ekv/ha/vuosi"}
+                                {addThousandSpaces(roundVal(avgCashHa, 0)) +
+                                  "€ / ha"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
                             <ExplanationInfoRow>
                               <ExplanationInfoKey>
-                                {comparisonStockName} alueen
-                                hiilensidonta:&nbsp;&nbsp;
+                                Kunnan metsien keskimääräinen bruttotulo 10v
+                                aikana:&nbsp;&nbsp;
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
                                 {props.comparisonData
                                   ? addThousandSpaces(
-                                      roundVal(comparisonCo2ekvHa, 1)
-                                    ) + " tonnia CO2-ekv/ha/vuosi"
+                                      roundVal(comparisonAvgCashHa, 0)
+                                    ) + "€ / ha"
                                   : "tulossa pian"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
                           </ExplanationContainer>
                           <Arrow onClick={handleArrowClick}>
                             <ArrowTail>
-                              <ArrowText>Tilaa hiililaskelma</ArrowText>
+                              <ArrowText>Tilaa metsälaskelma</ArrowText>
                             </ArrowTail>
                           </Arrow>
                         </>
@@ -416,37 +416,13 @@ const Boiler = (props: Props) => {
                               {subTitles[props.subPage]}
                             </ExplanationHeader>
                             <ExplanationText>
-                              Metsänhoitotavalla ja kiertoaikaa pidentämällä
-                              voit vaikuttaa metsäsi hiilensidontaan. Tilaamalla
-                              hiililaskelman määrität metsänhoitotavan itse.
-                              Raportti voidaan rakentaa metsänhoitosuunnitelman
-                              mukaisesti. On myös mahdollista tilata
-                              metsänhoitosuunnitelma ja sen mukainen
-                              hiililaskelma. Hiililaskelma voidaan tehdä myös
-                              useammalle kiinteistölle samanaikaisesti.
+                              Metsänhoitotavalla voit vaikuttaa tuleviin tuloihin.
+                              Tilaamalla metsäsuunitelman määrität
+                              metsänhoitotavan tavoitteidesi mukaisesti.
+                              Metsänhoitosuunnitelman mukaan voit tiedustella
+                              myös hiililaskelmaa.
                             </ExplanationText>
                             <PayInfoCol>
-                              <PayInfoRow>
-                                <PayInfoRadio
-                                  type="radio"
-                                  value="radio1"
-                                  checked={checked.radio1}
-                                  onChange={handleRadioClick}
-                                />
-                                <PayInfoValsCol>
-                                  <PayInfoKey>
-                                    <u>Hiililaskelma:</u>&nbsp;&nbsp;
-                                  </PayInfoKey>
-                                  <PayInfoValue>139 € + alv</PayInfoValue>
-                                  <PayInfoText>
-                                    Hiililaskelman tilaamalla saat tarkan
-                                    laskelman tavanomaisen metsänhoidon tai
-                                    pidennetyn kiertoajan vaikutuksista
-                                    hiilensidontaan.
-                                  </PayInfoText>
-                                </PayInfoValsCol>
-                              </PayInfoRow>
-
                               <PayInfoRow>
                                 <PayInfoRadio
                                   type="radio"
@@ -485,7 +461,7 @@ const Boiler = (props: Props) => {
                                 {props.type === "estate" ? (
                                   <PayInfoValsCol>
                                     <PayInfoKey>
-                                      <u>Useamman kiinteistön hiililaskelma:</u>
+                                      <u>Useamman kiinteistön laskelmat:</u>
                                       &nbsp;&nbsp;
                                     </PayInfoKey>
                                     <PayInfoValue>tarjouksella</PayInfoValue>
@@ -509,19 +485,19 @@ const Boiler = (props: Props) => {
                             <FormInput
                               type="text"
                               value={formEmail}
-                              onChange={e => setFormEmail(e.target.value)}
+                              onChange={(e) => setFormEmail(e.target.value)}
                             />
                             <FormLabel>Nimi</FormLabel>
                             <FormInput
                               type="text"
                               value={formName}
-                              onChange={e => setFormName(e.target.value)}
+                              onChange={(e) => setFormName(e.target.value)}
                             />
                             <FormLabel>{formNameTitle}</FormLabel>
                             <FormInput
                               type="text"
                               value={formVal}
-                              onChange={e => setFormVal(e.target.value)}
+                              onChange={(e) => setFormVal(e.target.value)}
                             />
                             <FormButton
                               onClick={handleSubmit}
@@ -673,7 +649,7 @@ const HumanContainer: any = styled.div`
 `;
 
 const HumanIcon: any = styled.img.attrs(() => ({
-  src: require("../public/img/human.svg")
+  src: require("../public/img/human.svg"),
 }))`
   height: 14rem;
 `;
@@ -686,9 +662,10 @@ const HumanText: any = styled.p`
 `;
 
 const StockContainer: any = styled.div`
-  height: 240px;
-  width: 350px;
-  margin: 120px 20px 0 0;
+  height: 400px;
+  width: 480px;
+  margin: 150px 40px 0 0;
+  padding: 0 0 0 40px;
 `;
 
 const ExampleContainer: any = styled.div`
@@ -701,7 +678,7 @@ const ExampleContainer: any = styled.div`
 `;
 
 const Example: any = styled.img.attrs(() => ({
-  src: require("../public/img/example.png")
+  src: require("../public/img/example.png"),
 }))`
   height: 900px;
   @media only screen and (max-width: 1330px) {
@@ -813,7 +790,7 @@ const ForestryDropdownSelected: any = styled.div`
 
 const ForestryDropdownItems: any = styled("div")<{ isOpen: boolean }>`
   display: flex;
-  visibility: ${props => (props.isOpen ? "visible" : "hidden")};
+  visibility: ${(props) => (props.isOpen ? "visible" : "hidden")};
   flex-direction: column;
   position: relative;
   background: ${Theme.color.primaryLight};
@@ -950,7 +927,7 @@ const FormInput: any = styled.input`
 
 const FormButton: any = styled("div")<{ isSending: boolean }>`
   font-family: ${Theme.font.secondary};
-  background: ${props =>
+  background: ${(props) =>
     props.isSending ? Theme.color.primaryLight : Theme.color.primary};
   color: ${Theme.color.white};
   padding: 10px;
@@ -958,7 +935,7 @@ const FormButton: any = styled("div")<{ isSending: boolean }>`
   font-size: 1.5rem;
   text-align: center;
   &:hover {
-    cursor: ${props => (props.isSending ? "defualt" : "pointer")};
+    cursor: ${(props) => (props.isSending ? "defualt" : "pointer")};
   }
 `;
 
@@ -1027,7 +1004,7 @@ const WaveContainerTop: any = styled.div`
 `;
 
 const WaveTop: any = styled.img.attrs(() => ({
-  src: require("../public/img/wave-top.svg")
+  src: require("../public/img/wave-top.svg"),
 }))`
   position: absolute;
   width: 130px;
@@ -1049,7 +1026,7 @@ const WaveContainerBottom: any = styled.div`
 `;
 
 const WaveBottom: any = styled.img.attrs(() => ({
-  src: require("../public/img/wave-bottom.svg")
+  src: require("../public/img/wave-bottom.svg"),
 }))`
   position: absolute;
   width: 130px;
@@ -1076,14 +1053,14 @@ const LogoTextContainer: any = styled.div`
 `;
 
 const Logo: any = styled.img.attrs(() => ({
-  src: require("../public/img/kapy.svg")
+  src: require("../public/img/kapy.svg"),
 }))`
   height: 3rem;
   margin: 0 0.6rem -5px 0;
 `;
 
 const LogoTitle: any = styled.img.attrs(() => ({
-  src: require("../public/img/arvometsa.svg")
+  src: require("../public/img/arvometsa.svg"),
 }))`
   width: 6rem;
   margin: 6px 0 -4px -1px;
@@ -1100,13 +1077,13 @@ const LogoText: any = styled.p`
 `;
 
 const AvoinLink: any = styled.a.attrs(() => ({
-  href: "https://www.avoin.org"
+  href: "https://www.avoin.org",
 }))`
   margin: 0 0 0 auto;
 `;
 
 const AvoinLogo: any = styled.img.attrs(() => ({
-  src: require("../public/img/avoin-black.svg")
+  src: require("../public/img/avoin-black.svg"),
 }))`
   width: 13rem;
   position: absolute;
