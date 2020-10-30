@@ -1,0 +1,233 @@
+[
+  {
+    "Alue": "Etel�-Suomi",
+    "Alueet": ["21", "06", "01", "05", "07"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "49.98",
+    "Kut": "51.25",
+    "Kot": "37.22",
+    "Mak": "12.08",
+    "Kuk": "12.48",
+    "Kok": "11.63"
+  },
+  {
+    "Alue": "Etel�-Suomi",
+    "Alueet": ["21", "06", "01", "05", "07"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "49.98",
+    "Kut": "51.25",
+    "Kot": "37.22",
+    "Mak": "15.72",
+    "Kuk": "16.02",
+    "Kok": "14.9"
+  },
+  {
+    "Alue": "Etel�-Suomi",
+    "Alueet": ["21", "06", "01", "05", "07"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "58.19",
+    "Kut": "59.76",
+    "Kot": "42.7",
+    "Mak": "17.16",
+    "Kuk": "19.82",
+    "Kok": "17.04"
+  },
+  {
+    "Alue": "Kymi-Savo",
+    "Alueet": ["13", "04", "10"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "49.92",
+    "Kut": "49.76",
+    "Kot": "38.56",
+    "Mak": "12.06",
+    "Kuk": "11.6",
+    "Kok": "11.45"
+  },
+  {
+    "Alue": "Kymi-Savo",
+    "Alueet": ["13", "04", "10"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "49.92",
+    "Kut": "49.76",
+    "Kot": "38.56",
+    "Mak": "15.88",
+    "Kuk": "15.85",
+    "Kok": "14.69"
+  },
+  {
+    "Alue": "Kymi-Savo",
+    "Alueet": ["13", "04", "10"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "58.61",
+    "Kut": "59.36",
+    "Kot": "46.55",
+    "Mak": "17.83",
+    "Kuk": "18.83",
+    "Kok": "17.28"
+  },
+  {
+    "Alue": "Keski-Suomi",
+    "Alueet": ["13"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "48.72",
+    "Kut": "49.78",
+    "Kot": "36.43",
+    "Mak": "12.29",
+    "Kuk": "11.91",
+    "Kok": "11.6"
+  },
+  {
+    "Alue": "Keski-Suomi",
+    "Alueet": ["13"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "48.72",
+    "Kut": "49.78",
+    "Kot": "36.43",
+    "Mak": "15.81",
+    "Kuk": "15.86",
+    "Kok": "14.73"
+  },
+  {
+    "Alue": "Keski-Suomi",
+    "Alueet": ["13"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "58.19",
+    "Kut": "59.53",
+    "Kot": "43.16",
+    "Mak": "18.13",
+    "Kuk": "19.73",
+    "Kok": "17.52"
+  },
+  {
+    "Alue": "Savo-Karjala",
+    "Alueet": ["12", "09", "11"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "46.42",
+    "Kut": "46.76",
+    "Kot": "36.82",
+    "Mak": "11.34",
+    "Kuk": "10.58",
+    "Kok": "11.04"
+  },
+  {
+    "Alue": "Savo-Karjala",
+    "Alueet": ["12", "09", "11"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "46.42",
+    "Kut": "46.76",
+    "Kot": "36.82",
+    "Mak": "15.01",
+    "Kuk": "14.78",
+    "Kok": "14.27"
+  },
+  {
+    "Alue": "Savo-Karjala",
+    "Alueet": ["12", "09", "11"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "56.05",
+    "Kut": "57.37",
+    "Kot": "44.34",
+    "Mak": "17.79",
+    "Kuk": "18.17",
+    "Kok": "17.06"
+  },
+  {
+    "Alue": "Lappi",
+    "Alueet": ["19"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "44.54",
+    "Kut": "40.47",
+    "Kot": "37.82",
+    "Mak": "10.3",
+    "Kuk": "10.3",
+    "Kok": "9.74"
+  },
+  {
+    "Alue": "Lappi",
+    "Alueet": ["19"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "44.54",
+    "Kut": "40.47",
+    "Kot": "37.82",
+    "Mak": "13.18",
+    "Kuk": "13.18",
+    "Kok": "12.39"
+  },
+  {
+    "Alue": "Lappi",
+    "Alueet": ["19"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "49.43",
+    "Kut": "47.59",
+    "Kot": "37.82",
+    "Mak": "17.21",
+    "Kuk": "17.21",
+    "Kok": "16.4"
+  },
+  {
+    "Alue": "Etel�-Pohjanmaa",
+    "Alueet": ["14"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "46.5",
+    "Kut": "46.36",
+    "Kot": "33",
+    "Mak": "11.95",
+    "Kuk": "11.91",
+    "Kok": "12.05"
+  },
+  {
+    "Alue": "Etel�-Pohjanmaa",
+    "Alueet": ["14"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "46.5",
+    "Kut": "46.36",
+    "Kot": "33",
+    "Mak": "15.12",
+    "Kuk": "14.7",
+    "Kok": "14.37"
+  },
+  {
+    "Alue": "Etel�-Pohjanmaa",
+    "Alueet": ["14"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "56.81",
+    "Kut": "57.36",
+    "Kot": "37.2",
+    "Mak": "18.69",
+    "Kuk": "18.54",
+    "Kok": "17.72"
+  },
+  {
+    "Alue": "Kainuu-Pohjanmaa",
+    "Alueet": ["18", "16", "15", "17"],
+    "Hakkuutapa": "Ensiharvennus",
+    "Mat": "45.42",
+    "Kut": "44.72",
+    "Kot": "37.82",
+    "Mak": "10.82",
+    "Kuk": "10.53",
+    "Kok": "10.05"
+  },
+  {
+    "Alue": "Kainuu-Pohjanmaa",
+    "Alueet": ["18", "16", "15", "17"],
+    "Hakkuutapa": "Harvennus",
+    "Mat": "45.42",
+    "Kut": "44.72",
+    "Kot": "37.82",
+    "Mak": "13.83",
+    "Kuk": "13.77",
+    "Kok": "12.83"
+  },
+  {
+    "Alue": "Kainuu-Pohjanmaa",
+    "Alueet": ["18", "16", "15", "17"],
+    "Hakkuutapa": "Uudistushakkuu",
+    "Mat": "53.43",
+    "Kut": "53.5",
+    "Kot": "37.82",
+    "Mak": "18.35",
+    "Kuk": "18.26",
+    "Kok": "17.01"
+  }
+]

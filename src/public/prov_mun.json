@@ -1,0 +1,1880 @@
+[
+  {
+    "kunta_koodi": "035",
+    "kunta_nimi": "Br�nd�",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "043",
+    "kunta_nimi": "Ecker�",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "060",
+    "kunta_nimi": "Finstr�m",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "062",
+    "kunta_nimi": "F�gl�",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "065",
+    "kunta_nimi": "Geta",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "076",
+    "kunta_nimi": "Hammarland",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "170",
+    "kunta_nimi": "Jomala",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "295",
+    "kunta_nimi": "Kumlinge",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "318",
+    "kunta_nimi": "K�kar",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "417",
+    "kunta_nimi": "Lemland",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "438",
+    "kunta_nimi": "Lumparland",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "478",
+    "kunta_nimi": "Maarianhamina - Mariehamn",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "736",
+    "kunta_nimi": "Saltvik",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "766",
+    "kunta_nimi": "Sottunga",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "771",
+    "kunta_nimi": "Sund",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "941",
+    "kunta_nimi": "V�rd�",
+    "maakunta_koodi": "21",
+    "maakunta_nimi": "Ahvenanmaa - �land"
+  },
+  {
+    "kunta_koodi": "153",
+    "kunta_nimi": "Imatra",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "405",
+    "kunta_nimi": "Lappeenranta",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "416",
+    "kunta_nimi": "Lemi",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "441",
+    "kunta_nimi": "Luum�ki",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "580",
+    "kunta_nimi": "Parikkala",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "689",
+    "kunta_nimi": "Rautj�rvi",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "700",
+    "kunta_nimi": "Ruokolahti",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "739",
+    "kunta_nimi": "Savitaipale",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "831",
+    "kunta_nimi": "Taipalsaari",
+    "maakunta_koodi": "09",
+    "maakunta_nimi": "Etel�-Karjala"
+  },
+  {
+    "kunta_koodi": "005",
+    "kunta_nimi": "Alaj�rvi",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "010",
+    "kunta_nimi": "Alavus",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "052",
+    "kunta_nimi": "Evij�rvi",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "145",
+    "kunta_nimi": "Ilmajoki",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "151",
+    "kunta_nimi": "Isojoki",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "218",
+    "kunta_nimi": "Karijoki",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "232",
+    "kunta_nimi": "Kauhajoki",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "233",
+    "kunta_nimi": "Kauhava",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "300",
+    "kunta_nimi": "Kuortane",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "301",
+    "kunta_nimi": "Kurikka",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "403",
+    "kunta_nimi": "Lappaj�rvi",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "408",
+    "kunta_nimi": "Lapua",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "743",
+    "kunta_nimi": "Sein�joki",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "759",
+    "kunta_nimi": "Soini",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "846",
+    "kunta_nimi": "Teuva",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "934",
+    "kunta_nimi": "Vimpeli",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "989",
+    "kunta_nimi": "�ht�ri",
+    "maakunta_koodi": "14",
+    "maakunta_nimi": "Etel�-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "046",
+    "kunta_nimi": "Enonkoski",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "090",
+    "kunta_nimi": "Hein�vesi",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "097",
+    "kunta_nimi": "Hirvensalmi",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "171",
+    "kunta_nimi": "Joroinen",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "178",
+    "kunta_nimi": "Juva",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "213",
+    "kunta_nimi": "Kangasniemi",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "491",
+    "kunta_nimi": "Mikkeli",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "507",
+    "kunta_nimi": "M�ntyharju",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "588",
+    "kunta_nimi": "Pertunmaa",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "593",
+    "kunta_nimi": "Pieks�m�ki",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "623",
+    "kunta_nimi": "Puumala",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "681",
+    "kunta_nimi": "Rantasalmi",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "740",
+    "kunta_nimi": "Savonlinna",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "768",
+    "kunta_nimi": "Sulkava",
+    "maakunta_koodi": "10",
+    "maakunta_nimi": "Etel�-Savo"
+  },
+  {
+    "kunta_koodi": "105",
+    "kunta_nimi": "Hyrynsalmi",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "205",
+    "kunta_nimi": "Kajaani",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "290",
+    "kunta_nimi": "Kuhmo",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "578",
+    "kunta_nimi": "Paltamo",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "620",
+    "kunta_nimi": "Puolanka",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "697",
+    "kunta_nimi": "Ristij�rvi",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "765",
+    "kunta_nimi": "Sotkamo",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "777",
+    "kunta_nimi": "Suomussalmi",
+    "maakunta_koodi": "18",
+    "maakunta_nimi": "Kainuu"
+  },
+  {
+    "kunta_koodi": "061",
+    "kunta_nimi": "Forssa",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "082",
+    "kunta_nimi": "Hattula",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "086",
+    "kunta_nimi": "Hausj�rvi",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "103",
+    "kunta_nimi": "Humppila",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "109",
+    "kunta_nimi": "H�meenlinna",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "165",
+    "kunta_nimi": "Janakkala",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "169",
+    "kunta_nimi": "Jokioinen",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "433",
+    "kunta_nimi": "Loppi",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "694",
+    "kunta_nimi": "Riihim�ki",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "834",
+    "kunta_nimi": "Tammela",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "981",
+    "kunta_nimi": "Yp�j�",
+    "maakunta_koodi": "05",
+    "maakunta_nimi": "Kanta-H�me"
+  },
+  {
+    "kunta_koodi": "074",
+    "kunta_nimi": "Halsua",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "217",
+    "kunta_nimi": "Kannus",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "236",
+    "kunta_nimi": "Kaustinen",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "272",
+    "kunta_nimi": "Kokkola",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "421",
+    "kunta_nimi": "Lestij�rvi",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "584",
+    "kunta_nimi": "Perho",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "849",
+    "kunta_nimi": "Toholampi",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "924",
+    "kunta_nimi": "Veteli",
+    "maakunta_koodi": "16",
+    "maakunta_nimi": "Keski-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "077",
+    "kunta_nimi": "Hankasalmi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "172",
+    "kunta_nimi": "Joutsa",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "179",
+    "kunta_nimi": "Jyv�skyl�",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "182",
+    "kunta_nimi": "J�ms�",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "216",
+    "kunta_nimi": "Kannonkoski",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "226",
+    "kunta_nimi": "Karstula",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "249",
+    "kunta_nimi": "Keuruu",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "256",
+    "kunta_nimi": "Kinnula",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "265",
+    "kunta_nimi": "Kivij�rvi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "275",
+    "kunta_nimi": "Konnevesi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "291",
+    "kunta_nimi": "Kuhmoinen",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "312",
+    "kunta_nimi": "Kyyj�rvi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "410",
+    "kunta_nimi": "Laukaa",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "435",
+    "kunta_nimi": "Luhanka",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "495",
+    "kunta_nimi": "Multia",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "500",
+    "kunta_nimi": "Muurame",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "592",
+    "kunta_nimi": "Pet�j�vesi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "601",
+    "kunta_nimi": "Pihtipudas",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "729",
+    "kunta_nimi": "Saarij�rvi",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "850",
+    "kunta_nimi": "Toivakka",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "892",
+    "kunta_nimi": "Uurainen",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "931",
+    "kunta_nimi": "Viitasaari",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "992",
+    "kunta_nimi": "��nekoski",
+    "maakunta_koodi": "13",
+    "maakunta_nimi": "Keski-Suomi"
+  },
+  {
+    "kunta_koodi": "075",
+    "kunta_nimi": "Hamina",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "142",
+    "kunta_nimi": "Iitti",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "285",
+    "kunta_nimi": "Kotka",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "286",
+    "kunta_nimi": "Kouvola",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "489",
+    "kunta_nimi": "Miehikk�l�",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "624",
+    "kunta_nimi": "Pyht��",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "935",
+    "kunta_nimi": "Virolahti",
+    "maakunta_koodi": "08",
+    "maakunta_nimi": "Kymenlaakso"
+  },
+  {
+    "kunta_koodi": "047",
+    "kunta_nimi": "Enonteki�",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "148",
+    "kunta_nimi": "Inari",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "240",
+    "kunta_nimi": "Kemi",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "320",
+    "kunta_nimi": "Kemij�rvi",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "241",
+    "kunta_nimi": "Keminmaa",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "261",
+    "kunta_nimi": "Kittil�",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "273",
+    "kunta_nimi": "Kolari",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "498",
+    "kunta_nimi": "Muonio",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "583",
+    "kunta_nimi": "Pelkosenniemi",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "854",
+    "kunta_nimi": "Pello",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "614",
+    "kunta_nimi": "Posio",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "683",
+    "kunta_nimi": "Ranua",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "698",
+    "kunta_nimi": "Rovaniemi",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "732",
+    "kunta_nimi": "Salla",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "742",
+    "kunta_nimi": "Savukoski",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "751",
+    "kunta_nimi": "Simo",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "758",
+    "kunta_nimi": "Sodankyl�",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "845",
+    "kunta_nimi": "Tervola",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "851",
+    "kunta_nimi": "Tornio",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "890",
+    "kunta_nimi": "Utsjoki",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "976",
+    "kunta_nimi": "Ylitornio",
+    "maakunta_koodi": "19",
+    "maakunta_nimi": "Lappi"
+  },
+  {
+    "kunta_koodi": "016",
+    "kunta_nimi": "Asikkala",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "081",
+    "kunta_nimi": "Hartola",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "111",
+    "kunta_nimi": "Heinola",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "098",
+    "kunta_nimi": "Hollola",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "316",
+    "kunta_nimi": "K�rk�l�",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "398",
+    "kunta_nimi": "Lahti",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "560",
+    "kunta_nimi": "Orimattila",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "576",
+    "kunta_nimi": "Padasjoki",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "781",
+    "kunta_nimi": "Sysm�",
+    "maakunta_koodi": "07",
+    "maakunta_nimi": "P�ij�t-H�me"
+  },
+  {
+    "kunta_koodi": "020",
+    "kunta_nimi": "Akaa",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "108",
+    "kunta_nimi": "H�meenkyr�",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "143",
+    "kunta_nimi": "Ikaalinen",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "177",
+    "kunta_nimi": "Juupajoki",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "211",
+    "kunta_nimi": "Kangasala",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "250",
+    "kunta_nimi": "Kihni�",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "418",
+    "kunta_nimi": "Lemp��l�",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "508",
+    "kunta_nimi": "M�ntt�-Vilppula",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "536",
+    "kunta_nimi": "Nokia",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "562",
+    "kunta_nimi": "Orivesi",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "581",
+    "kunta_nimi": "Parkano",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "604",
+    "kunta_nimi": "Pirkkala",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "619",
+    "kunta_nimi": "Punkalaidun",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "635",
+    "kunta_nimi": "P�lk�ne",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "702",
+    "kunta_nimi": "Ruovesi",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "790",
+    "kunta_nimi": "Sastamala",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "837",
+    "kunta_nimi": "Tampere",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "887",
+    "kunta_nimi": "Urjala",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "908",
+    "kunta_nimi": "Valkeakoski",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "922",
+    "kunta_nimi": "Vesilahti",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "936",
+    "kunta_nimi": "Virrat",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "980",
+    "kunta_nimi": "Yl�j�rvi",
+    "maakunta_koodi": "06",
+    "maakunta_nimi": "Pirkanmaa"
+  },
+  {
+    "kunta_koodi": "152",
+    "kunta_nimi": "Isokyr�",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "231",
+    "kunta_nimi": "Kaskinen",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "280",
+    "kunta_nimi": "Korsn�s",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "287",
+    "kunta_nimi": "Kristiinankaupunki",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "288",
+    "kunta_nimi": "Kruunupyy",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "399",
+    "kunta_nimi": "Laihia",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "440",
+    "kunta_nimi": "Luoto",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "475",
+    "kunta_nimi": "Maalahti",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "499",
+    "kunta_nimi": "Mustasaari",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "545",
+    "kunta_nimi": "N�rpi�",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "599",
+    "kunta_nimi": "Peders�ren kunta",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "598",
+    "kunta_nimi": "Pietarsaari",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "893",
+    "kunta_nimi": "Uusikaarlepyy",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "905",
+    "kunta_nimi": "Vaasa",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "946",
+    "kunta_nimi": "V�yri",
+    "maakunta_koodi": "15",
+    "maakunta_nimi": "Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "146",
+    "kunta_nimi": "Ilomantsi",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "167",
+    "kunta_nimi": "Joensuu",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "176",
+    "kunta_nimi": "Juuka",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "260",
+    "kunta_nimi": "Kitee",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "276",
+    "kunta_nimi": "Kontiolahti",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "422",
+    "kunta_nimi": "Lieksa",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "426",
+    "kunta_nimi": "Liperi",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "541",
+    "kunta_nimi": "Nurmes",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "309",
+    "kunta_nimi": "Outokumpu",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "607",
+    "kunta_nimi": "Polvij�rvi",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "707",
+    "kunta_nimi": "R��kkyl�",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "848",
+    "kunta_nimi": "Tohmaj�rvi",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "911",
+    "kunta_nimi": "Valtimo",
+    "maakunta_koodi": "12",
+    "maakunta_nimi": "Pohjois-Karjala"
+  },
+  {
+    "kunta_koodi": "009",
+    "kunta_nimi": "Alavieska",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "069",
+    "kunta_nimi": "Haapaj�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "071",
+    "kunta_nimi": "Haapavesi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "072",
+    "kunta_nimi": "Hailuoto",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "139",
+    "kunta_nimi": "Ii",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "208",
+    "kunta_nimi": "Kalajoki",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "244",
+    "kunta_nimi": "Kempele",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "305",
+    "kunta_nimi": "Kuusamo",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "317",
+    "kunta_nimi": "K�rs�m�ki",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "425",
+    "kunta_nimi": "Liminka",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "436",
+    "kunta_nimi": "Lumijoki",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "483",
+    "kunta_nimi": "Merij�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "494",
+    "kunta_nimi": "Muhos",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "535",
+    "kunta_nimi": "Nivala",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "563",
+    "kunta_nimi": "Oulainen",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "564",
+    "kunta_nimi": "Oulu",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "615",
+    "kunta_nimi": "Pudasj�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "625",
+    "kunta_nimi": "Pyh�joki",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "626",
+    "kunta_nimi": "Pyh�j�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "630",
+    "kunta_nimi": "Pyh�nt�",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "678",
+    "kunta_nimi": "Raahe",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "691",
+    "kunta_nimi": "Reisj�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "746",
+    "kunta_nimi": "Sievi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "748",
+    "kunta_nimi": "Siikajoki",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "791",
+    "kunta_nimi": "Siikalatva",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "832",
+    "kunta_nimi": "Taivalkoski",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "859",
+    "kunta_nimi": "Tyrn�v�",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "889",
+    "kunta_nimi": "Utaj�rvi",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "785",
+    "kunta_nimi": "Vaala",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "977",
+    "kunta_nimi": "Ylivieska",
+    "maakunta_koodi": "17",
+    "maakunta_nimi": "Pohjois-Pohjanmaa"
+  },
+  {
+    "kunta_koodi": "140",
+    "kunta_nimi": "Iisalmi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "174",
+    "kunta_nimi": "Juankoski",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "204",
+    "kunta_nimi": "Kaavi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "239",
+    "kunta_nimi": "Keitele",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "263",
+    "kunta_nimi": "Kiuruvesi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "297",
+    "kunta_nimi": "Kuopio",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "402",
+    "kunta_nimi": "Lapinlahti",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "420",
+    "kunta_nimi": "Lepp�virta",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "595",
+    "kunta_nimi": "Pielavesi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "686",
+    "kunta_nimi": "Rautalampi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "687",
+    "kunta_nimi": "Rautavaara",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "749",
+    "kunta_nimi": "Siilinj�rvi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "762",
+    "kunta_nimi": "Sonkaj�rvi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "778",
+    "kunta_nimi": "Suonenjoki",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "844",
+    "kunta_nimi": "Tervo",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "857",
+    "kunta_nimi": "Tuusniemi",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "915",
+    "kunta_nimi": "Varkaus",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "921",
+    "kunta_nimi": "Vesanto",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "925",
+    "kunta_nimi": "Vierem�",
+    "maakunta_koodi": "11",
+    "maakunta_nimi": "Pohjois-Savo"
+  },
+  {
+    "kunta_koodi": "050",
+    "kunta_nimi": "Eura",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "051",
+    "kunta_nimi": "Eurajoki",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "079",
+    "kunta_nimi": "Harjavalta",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "099",
+    "kunta_nimi": "Honkajoki",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "102",
+    "kunta_nimi": "Huittinen",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "181",
+    "kunta_nimi": "J�mij�rvi",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "214",
+    "kunta_nimi": "Kankaanp��",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "230",
+    "kunta_nimi": "Karvia",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "271",
+    "kunta_nimi": "Kokem�ki",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "442",
+    "kunta_nimi": "Luvia",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "484",
+    "kunta_nimi": "Merikarvia",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "531",
+    "kunta_nimi": "Nakkila",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "608",
+    "kunta_nimi": "Pomarkku",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "609",
+    "kunta_nimi": "Pori",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "684",
+    "kunta_nimi": "Rauma",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "747",
+    "kunta_nimi": "Siikainen",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "783",
+    "kunta_nimi": "S�kyl�",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "886",
+    "kunta_nimi": "Ulvila",
+    "maakunta_koodi": "04",
+    "maakunta_nimi": "Satakunta"
+  },
+  {
+    "kunta_koodi": "018",
+    "kunta_nimi": "Askola",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "049",
+    "kunta_nimi": "Espoo",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "078",
+    "kunta_nimi": "Hanko",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "091",
+    "kunta_nimi": "Helsinki",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "106",
+    "kunta_nimi": "Hyvink��",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "149",
+    "kunta_nimi": "Inkoo",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "186",
+    "kunta_nimi": "J�rvenp��",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "224",
+    "kunta_nimi": "Karkkila",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "235",
+    "kunta_nimi": "Kauniainen",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "245",
+    "kunta_nimi": "Kerava",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "257",
+    "kunta_nimi": "Kirkkonummi",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "407",
+    "kunta_nimi": "Lapinj�rvi",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "444",
+    "kunta_nimi": "Lohja",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "434",
+    "kunta_nimi": "Loviisa",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "504",
+    "kunta_nimi": "Myrskyl�",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "505",
+    "kunta_nimi": "M�nts�l�",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "543",
+    "kunta_nimi": "Nurmij�rvi",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "611",
+    "kunta_nimi": "Pornainen",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "638",
+    "kunta_nimi": "Porvoo",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "616",
+    "kunta_nimi": "Pukkila",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "710",
+    "kunta_nimi": "Raasepori",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "753",
+    "kunta_nimi": "Sipoo",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "755",
+    "kunta_nimi": "Siuntio",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "858",
+    "kunta_nimi": "Tuusula",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "092",
+    "kunta_nimi": "Vantaa",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "927",
+    "kunta_nimi": "Vihti",
+    "maakunta_koodi": "01",
+    "maakunta_nimi": "Uusimaa"
+  },
+  {
+    "kunta_koodi": "019",
+    "kunta_nimi": "Aura",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "202",
+    "kunta_nimi": "Kaarina",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "322",
+    "kunta_nimi": "Kemi�nsaari",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "284",
+    "kunta_nimi": "Koski Tl",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "304",
+    "kunta_nimi": "Kustavi",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "400",
+    "kunta_nimi": "Laitila",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "423",
+    "kunta_nimi": "Lieto",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "430",
+    "kunta_nimi": "Loimaa",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "480",
+    "kunta_nimi": "Marttila",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "481",
+    "kunta_nimi": "Masku",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "503",
+    "kunta_nimi": "Myn�m�ki",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "529",
+    "kunta_nimi": "Naantali",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "538",
+    "kunta_nimi": "Nousiainen",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "561",
+    "kunta_nimi": "Orip��",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "577",
+    "kunta_nimi": "Paimio",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "445",
+    "kunta_nimi": "Parainen",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "631",
+    "kunta_nimi": "Pyh�ranta",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "636",
+    "kunta_nimi": "P�yty�",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "680",
+    "kunta_nimi": "Raisio",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "704",
+    "kunta_nimi": "Rusko",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "734",
+    "kunta_nimi": "Salo",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "738",
+    "kunta_nimi": "Sauvo",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "761",
+    "kunta_nimi": "Somero",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "833",
+    "kunta_nimi": "Taivassalo",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "853",
+    "kunta_nimi": "Turku",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "895",
+    "kunta_nimi": "Uusikaupunki",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  },
+  {
+    "kunta_koodi": "918",
+    "kunta_nimi": "Vehmaa",
+    "maakunta_koodi": "02",
+    "maakunta_nimi": "Varsinais-Suomi"
+  }
+]
