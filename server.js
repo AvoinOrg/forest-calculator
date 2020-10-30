@@ -18,6 +18,7 @@ const {
 require("dotenv").config();
 
 const dev = process.env.NODE_ENV !== "production";
+const useHttps = process.env.HTTPS === "TRUE";
 const port = !dev ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -104,7 +105,7 @@ app
       return handle(req, res);
     });
 
-    if (!dev) {
+    if (useHttps) {
       const privateKey = fs.readFileSync(
         path.join(process.env.SSL_PATH, "privkey.pem"),
         "utf8"
@@ -132,7 +133,7 @@ app
       });
     }
 
-    if (!dev) {
+    if (useHttps) {
       http
         .createServer((req, res) => {
           // 301 redirect (reclassifies google listings)
