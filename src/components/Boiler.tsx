@@ -219,7 +219,7 @@ const Boiler = (props: Props) => {
                       </BalanceCircle>
                     </BalanceRow> */}
                     <StockContainer>
-                      <StockTitle>NETTOTULOT KAUSITTAIN</StockTitle>
+                      <StockTitle>Nettotulot kausittain</StockTitle>
                       <StockChart data={stockVals} colNames={stockColNames} />
                     </StockContainer>
                   </>
@@ -670,7 +670,7 @@ const StockTitle: any = styled.p`
   color: ${Theme.color.white};
   font-size: 2rem;
   width: 100%;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0 1.2rem 0;
   text-align: center;
 `;
 
