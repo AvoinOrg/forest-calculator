@@ -170,6 +170,8 @@ const Boiler = (props: Props) => {
   useEffect(() => {
     if (props.subPage === "tilaus") {
       setIsLastPage(true);
+    } else {
+      setIsLastPage(false)
     }
   });
 
