@@ -127,9 +127,9 @@ const Home = () => {
               <InfoTextBorder />
               <InfoTextRow>
                 <InfoText>
-                  Metsälaskuri kertoo metsätilasi hakkuiden pitkänaikavälin
-                  bruttotulot. Syötä metsätilan kiinteistötunnus hakukenttään ja
-                  tutustu palveluun.
+                  Metsälaskuri kertoo metsäkiinteistön nettotulot tulevina
+                  vuosikymmeninä. Syötä metsätilan kiinteistötunnus hakukenttään
+                  ja tutustu palveluun.
                 </InfoText>
               </InfoTextRow>
             </InfoTextContainer>

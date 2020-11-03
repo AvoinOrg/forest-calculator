@@ -219,6 +219,7 @@ const Boiler = (props: Props) => {
                       </BalanceCircle>
                     </BalanceRow> */}
                     <StockContainer>
+                      <StockTitle>NETTOTULOT KAUSITTAIN</StockTitle>
                       <StockChart data={stockVals} colNames={stockColNames} />
                     </StockContainer>
                   </>
@@ -276,7 +277,7 @@ const Boiler = (props: Props) => {
                       </InfoTextRow>
                       <InfoTextRow>
                         <InfoTextKey>
-                          Laskelmien kattavuus:&nbsp;&nbsp;
+                          Laskennan kattavuus:&nbsp;&nbsp;
                         </InfoTextKey>
                         <InfoTextValue>
                           {roundVal(
@@ -343,33 +344,19 @@ const Boiler = (props: Props) => {
                         <>
                           <ExplanationContainer>
                             <ExplanationHeader>
-                              {subTitles[props.subPage]}
-                            </ExplanationHeader>
-                            <ExplanationText>
-                              {subTexts[props.subPage]}
-                            </ExplanationText>
-                            <ExplanationText>
-                              Valitun tilan hakkuut on tavanomaisen
-                              metsänhoitotavan mukaisesti. Hakkuutuloista ei ole
-                              vähennetty uudistamis- ja metsänhoitokuluja.
-                              Laskenta perustuu avoimeen metsävaratietoon ja
-                              hinnoittelussa on käytetty alueellisia
-                              keskimääräisiä hintoja.
-                            </ExplanationText>
-                          </ExplanationContainer>
-                          <ExplanationContainer>
-                            <ExplanationHeader>
                               Kausittaiset hakkuutulot
                             </ExplanationHeader>
                             <ExplanationText>
                               Hakkuutulot on esitetty kootusti kymmenen vuoden
                               välein. Hakkuut toteutuvat kun metsä on
                               uudistuskypsää tai harvennuksen tarpeessa.
+                              Uudistushakkuun jälkeen metsä uudistetaan
+                              viljelemällä suositusten mukaisesti.
                             </ExplanationText>
                             <ExplanationText>
-                              Hakkuutulot antavat hyvän yleiskuvan siitä että,
-                              minkälainen tulovirta metsätilalta on
-                              odotettavissa lyhyellä aikavälillä.
+                              Hakkuiden nettotulot antavat hyvän yleiskuvan
+                              siitä minkälainen tulovirta metsätilalta on
+                              odotettavissa lyhyellä ja pitkällä aikavälillä.
                               Metsäsuunnitelman tilaamalla voit vaikuttaa
                               valittuun metsänhoitotapaan ja toimenpiteiden
                               ajankohtaan.
@@ -377,11 +364,27 @@ const Boiler = (props: Props) => {
                           </ExplanationContainer>
                           <ExplanationContainer>
                             <ExplanationHeader>
-                              Verrattuna alueen metsiin:
+                              {subTitles[props.subPage]}
+                            </ExplanationHeader>
+                            <ExplanationText>
+                              {subTexts[props.subPage]}
+                            </ExplanationText>
+                            <ExplanationText>
+                              Valitun tilan hakkuut on simuloitu tavanomaisen
+                              metsänhoitotavan mukaisesti. Hakkuutuloista on
+                              vähennetty uudistamis- ja metsänhoitokulut.
+                              Laskenta perustuu avoimeen metsävaratietoon ja
+                              hinnoittelussa on käytetty alueellisia
+                              keskimääräisiä hintoja.
+                            </ExplanationText>
+                          </ExplanationContainer>
+                          <ExplanationContainer>
+                            <ExplanationHeader>
+                              Metsän tuotto keskimäärin:
                             </ExplanationHeader>
                             <ExplanationInfoRow>
                               <ExplanationInfoKey>
-                                Valitun metsätilan bruttotulot 10v
+                                Valitun metsätilan vuotuiset nettotulot 10v
                                 aikana:&nbsp;&nbsp;
                               </ExplanationInfoKey>
                               <ExplanationInfoValue>
@@ -389,7 +392,7 @@ const Boiler = (props: Props) => {
                                   "€ / ha"}
                               </ExplanationInfoValue>
                             </ExplanationInfoRow>
-                            <ExplanationInfoRow>
+                            {/* <ExplanationInfoRow>
                               <ExplanationInfoKey>
                                 Kunnan metsien keskimääräinen bruttotulo 10v
                                 aikana:&nbsp;&nbsp;
@@ -401,11 +404,11 @@ const Boiler = (props: Props) => {
                                     ) + "€ / ha"
                                   : "tulossa pian"}
                               </ExplanationInfoValue>
-                            </ExplanationInfoRow>
+                            </ExplanationInfoRow> */}
                           </ExplanationContainer>
                           <Arrow onClick={handleArrowClick}>
                             <ArrowTail>
-                              <ArrowText>Tilaa metsälaskelma</ArrowText>
+                              <ArrowText>Tilaa metsäsuunnitelma</ArrowText>
                             </ArrowTail>
                           </Arrow>
                         </>
@@ -416,8 +419,8 @@ const Boiler = (props: Props) => {
                               {subTitles[props.subPage]}
                             </ExplanationHeader>
                             <ExplanationText>
-                              Metsänhoitotavalla voit vaikuttaa tuleviin tuloihin.
-                              Tilaamalla metsäsuunitelman määrität
+                              Metsänhoitotavalla voit vaikuttaa tuleviin
+                              tuloihin. Tilaamalla metsäsuunitelman määrität
                               metsänhoitotavan tavoitteidesi mukaisesti.
                               Metsänhoitosuunnitelman mukaan voit tiedustella
                               myös hiililaskelmaa.
@@ -433,7 +436,8 @@ const Boiler = (props: Props) => {
                                 <PayInfoValsCol>
                                   <PayInfoKey>
                                     <u>
-                                      Metsänhoitosuunnitelma + hiililaskelma:
+                                      Metsänhoitosuunnitelma sisältäen
+                                      arvonmäärityksen:
                                     </u>
                                     &nbsp;&nbsp;
                                   </PayInfoKey>
@@ -461,18 +465,18 @@ const Boiler = (props: Props) => {
                                 {props.type === "estate" ? (
                                   <PayInfoValsCol>
                                     <PayInfoKey>
-                                      <u>Useamman kiinteistön laskelmat:</u>
-                                      &nbsp;&nbsp;
+                                      <u>
+                                        Jätä yhteydenottopyyntö liittyen
+                                        metsäsuunnitteluun ja arvonmäärityksen.
+                                      </u>
                                     </PayInfoKey>
-                                    <PayInfoValue>tarjouksella</PayInfoValue>
-                                    <PayInfoText></PayInfoText>
                                   </PayInfoValsCol>
                                 ) : (
                                   <PayInfoValsCol>
                                     <PayInfoKey>
                                       <u>
-                                        Jätä yhteydenottopyyntö liittyen metsien
-                                        hiililaskelmiin
+                                        Jätä yhteydenottopyyntö liittyen
+                                        metsäsuunnitteluun ja arvonmäärityksen.
                                       </u>
                                     </PayInfoKey>
                                   </PayInfoValsCol>
@@ -659,6 +663,15 @@ const HumanText: any = styled.p`
   color: ${Theme.color.white};
   font-size: 5rem;
   margin: 1rem 0 0 -3.5rem;
+`;
+
+const StockTitle: any = styled.p`
+  font-family: ${Theme.font.secondary};
+  color: ${Theme.color.white};
+  font-size: 2rem;
+  width: 100%;
+  margin: 2rem 0 2rem 0;
+  text-align: center;
 `;
 
 const StockContainer: any = styled.div`

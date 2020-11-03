@@ -11,14 +11,14 @@ export const subTitles = {
   tavanomainen_metsänhoito: "Tavanomainen metsänhoito",
   pidennetty_kiertoaika: "Pidennetty kiertoaika (muutos hakkuutavassa)",
   // jatkuvapeitteinen_metsänkasvatus: "Jatkuvapeitteinen metsänkasvatus",
-  tilaus: "Hiililaskelma"
+  tilaus: "Metsäsuunnitelma"
 };
 
 export const navTitles = {
   tavanomainen_metsänhoito: "Tavanomainen metsänhoito",
   pidennetty_kiertoaika: "Pidennetty kiertoaika",
   // jatkuvapeitteinen_metsänkasvatus: "jatkuvapeitteinen metsänkasvatus",
-  tilaus: "Hiililaskelma"
+  tilaus: "Metsäsuunnitelma"
 };
 
 export const subTexts = {
@@ -37,9 +37,9 @@ export const forestryIndexes = {
 };
 
 export const radioVals = {
-  radio1: "hiililaskelma",
+  radio1: "metsäsuunnitelma",
   radio2: "metsänhoitosuunnitelma + hiililaskelma",
-  radio3: "useampi kiinteistö"
+  radio3: "yhteydenottopyynto"
 };
 
 export const roundVal = (val: number | string, accuracy: number) => {
