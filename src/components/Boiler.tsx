@@ -447,10 +447,10 @@ const Boiler = (props: Props) => {
                                   </PayInfoValue>
                                   <PayInfoText>
                                     Metsäsuunnitelman tilaamalla määrität
-                                    metsänhoitotavan tavoitteidesi mukaisesti
-                                    yhdessä Arvometsän metsäasiantuntijan
-                                    kanssa. Hiililaskelma rakentuu valittujen
-                                    toimenpiteiden mukaisesti.
+                                    metsänhoitotavan yhdessä Arvometsän
+                                    metsäasiantuntijan kanssa. Metsäsuunnitelma
+                                    rakentuu valittujen toimenpiteiden
+                                    mukaisesti.
                                   </PayInfoText>
                                 </PayInfoValsCol>
                               </PayInfoRow>
