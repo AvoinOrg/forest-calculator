@@ -211,3 +211,7 @@ out
 /maakunnat.json
 
 old
+
+.well-known
+
+.env.local
