@@ -69,9 +69,6 @@ const formatItemData = itemData => {
     }
   });
 
-  console.log(itemData.area)
-  console.log(itemData.covered_area)
-
   if (itemData.inacc && forestHa > itemData.area) {
     const ratio = itemData.area / forestHa;
     forecastHa *= ratio / 2;

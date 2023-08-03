@@ -1,51 +1,26 @@
 const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
-const path = require("path")
+const path = require("path");
 const fs = require("fs");
-const { Pool } = require("pg");
-const { v4 } = require("uuid");
-const nodemailer = require("nodemailer");
-const http = require('http')
-const https = require('https')
-const serveIndex = require('serve-index')
+const http = require("http");
+const https = require("https");
+const serveIndex = require("serve-index");
 
+const {
+  getEstate,
+  getMunicipality,
+  getMunicipalityByNatCode,
+  getProvince,
+  sendOrder,
+} = require("./data/data.js");
 
-const pool = new Pool({
-  host: process.env.PG_HOST,
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
-  database: process.env.PG_DBNAME,
-
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000
-});
-
-let rawdata = fs.readFileSync("kunnat.json");
-const kunnat = JSON.parse(rawdata);
-
-rawdata = fs.readFileSync("maakunnat.json");
-const maakunnat = JSON.parse(rawdata);
+require("dotenv").config();
 
 const dev = process.env.NODE_ENV !== "production";
 const port = !dev ? 80 : 3000;
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
-const forestUser = process.env.FOREST_USER;
-const forestEmail = process.env.FOREST_EMAIL;
-
-const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.eu",
-  port: 465,
-  secure: true,
-  auth: {
-    user: forestUser,
-    pass: process.env.FOREST_PASS
-  }
-});
 
 app
   .prepare()
@@ -55,200 +30,73 @@ app
     server.use(bodyParser.json());
     server.use(bodyParser.raw());
 
-    server.use(function (req, res, next) {
+    server.use((req, res, next) => {
       res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
       next();
     });
 
-    server.use('/.well-known', express.static('.well-known'), serveIndex('.well-known', { 'icons': true }))
+    server.use(
+      "/.well-known",
+      express.static(".well-known"),
+      serveIndex(".well-known", { icons: true })
+    );
 
-    server.get("/api/kunnat/:id", (req, res) => {
+    server.get("/api/kunnat/:id", async (req, res) => {
       const id = req.params.id;
 
-      const kunta = kunnat.find(el => {
-        if (el.NAMEFIN) {
-          if (id.trim().toLowerCase() === el.NAMEFIN.trim().toLowerCase()) {
-            return true;
-          }
-        }
+      const { status: munStatus, resData: munData } = await getMunicipality(id);
 
-        return false;
-      });
+      let data = { kunta: munData, maakunta: null };
 
-      if (!kunta) {
-        res.status(404).end();
-      } else {
-        res.status(200);
+      if (munStatus === 200) {
+        const { status: proStatus, resData: proData } = await getProvince(
+          munData.MAAKUNTANRO
+        );
 
-        let maakunta = null;
-        if (maakunnat[kunta.MAAKUNTANRO]) {
-          maakunta = maakunnat[kunta.MAAKUNTANRO];
-        }
-
-        const data = {
-          kunta,
-          maakunta
-        };
-
-        res.end(JSON.stringify(data));
+        data.maakunta = proData;
       }
+
+      res.status(munStatus).end(JSON.stringify(data));
 
       return;
     });
 
-    server.get("/api/maakunnat/:id", (req, res) => {
+    server.get("/api/maakunnat/:id", async (req, res) => {
       const id = req.params.id;
 
-      if (maakunnat[id]) {
-        maakunta = maakunnat[id];
-      }
+      const { status, resData } = await getProvince(id);
 
-      if (!maakunta) {
-        res.status(404).end();
-      } else {
-        res.status(200);
-        res.end(JSON.stringify(maakunta));
-      }
-
+      res.status(status).end(JSON.stringify(resData));
       return;
     });
 
-    server.get("/api/kiinteistot/:id", (req, res) => {
+    server.get("/api/kiinteistot/:id", async (req, res) => {
       const id = req.params.id;
-      pool.query(
-        `
-          SELECT 
-            estate3.*
-            , jsonb_agg(forest_data.*)  as forest_data
-          FROM (
-            SELECT 
-              forest_data.*
-              , jsonb_agg(forecast_data) AS forecast_data 
-            FROM 
-              forest_data 
-            JOIN 
-              forecast_data 
-            ON 
-              forecast_data.id = ANY(forest_data.forecasts) 
-            JOIN 
-              estate3 
-            ON 
-              forest_data.standid = ANY(estate3.standids) 
-            WHERE 
-              estate3.id_text = $1::text 
-            GROUP BY 
-              forest_data.standid) AS forest_data
-          JOIN 
-            estate3 
-          ON 
-            forest_data.standid = ANY(estate3.standids) 
-          WHERE 
-            estate3.id_text = $1::text 
-          GROUP BY 
-            estate3.id_text;
-        `,
-        [id],
-        (err, result) => {
-          if (err) {
-            console.log(err);
-            res.status(500).end();
-          } else {
-            if (result.rowCount > 0) {
-              res.status(200);
 
-              let kunta = null;
-              const kId = result.rows[0].k_natcode;
+      const { status: esStatus, resData: esData } = await getEstate(id);
+      const data = { kiinteisto: esData, kunta: null };
 
-              if (kId) {
-                kunta = kunnat.find(el => {
-                  if (el.NATCODE) {
-                    if (
-                      kId.trim().toLowerCase() ===
-                      el.NATCODE.trim().toLowerCase()
-                    ) {
-                      return true;
-                    }
-                  }
+      if (esStatus === 200) {
+        const { resData: munData } = await getMunicipalityByNatCode(
+          esData.k_natcode
+        );
 
-                  return false;
-                });
-              }
+        data.kunta = munData;
+      }
 
-              const data = {
-                kiinteisto: result.rows[0],
-                kunta
-              };
-
-              res.end(JSON.stringify(data));
-            } else {
-              res.status(404).end();
-            }
-          }
-        }
-      );
+      res.status(esStatus).end(JSON.stringify(data));
       return;
     });
 
-    server.post("/api/tilaus", (req, res) => {
+    server.post("/api/tilaus", async (req, res) => {
       data = req.body;
-      date = Date.now();
-      pool.query(
-        `
-          INSERT INTO 
-            customer_order(
-              id,
-              ts,
-              customer_name,
-              email,
-              areaId,
-              areaType,
-              orderType
-            )
-          VALUES(
-            $1,
-            $2,
-            $3,
-            $4,
-            $5,
-            $6,
-            $7
-          )
-        `,
-        [
-          v4(),
-          date,
-          data.name,
-          data.email,
-          data.areaId,
-          data.areaType,
-          data.orderType
-        ],
-        err => {
-          if (err) {
-            console.log(err);
-            res.status(500).end();
-          } else {
-            transporter
-              .sendMail({
-                from: `"Uusi tilaus - Hiililaskuri" <${forestUser}>`,
-                to: forestEmail,
-                subject: "Uusi tilaus: " + data.areaId,
-                text: `
-                  Nimi: ${data.name}
-                  Email: ${data.email}
-                  Alueen tyyppi: ${data.areaType}
-                  Alueen nimi/tunnus: ${data.areaId}
-                  Tilauksen tyyppi: ${data.orderType}
-                  Ajankohta: ${new Date(date)}
-                `
-              })
-              .then(stuff => console.log(stuff))
-              .catch(error => console.error(error));
-            res.status(200).end();
-          }
-        }
-      );
+      const { status, resData } = await sendOrder(data);
+
+      res.status(status).end(JSON.stringify(resData));
       return;
     });
 
@@ -256,46 +104,56 @@ app
       return handle(req, res);
     });
 
-
     if (!dev) {
-      const privateKey = fs.readFileSync(path.join(process.env.SSL_PATH, 'privkey.pem'), 'utf8');
-      const certificate = fs.readFileSync(path.join(process.env.SSL_PATH, 'cert.pem'), 'utf8');
-      const ca = fs.readFileSync(path.join(process.env.SSL_PATH, 'chain.pem'), 'utf8');
+      const privateKey = fs.readFileSync(
+        path.join(process.env.SSL_PATH, "privkey.pem"),
+        "utf8"
+      );
+      const certificate = fs.readFileSync(
+        path.join(process.env.SSL_PATH, "cert.pem"),
+        "utf8"
+      );
+      const ca = fs.readFileSync(
+        path.join(process.env.SSL_PATH, "chain.pem"),
+        "utf8"
+      );
 
       const credentials = {
         key: privateKey,
         cert: certificate,
-        ca: ca
-      }
+        ca: ca,
+      };
 
-      const httpsServer = https.createServer(credentials, server)
+      const httpsServer = https.createServer(credentials, server);
 
-      httpsServer.listen(443, err => {
+      httpsServer.listen(443, (err) => {
         if (err) throw err;
-        console.log("> Https ready on https://localhost:443")
-      })
+        console.log("> Https ready on https://localhost:443");
+      });
     }
 
     if (!dev) {
-      http.createServer((req, res) => {
-        // 301 redirect (reclassifies google listings)
-        res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-        res.end();
-      }).listen(port, err => {
-        if (err) throw err;
-        console.log("> Redirection ready on http://localhost:" + port)
-      })
-
+      http
+        .createServer((req, res) => {
+          // 301 redirect (reclassifies google listings)
+          res.writeHead(301, {
+            Location: "https://" + req.headers["host"] + req.url,
+          });
+          res.end();
+        })
+        .listen(port, (err) => {
+          if (err) throw err;
+          console.log("> Redirection ready on http://localhost:" + port);
+        });
     } else {
-      const httpServer = http.createServer(server)
-      httpServer.listen(port, err => {
+      const httpServer = http.createServer(server);
+      httpServer.listen(port, (err) => {
         if (err) throw err;
         console.log("> Ready on http://localhost:" + port);
       });
     }
-
   })
-  .catch(ex => {
+  .catch((ex) => {
     console.error(ex.stack);
     process.exit(1);
   });
