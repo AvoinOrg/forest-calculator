@@ -139,7 +139,7 @@ Estate.getInitialProps = async req => {
     }
   }
 
-  const res = await fetch(process.env.API_URL + "/kiinteistot/" + id);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/kiinteistot/" + id);
 
   let data = null;
   let comparisonData = null;

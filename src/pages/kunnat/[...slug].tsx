@@ -96,7 +96,7 @@ Municipality.getInitialProps = async req => {
     }
   }
 
-  const res = await fetch(process.env.API_URL + "/kunnat/" + id);
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/kunnat/" + id);
 
   let data = null;
   let comparisonData = null;

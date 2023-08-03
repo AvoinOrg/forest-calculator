@@ -106,7 +106,7 @@ const Boiler = (props: Props) => {
 
   const handleSubmit = e => {
     setIsSending(true);
-    fetch(process.env.API_URL + "/tilaus", {
+    fetch(process.env.NEXT_PUBLIC_API_URL + "/tilaus", {
       method: "POST",
       body: getFormData(),
       headers: {
